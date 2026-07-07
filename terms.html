@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Vidiback 이용약관입니다.">
+  <meta name="theme-color" content="#030405">
+  <link rel="icon" href="./assets/icon/ic_app_logo.png">
+  <title>Vidiback 이용약관</title>
+  <style>
+:root {
+  color-scheme: dark;
+  --brand: #96FF00;
+  --brand-rgb: 150, 255, 0;
+  --ink: #F8FAF5;
+  --muted: rgba(248, 250, 245, 0.72);
+  --soft: rgba(248, 250, 245, 0.52);
+  --deep: #030405;
+  --panel: rgba(10, 12, 13, 0.78);
+  --line: rgba(255, 255, 255, 0.13);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--deep); text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(var(--brand-rgb), 0.11), transparent 26rem),
+    radial-gradient(circle at 88% 12%, rgba(var(--brand-rgb), 0.08), transparent 28rem),
+    linear-gradient(180deg, #050607 0%, #030405 100%);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Pretendard, Inter, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid rgba(var(--brand-rgb), 0.96); outline-offset: 5px; }
+.legal-shell { width: min(100%, 980px); margin: 0 auto; padding: 28px 22px 54px; }
+.legal-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 62px; }
+.brand-link { display: inline-flex; align-items: center; gap: 11px; color: #fff; font-weight: 760; font-size: 1.08rem; }
+.brand-link img { width: 36px; height: 36px; border-radius: 11px; background: var(--brand); }
+.language-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.language-tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: rgba(248, 250, 245, 0.72);
+  background: rgba(255,255,255,0.04);
+  font-size: 13px;
+  font-weight: 680;
+  transition: color 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
+}
+.language-tabs a:hover, .language-tabs a:focus-visible { color: #fff; background: rgba(255,255,255,0.08); }
+.language-tabs a[aria-current="true"] { color: #071006; border-color: rgba(var(--brand-rgb),0.88); background: var(--brand); }
+.legal-hero { margin-bottom: 34px; }
+.eyebrow { margin: 0 0 12px; color: var(--brand); font-size: 0.85rem; font-weight: 760; text-transform: uppercase; letter-spacing: 0.12em; }
+h1 { margin: 0; color: #fff; font-size: clamp(2.25rem, 6vw, 4.8rem); line-height: 0.98; font-weight: 820; letter-spacing: 0; }
+.meta { margin: 18px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+.legal-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 28px 90px rgba(0,0,0,0.34);
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+}
+.legal-content { display: none; padding: clamp(24px, 4vw, 44px); }
+.legal-content.is-active { display: block; }
+.legal-content h2 { margin: 0 0 26px; color: #fff; font-size: clamp(1.8rem, 3.8vw, 2.6rem); line-height: 1.08; font-weight: 790; }
+.legal-content h3 { margin: 34px 0 12px; color: #fff; font-size: 1.22rem; line-height: 1.35; font-weight: 760; }
+.legal-content h4 { margin: 24px 0 10px; color: rgba(248,250,245,0.92); font-size: 1rem; line-height: 1.42; font-weight: 740; }
+.legal-content p { margin: 0 0 14px; color: var(--muted); font-size: 0.98rem; line-height: 1.78; }
+.legal-content ul { margin: 0 0 18px; padding-left: 1.1rem; color: var(--muted); }
+.legal-content li { margin: 8px 0; line-height: 1.7; }
+.legal-content strong { color: #fff; }
+.legal-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; color: rgba(248,250,245,0.52); font-size: 13px; }
+.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+.footer-links a { color: rgba(248,250,245,0.68); }
+.footer-links a:hover, .footer-links a:focus-visible { color: #fff; }
+@media (max-width: 720px) {
+  .legal-shell { padding: 20px 16px 42px; }
+  .legal-topbar { align-items: flex-start; flex-direction: column; margin-bottom: 44px; }
+  .legal-card { border-radius: 8px; }
+  .legal-content { padding: 22px 18px; }
+  .legal-content p, .legal-content li { font-size: 0.94rem; line-height: 1.72; }
+}
+</style>
+</head>
+<body>
+  <main class="legal-shell">
+    <header class="legal-topbar">
+      <a class="brand-link" href="index.html?lang=ko" aria-label="Vidiback home">
+        <img src="./assets/icon/ic_app_logo.png" alt="" aria-hidden="true">
+        <span>Vidiback</span>
+      </a>
+      <nav class="language-tabs" aria-label="Language">
+        <a href="?lang=ko" data-lang-tab="ko" lang="ko" aria-current="true">한국어</a>
+<a href="?lang=ja" data-lang-tab="ja" lang="ja" aria-current="false">日本語</a>
+<a href="?lang=en" data-lang-tab="en" lang="en" aria-current="false">English</a>
+      </nav>
+    </header>
+
+    <section class="legal-hero" aria-labelledby="pageTitle">
+      <p class="eyebrow">Vidiback</p>
+      <h1 id="pageTitle" data-title>Vidiback 이용약관</h1>
+      <p class="meta" data-meta>시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com</p>
+    </section>
+
+    <article class="legal-card">
+      <section class="legal-content is-active" data-lang-section="ko" lang="ko">
+<h2>한국어</h2>
+<h3>1. 약관의 적용 및 동의</h3>
+<p>본 이용약관은 모그레빅스(Mogrevix)가 제공하는 Vidiback 모바일 애플리케이션, 웹사이트 및 관련 서비스에 적용됩니다. 사용자가 Vidiback을 설치, 접속 또는 사용하는 경우 본 약관과 개인정보처리방침에 동의한 것으로 간주될 수 있습니다. 본 약관에 동의하지 않는 경우 Vidiback을 사용해서는 안 됩니다.</p>
+<p>사용자는 자신이 거주하는 국가 또는 지역의 법령상 Vidiback을 사용할 수 있는 연령과 권한을 보유해야 합니다. 미성년자가 Vidiback을 사용하는 경우 보호자의 동의와 지도가 필요할 수 있습니다.</p>
+<h3>2. 서비스 내용과 변경</h3>
+<p>Vidiback은 모바일 영상 편집, 사진/영상/오디오 가져오기, timeline 편집, 텍스트, 자막, 배경 제거, 필터, 효과, 전환, 오디오 편집, 내보내기, 광고 및 프리미엄 기능을 제공할 수 있습니다.</p>
+<p>Vidiback은 기능, UI, 가격, 지원 기기, 제3자 SDK, 서비스 제공 방식을 변경, 제한, 중단 또는 종료할 수 있습니다. 중요한 변경이 있는 경우 앱 또는 웹사이트를 통해 고지할 수 있습니다.</p>
+<h3>3. 개인정보 보호</h3>
+<p>Vidiback의 개인정보 처리에는 Vidiback 개인정보처리방침이 적용됩니다. 사용자는 Vidiback을 사용함으로써 개인정보처리방침에 따른 정보 수집, 이용, 저장, 이전 및 공개에 동의할 수 있습니다.</p>
+<h3>4. 사용자 콘텐츠</h3>
+<p>사용자가 Vidiback에 가져오거나 생성하는 사진, 영상, 오디오, 텍스트, 프로젝트 및 내보내기 결과물은 &quot;사용자 콘텐츠&quot;입니다. 사용자 콘텐츠의 권리는 원칙적으로 사용자에게 있습니다.</p>
+<p>사용자는 사용자 콘텐츠에 대해 필요한 모든 권리, 허락 및 사용 권한을 보유해야 합니다. 사용자는 사용자 콘텐츠가 타인의 저작권, 초상권, 개인정보, 명예, 상표권 또는 기타 권리를 침해하지 않음을 보장해야 합니다. 사용자 콘텐츠와 그 이용으로 인한 책임은 사용자에게 있습니다.</p>
+<p>Vidiback은 앱 기능 제공, 저장, 복원, 내보내기, 고객지원, 오류 분석 및 서비스 개선을 위해 필요한 범위에서 사용자 콘텐츠를 처리할 수 있습니다.</p>
+<h3>5. 음악, 오디오 및 소재 사용 제한</h3>
+<p>Vidiback이 제공하거나 앱에 포함된 음악, 효과음, 스티커, 템플릿, 폰트, 이미지, 영상, Lottie 또는 기타 소재는 각 라이선스 조건에 따라 제공됩니다. 사용자는 해당 소재를 Vidiback 기능과 관련된 범위에서만 사용할 수 있으며, 별도 허가 없이 소재 자체를 추출, 재배포, 판매하거나 독립된 콘텐츠 라이브러리로 제공해서는 안 됩니다.</p>
+<p>사용자가 외부 음악, 오디오, 영상 또는 이미지를 가져오는 경우 해당 콘텐츠의 저작권, 실연권, 음원권, 초상권, 동기화 권리 및 기타 필요한 권리를 직접 확보해야 합니다. 외부 플랫폼에 업로드한 결과물에 대해 권리자가 수익화 청구, 삭제 요청 또는 기타 조치를 할 수 있습니다.</p>
+<h3>6. 금지 행위</h3>
+<p>사용자는 다음 행위를 해서는 안 됩니다.</p>
+<ul>
+<li>불법, 유해, 혐오, 폭력, 성적 착취, 사기, 스팸 또는 악성 콘텐츠 제작 또는 배포</li>
+<li>미성년자 대상 성적 콘텐츠, 착취, 위험 행위 또는 학대와 관련된 콘텐츠 제작 또는 배포</li>
+<li>타인의 저작권, 상표권, 초상권, 개인정보, 명예 또는 기타 권리 침해</li>
+<li>타인을 사칭하거나 허위 관계, 보증, 제휴를 표시하는 행위</li>
+<li>Vidiback의 보안, 결제, 구독, 광고, 워터마크 또는 사용 제한을 우회하는 행위</li>
+<li>앱, SDK, 서버, API 또는 모델의 역공학, 변조, 무단 복제, 재배포</li>
+<li>자동화 도구, 크롤러, 스크래퍼, 비인가 인터페이스를 사용하여 서비스에 접근하거나 데이터를 추출하는 행위</li>
+<li>서비스, 네트워크, 기기, 다른 사용자에게 피해를 주는 행위</li>
+<li>관련 법령, 스토어 정책, 제3자 약관 또는 본 약관을 위반하는 행위</li>
+</ul>
+<h3>7. AI 및 자동 처리 기능</h3>
+<p>Vidiback은 자동 자막, 번역, 배경 제거, 세그멘테이션, 모션 추적, 추천 또는 기타 자동 처리 기능을 제공할 수 있습니다. 이러한 결과는 항상 정확하거나 완전하지 않을 수 있습니다. 사용자는 결과를 확인하고 필요한 경우 수정해야 합니다.</p>
+<p>Vidiback은 자동 처리 결과의 정확성, 완전성, 특정 목적 적합성 또는 사용자의 기대에 부합함을 보장하지 않습니다.</p>
+<h3>8. 광고와 보상형 광고</h3>
+<p>Vidiback은 광고를 표시할 수 있습니다. 사용자가 보상형 광고를 시청하면 워터마크 제거 또는 특정 기능 이용과 같은 보상이 제공될 수 있습니다. 광고 제공, 측정, 부정 이용 방지는 Google AdMob 등 제3자 광고 서비스의 정책에 따를 수 있습니다.</p>
+<h3>9. 구독, 인앱 결제, 환불</h3>
+<p>Vidiback은 Google Play를 통한 구독 또는 인앱 결제를 제공할 수 있습니다. 결제, 갱신, 취소, 환불은 Google Play 및 관련 결제 제공자의 정책을 따릅니다.</p>
+<p>프리미엄 기능, entitlement, 상품 구성, 가격은 변경될 수 있습니다. 구독은 취소하지 않으면 자동 갱신될 수 있으며, 사용자는 Google Play 계정 설정에서 구독을 관리해야 합니다.</p>
+<h3>10. 워터마크와 프리미엄 기능</h3>
+<p>무료 사용자의 내보내기 결과물에는 워터마크가 포함될 수 있습니다. 프리미엄 기능은 구독 상태, 구매 상태, 광고 시청 보상 또는 프로모션 조건에 따라 제공될 수 있습니다. 사용자는 워터마크 제거 또는 프리미엄 기능 접근 제한을 무단으로 우회해서는 안 됩니다.</p>
+<h3>11. 앱 및 서비스에 대한 권리</h3>
+<p>Vidiback 앱, UI, 코드, 로고, 디자인, 기능, 문서, 모델, 템플릿 및 기타 구성요소의 권리는 모그레빅스(Mogrevix) 또는 해당 권리자에게 있습니다. 본 약관은 사용자에게 Vidiback을 개인적이고 합법적인 목적 범위에서 사용할 수 있는 제한적, 비독점적, 양도 불가능한 라이선스만 부여합니다.</p>
+<p>오픈소스 구성요소는 각 라이선스 조건에 따라 제공되며, 오픈소스 라이선스 고지는 별도 문서 또는 앱 내 화면에서 확인할 수 있습니다.</p>
+<h3>12. 저작권 침해 신고</h3>
+<p>Vidiback은 타인의 지식재산권을 존중합니다. Vidiback 또는 Vidiback 관련 서비스에서 자신의 권리가 침해되었다고 판단되는 경우 vidiback.app@gmail.com으로 연락해 주십시오.</p>
+<p>신고 시 다음 정보를 포함해 주십시오.</p>
+<ul>
+<li>권리자 또는 대리인의 이름과 연락처</li>
+<li>침해되었다고 주장하는 저작물 또는 권리의 설명</li>
+<li>침해 자료의 위치 또는 식별 정보</li>
+<li>신고자가 해당 권리자이거나 권한 있는 대리인이라는 설명</li>
+<li>신고 내용이 정확하다는 진술</li>
+</ul>
+<p>허위 또는 부정확한 신고는 법적 책임을 초래할 수 있습니다.</p>
+<h3>13. 저장, 백업, 데이터 손실</h3>
+<p>프로젝트, 캐시, 프록시 파일, 내보내기 결과물은 사용자의 기기 상태, 저장 공간, 권한, OS 정책, 앱 삭제, 파일 이동 또는 외부 저장소 상태에 영향을 받을 수 있습니다. 중요한 원본 파일과 결과물은 사용자가 직접 백업해야 합니다.</p>
+<p>Vidiback은 법에서 허용하는 범위 내에서 데이터 손실, 프로젝트 손상, 파일 호환성 문제에 대한 책임을 제한합니다.</p>
+<h3>14. 면책</h3>
+<p>Vidiback은 &quot;있는 그대로&quot; 및 &quot;이용 가능한 상태&quot;로 제공됩니다. Vidiback은 앱이 항상 중단 없이, 오류 없이, 안전하게 또는 모든 기기, 파일, 코덱, 네트워크 환경에서 완벽하게 작동한다고 보장하지 않습니다.</p>
+<p>Vidiback은 사용자 콘텐츠, 자동 처리 결과, 제3자 광고, 제3자 서비스, 외부 링크 또는 사용자의 서비스 이용으로 발생하는 결과에 대해 법에서 허용하는 범위 내에서 책임을 제한합니다.</p>
+<h3>15. 책임 제한</h3>
+<p>법에서 금지하지 않는 범위 내에서 모그레빅스(Mogrevix)와 그 관계자는 Vidiback 사용 또는 사용 불능으로 인한 간접 손해, 특별 손해, 징벌적 손해, 부수적 손해, 결과 손해, 데이터 손실, 수익 손실에 대해 책임을 지지 않습니다.</p>
+<p>일부 국가 또는 지역에서는 책임 제한이 허용되지 않을 수 있으며, 이 경우 사용자에게 해당 법령상 권리가 적용될 수 있습니다.</p>
+<h3>16. 약관 위반 및 종료</h3>
+<p>사용자가 본 약관을 위반하는 경우 Vidiback은 관련 기능 접근 제한, 서비스 제공 중단, 구독 또는 계정 관련 조치, 법적 조치를 취할 수 있습니다. 사용자는 언제든지 Vidiback 사용을 중단할 수 있습니다.</p>
+<p>서비스가 종료되거나 중단되는 경우 Vidiback은 합리적인 범위에서 고지할 수 있습니다. 이미 결제된 금액의 환불은 Google Play 및 관련 결제 정책에 따릅니다.</p>
+<h3>17. 준거법과 분쟁</h3>
+<p>본 약관은 원칙적으로 대한민국 법에 따라 해석됩니다. 다만 사용자가 거주하는 국가 또는 지역의 소비자 보호 법령상 강행규정이 있는 경우 해당 규정이 우선 적용될 수 있습니다. 분쟁이 발생하는 경우 당사자들은 먼저 성실한 협의를 통해 해결을 시도하며, 협의로 해결되지 않는 경우 관련 법령에서 정한 절차와 관할에 따릅니다.</p>
+<h3>18. 일반 조항</h3>
+<p>본 약관의 일부 조항이 무효 또는 집행 불가능하더라도 나머지 조항은 계속 유효합니다. Vidiback이 특정 권리를 행사하지 않거나 지연하더라도 해당 권리를 포기한 것으로 보지 않습니다. 사용자는 Vidiback의 사전 서면 동의 없이 본 약관상 권리 또는 의무를 양도할 수 없습니다.</p>
+<p>본 약관의 번역본 사이에 의미 차이가 있는 경우, 적용 법령이 허용하는 범위에서 한국어본을 우선 참고합니다.</p>
+<h3>19. 약관 변경</h3>
+<p>본 약관은 변경될 수 있습니다. 중요한 변경이 있는 경우 앱 또는 웹사이트를 통해 고지할 수 있습니다. 변경 후 앱을 계속 사용하는 경우 변경된 약관에 동의한 것으로 볼 수 있습니다.</p>
+<h3>20. 문의</h3>
+<p>모그레빅스(Mogrevix)</p>
+<p>vidiback.app@gmail.com</p>
+</section> <section class="legal-content" data-lang-section="ja" lang="ja">
+<h2>日本語</h2>
+<h3>1. 適用および同意</h3>
+<p>本利用規約は、Mogrevixが提供するVidibackモバイルアプリ、Webサイトおよび関連サービスに適用されます。Vidibackをインストール、アクセス、または使用することにより、本規約およびプライバシーポリシーに同意したものとみなされる場合があります。同意しない場合、Vidibackを使用してはなりません。</p>
+<p>ユーザーは、居住する国または地域の法令上Vidibackを使用できる年齢および権限を有している必要があります。未成年者がVidibackを使用する場合、保護者の同意および監督が必要となる場合があります。</p>
+<h3>2. サービス内容および変更</h3>
+<p>Vidibackは、モバイル動画編集、写真/動画/音声の取り込み、タイムライン編集、テキスト、字幕、背景削除、フィルター、エフェクト、トランジション、音声編集、書き出し、広告およびプレミアム機能を提供する場合があります。</p>
+<p>Vidibackは、機能、UI、価格、対応端末、第三者SDK、サービス提供方法を変更、制限、一時停止または終了する場合があります。重要な変更がある場合、アプリまたはWebサイトを通じて通知することがあります。</p>
+<h3>3. プライバシー</h3>
+<p>Vidibackにおける個人情報の取扱いには、Vidibackプライバシーポリシーが適用されます。Vidibackを使用することにより、プライバシーポリシーに記載された情報の収集、利用、保存、移転および開示に同意する場合があります。</p>
+<h3>4. ユーザーコンテンツ</h3>
+<p>ユーザーがVidibackに取り込む、または作成する写真、動画、音声、テキスト、プロジェクト、書き出しファイルは「ユーザーコンテンツ」です。ユーザーコンテンツの権利は、原則としてユーザーに帰属します。</p>
+<p>ユーザーは、ユーザーコンテンツについて必要なすべての権利、許諾および承諾を有している必要があります。ユーザーは、ユーザーコンテンツが他者の著作権、肖像権、プライバシー、名誉、商標権、その他の権利を侵害しないことを保証する必要があります。ユーザーコンテンツおよびその利用に関する責任はユーザーにあります。</p>
+<p>Vidibackは、アプリ機能の提供、保存、復元、書き出し、サポート、エラー解析、サービス改善に必要な範囲でユーザーコンテンツを処理する場合があります。</p>
+<h3>5. 音楽、音声および素材の使用制限</h3>
+<p>Vidibackが提供または同梱する音楽、効果音、ステッカー、テンプレート、フォント、画像、動画、Lottie、その他の素材は、それぞれのライセンス条件に基づき提供されます。ユーザーは、これらの素材をVidiback機能に関連する範囲でのみ使用でき、許可なく素材自体を抽出、再配布、販売、または独立したコンテンツライブラリとして提供してはなりません。</p>
+<p>ユーザーが外部の音楽、音声、動画または画像を取り込む場合、著作権、実演権、音源権、肖像権、同期権その他必要な権利を自ら確保する責任があります。外部プラットフォームにアップロードした成果物について、権利者が収益化請求、削除要請、その他の主張を行う場合があります。</p>
+<h3>6. 禁止行為</h3>
+<p>ユーザーは以下の行為を行ってはなりません。</p>
+<ul>
+<li>違法、有害、差別的、暴力的、性的搾取、詐欺、スパム、悪意あるコンテンツの作成または配布</li>
+<li>未成年者に関する性的、搾取的、危険または虐待的コンテンツの作成または配布</li>
+<li>他者の著作権、商標権、肖像権、プライバシー、名誉、その他の権利の侵害</li>
+<li>他者のなりすまし、または保証、提携、関係を虚偽表示する行為</li>
+<li>Vidibackのセキュリティ、決済、サブスクリプション、広告、ウォーターマーク、利用制限の回避</li>
+<li>アプリ、SDK、サーバー、API、モデルのリバースエンジニアリング、改変、無断複製、再配布</li>
+<li>自動化ツール、クローラー、スクレイパー、非認可インターフェースによるアクセスまたはデータ抽出</li>
+<li>サービス、ネットワーク、端末、他のユーザーに損害を与える行為</li>
+<li>適用法令、ストアポリシー、第三者規約または本規約の違反</li>
+</ul>
+<h3>7. AIおよび自動処理機能</h3>
+<p>Vidibackは、自動字幕、翻訳、背景削除、セグメンテーション、モーショントラッキング、推薦、その他の自動処理機能を提供する場合があります。結果は常に正確または完全であるとは限りません。ユーザーは必要に応じて結果を確認し修正する必要があります。</p>
+<p>Vidibackは、自動処理結果の正確性、完全性、特定目的への適合性、またはユーザーの期待への適合を保証しません。</p>
+<h3>8. 広告およびリワード広告</h3>
+<p>Vidibackは広告を表示する場合があります。ユーザーがリワード広告を視聴した場合、ウォーターマーク削除や特定機能へのアクセスなどの報酬が提供される場合があります。広告配信、測定、不正防止はGoogle AdMobなどの第三者広告サービスのポリシーに従う場合があります。</p>
+<h3>9. サブスクリプション、アプリ内購入、返金</h3>
+<p>VidibackはGoogle Playを通じてサブスクリプションまたはアプリ内購入を提供する場合があります。支払い、更新、解約、返金はGoogle Playおよび関連する決済提供者のポリシーに従います。</p>
+<p>プレミアム機能、権利、商品構成、価格は変更される場合があります。サブスクリプションは解約しない限り自動更新される場合があり、ユーザーはGoogle Playアカウント設定で管理する必要があります。</p>
+<h3>10. ウォーターマークとプレミアム機能</h3>
+<p>無料ユーザーの書き出し結果にはウォーターマークが含まれる場合があります。プレミアム機能は、サブスクリプション状態、購入状態、リワード広告、プロモーション条件に基づいて提供される場合があります。ユーザーは、ウォーターマーク削除またはプレミアム機能へのアクセス制限を無断で回避してはなりません。</p>
+<h3>11. アプリおよびサービスに関する権利</h3>
+<p>Vidibackのアプリ、UI、コード、ロゴ、デザイン、機能、文書、モデル、テンプレート、その他の構成要素は、Mogrevixまたは各権利者に帰属します。本規約は、ユーザーに対し、個人的かつ合法的な目的でVidibackを使用するための限定的、非独占的、譲渡不能なライセンスのみを付与します。</p>
+<p>オープンソース構成要素は、それぞれのライセンス条件に基づき提供されます。オープンソース通知は、別文書またはアプリ内画面で確認できます。</p>
+<h3>12. 著作権侵害の申し立て</h3>
+<p>Vidibackは知的財産権を尊重します。VidibackまたはVidiback関連サービスにおいて権利が侵害されたと思われる場合は、vidiback.app@gmail.comまでご連絡ください。</p>
+<p>申し立てには以下の情報を含めてください。</p>
+<ul>
+<li>権利者または代理人の氏名および連絡先</li>
+<li>侵害されたと主張する著作物または権利の説明</li>
+<li>侵害しているとされる資料の場所または識別情報</li>
+<li>申立人が権利者または権限ある代理人である旨の説明</li>
+<li>申立内容が正確である旨の陳述</li>
+</ul>
+<p>虚偽または不正確な申し立ては、法的責任を生じさせる場合があります。</p>
+<h3>13. 保存、バックアップ、データ損失</h3>
+<p>プロジェクト、キャッシュ、プロキシファイル、書き出し結果は、端末状態、保存容量、権限、OSポリシー、アプリ削除、ファイル移動、外部ストレージ状態の影響を受ける場合があります。重要な元ファイルおよび書き出しファイルは、ユーザー自身がバックアップする責任があります。</p>
+<p>Vidibackは、法令で認められる範囲で、データ損失、プロジェクト破損、ファイル互換性問題に関する責任を制限します。</p>
+<h3>14. 免責</h3>
+<p>Vidibackは「現状有姿」および「提供可能な状態」で提供されます。Vidibackは、アプリが常に中断なく、エラーなく、安全に、またはすべての端末、ファイル、コーデック、ネットワーク環境で完全に動作することを保証しません。</p>
+<p>Vidibackは、法令で認められる範囲で、ユーザーコンテンツ、自動処理結果、第三者広告、第三者サービス、外部リンク、またはユーザーのサービス利用により生じる結果について責任を制限します。</p>
+<h3>15. 責任制限</h3>
+<p>法令で禁止されない範囲で、Mogrevixおよびその関係者は、Vidibackの使用または使用不能から生じる間接損害、特別損害、懲罰的損害、付随的損害、結果損害、データ損失、利益損失について責任を負いません。</p>
+<p>一部の国または地域では責任制限が認められない場合があり、その場合ユーザーには当該法令上の追加権利が適用されることがあります。</p>
+<h3>16. 違反および終了</h3>
+<p>ユーザーが本規約に違反した場合、Vidibackは機能アクセス制限、サービス提供停止、サブスクリプションまたはアカウント関連措置、法的措置を取る場合があります。ユーザーはいつでもVidibackの使用を中止できます。</p>
+<p>サービスが終了または中断される場合、Vidibackは合理的な範囲で通知することがあります。既に支払われた金額の返金は、Google Playおよび関連決済ポリシーに従います。</p>
+<h3>17. 準拠法および紛争</h3>
+<p>本規約は、原則として大韓民国法に基づいて解釈されます。ただし、ユーザーが居住する国または地域の消費者保護法上の強行規定がある場合、その規定が優先して適用されることがあります。紛争が発生した場合、当事者はまず誠実な協議により解決を試みます。協議により解決できない場合、適用法令で定められた手続および管轄に従って処理されます。</p>
+<h3>18. 一般条項</h3>
+<p>本規約の一部が無効または執行不能と判断された場合でも、残りの条項は引き続き有効です。Vidibackが特定の権利を行使しない、または行使を遅延した場合でも、当該権利を放棄したものとはみなされません。ユーザーは、Vidibackの事前の書面による同意なく、本規約上の権利または義務を譲渡できません。</p>
+<p>本規約の翻訳間で意味に相違がある場合、適用法令で認められる範囲で韓国語版を主な参照文書とします。</p>
+<h3>19. 規約の変更</h3>
+<p>本規約は変更される場合があります。重要な変更がある場合、アプリまたはWebサイトを通じて通知することがあります。変更後もアプリを継続して使用する場合、更新後の規約に同意したものとみなされる場合があります。</p>
+<h3>20. お問い合わせ</h3>
+<p>Mogrevix</p>
+<p>vidiback.app@gmail.com</p>
+</section> <section class="legal-content" data-lang-section="en" lang="en">
+<h2>English</h2>
+<h3>1. Applicability and Agreement</h3>
+<p>These Terms of Service apply to the Vidiback mobile application, website, and related services provided by Mogrevix. By installing, accessing, or using Vidiback, you may be deemed to agree to these Terms and the Privacy Policy. If you do not agree, you must not use Vidiback.</p>
+<p>You must have the legal age and authority required in your country or region to use Vidiback. If a minor uses Vidiback, guardian consent and supervision may be required.</p>
+<h3>2. Service and Changes</h3>
+<p>Vidiback may provide mobile video editing, photo/video/audio import, timeline editing, text, captions, background removal, filters, effects, transitions, audio editing, export, ads, and premium features.</p>
+<p>Vidiback may change, limit, suspend, or discontinue features, UI, pricing, supported devices, third-party SDKs, or service delivery methods. Material changes may be notified through the app or website.</p>
+<h3>3. Privacy</h3>
+<p>Vidiback&#x27;s handling of personal information is governed by the Vidiback Privacy Policy. By using Vidiback, you may consent to the collection, use, storage, transfer, and disclosure of information as described in the Privacy Policy.</p>
+<h3>4. User Content</h3>
+<p>Photos, videos, audio, text, projects, and exported files that you import or create in Vidiback are &quot;User Content.&quot; You generally retain rights to your User Content.</p>
+<p>You must have all necessary rights, permissions, and clearances for your User Content. You represent that your User Content does not infringe copyrights, publicity rights, privacy rights, reputation, trademarks, or other rights of others. You are responsible for your User Content and its use.</p>
+<p>Vidiback may process User Content as needed to provide app functionality, save, restore, export, provide support, analyze errors, and improve the service.</p>
+<h3>5. Music, Audio, and Asset Restrictions</h3>
+<p>Music, sound effects, stickers, templates, fonts, images, videos, Lottie files, or other assets provided in or with Vidiback are subject to their respective license terms. You may use those assets only within the scope of Vidiback functionality and must not extract, redistribute, sell, or offer the assets as a standalone content library without permission.</p>
+<p>If you import external music, audio, video, or images, you are responsible for securing copyrights, performance rights, sound recording rights, publicity rights, synchronization rights, and any other required permissions. Rights holders may make monetization claims, takedown requests, or other claims against outputs uploaded to external platforms.</p>
+<h3>6. Prohibited Conduct</h3>
+<p>You must not:</p>
+<ul>
+<li>Create or distribute illegal, harmful, hateful, violent, sexually exploitative, fraudulent, spam, or malicious content</li>
+<li>Create or distribute sexual, exploitative, dangerous, or abusive content involving minors</li>
+<li>Infringe another person&#x27;s copyrights, trademarks, publicity rights, privacy rights, reputation, or other rights</li>
+<li>Impersonate others or falsely imply endorsement, affiliation, or relationship</li>
+<li>Circumvent Vidiback security, payments, subscriptions, ads, watermarks, or usage restrictions</li>
+<li>Reverse engineer, modify, copy, or redistribute the app, SDKs, servers, APIs, or models without authorization</li>
+<li>Use automated tools, crawlers, scrapers, or unauthorized interfaces to access the service or extract data</li>
+<li>Harm the service, networks, devices, or other users</li>
+<li>Violate applicable laws, store policies, third-party terms, or these Terms</li>
+</ul>
+<h3>7. AI and Automated Processing</h3>
+<p>Vidiback may provide automated captions, translation, background removal, segmentation, motion tracking, recommendations, or other automated processing features. Results may not always be accurate or complete. You should review and edit results as needed.</p>
+<p>Vidiback does not guarantee the accuracy, completeness, fitness for a particular purpose, or suitability of automated results.</p>
+<h3>8. Ads and Rewarded Ads</h3>
+<p>Vidiback may display ads. If you watch a rewarded ad, Vidiback may provide rewards such as watermark removal or access to certain features. Ad delivery, measurement, and fraud prevention may be governed by third-party ad services such as Google AdMob.</p>
+<h3>9. Subscriptions, In-App Purchases, and Refunds</h3>
+<p>Vidiback may offer subscriptions or in-app purchases through Google Play. Payments, renewals, cancellations, and refunds are governed by Google Play and applicable payment provider policies.</p>
+<p>Premium features, entitlements, product configuration, and prices may change. Subscriptions may renew automatically unless cancelled, and you must manage subscriptions through your Google Play account settings.</p>
+<h3>10. Watermarks and Premium Features</h3>
+<p>Exports by free users may include a watermark. Premium features may be provided based on subscription status, purchase status, rewarded ads, or promotional conditions. You must not bypass watermark removal or premium access restrictions without authorization.</p>
+<h3>11. Rights in the App and Service</h3>
+<p>The Vidiback app, UI, code, logos, design, features, documentation, models, templates, and other components are owned by Mogrevix or their respective rights holders. These Terms grant you only a limited, non-exclusive, non-transferable license to use Vidiback for personal and lawful purposes.</p>
+<p>Open source components are provided under their respective license terms. Open source notices are available in a separate document or in-app screen.</p>
+<h3>12. Copyright Complaints</h3>
+<p>Vidiback respects intellectual property rights. If you believe your rights are infringed in Vidiback or a Vidiback-related service, contact vidiback.app@gmail.com.</p>
+<p>Please include:</p>
+<ul>
+<li>The name and contact information of the rights holder or authorized representative</li>
+<li>A description of the copyrighted work or right claimed to be infringed</li>
+<li>The location or identifying information of the allegedly infringing material</li>
+<li>A statement that you are the rights holder or authorized representative</li>
+<li>A statement that the information in your notice is accurate</li>
+</ul>
+<p>False or inaccurate notices may result in legal responsibility.</p>
+<h3>13. Storage, Backup, and Data Loss</h3>
+<p>Projects, caches, proxy files, and exported files may be affected by device status, storage space, permissions, OS policies, app deletion, file movement, or external storage state. You are responsible for backing up important source files and exported files.</p>
+<p>To the extent permitted by law, Vidiback limits liability for data loss, project corruption, and file compatibility issues.</p>
+<h3>14. Disclaimers</h3>
+<p>Vidiback is provided &quot;as is&quot; and &quot;as available.&quot; Vidiback does not guarantee that the app will always be uninterrupted, error-free, secure, or work perfectly on all devices, files, codecs, or network environments.</p>
+<p>To the extent permitted by law, Vidiback limits responsibility for User Content, automated processing results, third-party ads, third-party services, external links, or consequences arising from your use of the service.</p>
+<h3>15. Limitation of Liability</h3>
+<p>To the extent not prohibited by law, Mogrevix and its related parties are not liable for indirect, special, punitive, incidental, exemplary, or consequential damages, data loss, or loss of profits arising from use of, or inability to use, Vidiback.</p>
+<p>Some jurisdictions do not allow limitations of liability, so some limitations may not apply to you and you may have additional rights.</p>
+<h3>16. Violations and Termination</h3>
+<p>If you violate these Terms, Vidiback may restrict feature access, suspend service provision, take subscription or account-related actions, or pursue legal remedies. You may stop using Vidiback at any time.</p>
+<p>If the service is terminated or discontinued, Vidiback may provide notice where reasonable. Refunds for amounts already paid are governed by Google Play and applicable payment policies.</p>
+<h3>17. Governing Law and Disputes</h3>
+<p>These Terms are generally interpreted under the laws of the Republic of Korea. However, mandatory consumer protection laws in the user&#x27;s country or region may apply where required. If a dispute arises, the parties will first try to resolve it through good-faith discussions. If the dispute cannot be resolved through discussion, it will be handled under the procedures and jurisdiction required by applicable law.</p>
+<h3>18. General Terms</h3>
+<p>If any part of these Terms is found invalid or unenforceable, the remaining provisions remain effective. Vidiback&#x27;s failure or delay in exercising a right does not waive that right. You may not assign or transfer your rights or obligations under these Terms without Vidiback&#x27;s prior written consent.</p>
+<p>If there is a difference in meaning between translations of these Terms, the Korean version will be used as the primary reference to the extent permitted by applicable law.</p>
+<h3>19. Changes to Terms</h3>
+<p>These Terms may change. Material changes may be notified through the app or website. Continued use of the app after changes may be deemed acceptance of the updated Terms.</p>
+<h3>20. Contact</h3>
+<p>Mogrevix</p>
+<p>vidiback.app@gmail.com</p>
+</section>
+    </article>
+
+    <footer class="legal-footer">
+      <div class="footer-links">
+        <a href="index.html?lang=ko">Vidiback</a>
+        <a href="terms.html?lang=ko" data-legal-link="terms">이용약관</a>
+<a href="privacy.html?lang=ko" data-legal-link="privacy">개인정보처리방침</a>
+      </div>
+      <span>© Mogrevix</span>
+    </footer>
+  </main>
+  <script>
+(() => {
+  const translations = {"ko": {"title": "Vidiback 이용약관", "description": "Vidiback 이용약관입니다.", "heading": "Vidiback 이용약관", "meta": "시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "이용약관", "privacy": "개인정보처리방침"}, "ja": {"title": "Vidiback 利用規約", "description": "Vidiback利用規約です。", "heading": "Vidiback 利用規約", "meta": "施行日: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "利用規約", "privacy": "プライバシーポリシー"}, "en": {"title": "Vidiback Terms of Use", "description": "Vidiback Terms of Use.", "heading": "Vidiback Terms of Use", "meta": "Effective date: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "Terms of Use", "privacy": "Privacy Policy"}};
+  const supported = Object.keys(translations);
+  const tabs = Array.from(document.querySelectorAll('[data-lang-tab]'));
+  const sections = Array.from(document.querySelectorAll('[data-lang-section]'));
+  const legalLinks = Array.from(document.querySelectorAll('[data-legal-link]'));
+  const titleNode = document.querySelector('[data-title]');
+  const metaNode = document.querySelector('[data-meta]');
+  const metaDescription = document.querySelector('meta[name="description"]');
+  function normalize(value) {
+    const lang = String(value || '').toLowerCase();
+    if (lang.startsWith('ja') || lang === 'jp') return 'ja';
+    if (lang.startsWith('en')) return 'en';
+    if (lang.startsWith('ko') || lang === 'kr') return 'ko';
+    return '';
+  }
+  function getStored() { try { return localStorage.getItem('vidiback-lang'); } catch (_) { return ''; } }
+  function setStored(value) { try { localStorage.setItem('vidiback-lang', value); } catch (_) {} }
+  function initialLang() {
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = normalize(params.get('lang'));
+    if (supported.includes(fromUrl)) return fromUrl;
+    const fromStorage = normalize(getStored());
+    if (supported.includes(fromStorage)) return fromStorage;
+    const fromBrowser = normalize(navigator.language);
+    return supported.includes(fromBrowser) ? fromBrowser : 'ko';
+  }
+  function updateUrl(lang) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url.href);
+    } catch (_) {}
+  }
+  function applyLang(lang, persist = true) {
+    const next = supported.includes(lang) ? lang : 'ko';
+    const copy = translations[next];
+    document.documentElement.lang = next;
+    document.title = copy.title;
+    if (metaDescription) metaDescription.setAttribute('content', copy.description);
+    if (titleNode) titleNode.textContent = copy.heading;
+    if (metaNode) metaNode.textContent = copy.meta;
+    tabs.forEach((tab) => tab.setAttribute('aria-current', String(tab.dataset.langTab === next)));
+    sections.forEach((section) => section.classList.toggle('is-active', section.dataset.langSection === next));
+    legalLinks.forEach((link) => {
+      const page = link.dataset.legalLink === 'privacy' ? 'privacy.html' : 'terms.html';
+      link.href = `${page}?lang=${next}`;
+      if (link.dataset.legalLink === 'privacy') link.textContent = copy.privacy;
+      if (link.dataset.legalLink === 'terms') link.textContent = copy.terms;
+    });
+    if (persist) { setStored(next); updateUrl(next); }
+  }
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (event) => {
+      event.preventDefault();
+      applyLang(tab.dataset.langTab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  applyLang(initialLang(), false);
+})();
+</script>
+</body>
+</html>

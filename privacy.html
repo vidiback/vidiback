@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Vidiback 개인정보처리방침입니다.">
+  <meta name="theme-color" content="#030405">
+  <link rel="icon" href="./assets/icon/ic_app_logo.png">
+  <title>Vidiback 개인정보처리방침</title>
+  <style>
+:root {
+  color-scheme: dark;
+  --brand: #96FF00;
+  --brand-rgb: 150, 255, 0;
+  --ink: #F8FAF5;
+  --muted: rgba(248, 250, 245, 0.72);
+  --soft: rgba(248, 250, 245, 0.52);
+  --deep: #030405;
+  --panel: rgba(10, 12, 13, 0.78);
+  --line: rgba(255, 255, 255, 0.13);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--deep); text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(var(--brand-rgb), 0.11), transparent 26rem),
+    radial-gradient(circle at 88% 12%, rgba(var(--brand-rgb), 0.08), transparent 28rem),
+    linear-gradient(180deg, #050607 0%, #030405 100%);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Pretendard, Inter, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid rgba(var(--brand-rgb), 0.96); outline-offset: 5px; }
+.legal-shell { width: min(100%, 980px); margin: 0 auto; padding: 28px 22px 54px; }
+.legal-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 62px; }
+.brand-link { display: inline-flex; align-items: center; gap: 11px; color: #fff; font-weight: 760; font-size: 1.08rem; }
+.brand-link img { width: 36px; height: 36px; border-radius: 11px; background: var(--brand); }
+.language-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.language-tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: rgba(248, 250, 245, 0.72);
+  background: rgba(255,255,255,0.04);
+  font-size: 13px;
+  font-weight: 680;
+  transition: color 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
+}
+.language-tabs a:hover, .language-tabs a:focus-visible { color: #fff; background: rgba(255,255,255,0.08); }
+.language-tabs a[aria-current="true"] { color: #071006; border-color: rgba(var(--brand-rgb),0.88); background: var(--brand); }
+.legal-hero { margin-bottom: 34px; }
+.eyebrow { margin: 0 0 12px; color: var(--brand); font-size: 0.85rem; font-weight: 760; text-transform: uppercase; letter-spacing: 0.12em; }
+h1 { margin: 0; color: #fff; font-size: clamp(2.25rem, 6vw, 4.8rem); line-height: 0.98; font-weight: 820; letter-spacing: 0; }
+.meta { margin: 18px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+.legal-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 28px 90px rgba(0,0,0,0.34);
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+}
+.legal-content { display: none; padding: clamp(24px, 4vw, 44px); }
+.legal-content.is-active { display: block; }
+.legal-content h2 { margin: 0 0 26px; color: #fff; font-size: clamp(1.8rem, 3.8vw, 2.6rem); line-height: 1.08; font-weight: 790; }
+.legal-content h3 { margin: 34px 0 12px; color: #fff; font-size: 1.22rem; line-height: 1.35; font-weight: 760; }
+.legal-content h4 { margin: 24px 0 10px; color: rgba(248,250,245,0.92); font-size: 1rem; line-height: 1.42; font-weight: 740; }
+.legal-content p { margin: 0 0 14px; color: var(--muted); font-size: 0.98rem; line-height: 1.78; }
+.legal-content ul { margin: 0 0 18px; padding-left: 1.1rem; color: var(--muted); }
+.legal-content li { margin: 8px 0; line-height: 1.7; }
+.legal-content strong { color: #fff; }
+.legal-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; color: rgba(248,250,245,0.52); font-size: 13px; }
+.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+.footer-links a { color: rgba(248,250,245,0.68); }
+.footer-links a:hover, .footer-links a:focus-visible { color: #fff; }
+@media (max-width: 720px) {
+  .legal-shell { padding: 20px 16px 42px; }
+  .legal-topbar { align-items: flex-start; flex-direction: column; margin-bottom: 44px; }
+  .legal-card { border-radius: 8px; }
+  .legal-content { padding: 22px 18px; }
+  .legal-content p, .legal-content li { font-size: 0.94rem; line-height: 1.72; }
+}
+</style>
+</head>
+<body>
+  <main class="legal-shell">
+    <header class="legal-topbar">
+      <a class="brand-link" href="index.html?lang=ko" aria-label="Vidiback home">
+        <img src="./assets/icon/ic_app_logo.png" alt="" aria-hidden="true">
+        <span>Vidiback</span>
+      </a>
+      <nav class="language-tabs" aria-label="Language">
+        <a href="?lang=ko" data-lang-tab="ko" lang="ko" aria-current="true">한국어</a>
+<a href="?lang=ja" data-lang-tab="ja" lang="ja" aria-current="false">日本語</a>
+<a href="?lang=en" data-lang-tab="en" lang="en" aria-current="false">English</a>
+      </nav>
+    </header>
+
+    <section class="legal-hero" aria-labelledby="pageTitle">
+      <p class="eyebrow">Vidiback</p>
+      <h1 id="pageTitle" data-title>Vidiback 개인정보처리방침</h1>
+      <p class="meta" data-meta>시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com</p>
+    </section>
+
+    <article class="legal-card">
+      <section class="legal-content is-active" data-lang-section="ko" lang="ko">
+<h2>한국어</h2>
+<h3>1. 개인정보처리방침의 범위</h3>
+<p>본 개인정보처리방침은 모그레빅스(Mogrevix)가 제공하는 Vidiback 모바일 애플리케이션, 웹사이트, 고객지원 및 관련 서비스에 적용됩니다. Vidiback을 사용하면 본 방침에 따라 정보가 수집, 이용, 저장, 이전, 공개 또는 처리될 수 있습니다. 본 방침에 동의하지 않는 경우 앱 사용을 중단해야 합니다.</p>
+<p>본 방침은 Vidiback 이용약관의 일부이며, 특정 기능에서 별도 고지 또는 권한 동의 화면이 제공되는 경우 해당 고지도 함께 적용됩니다.</p>
+<h3>2. 수집 또는 처리하는 정보</h3>
+<p>Vidiback은 사용자가 직접 제공하는 정보와 앱 사용 과정에서 자동으로 생성되는 정보를 처리할 수 있습니다.</p>
+<h4>2.1 사용자가 제공하거나 선택하는 정보</h4>
+<ul>
+<li>사용자가 가져오거나 편집하는 사진, 영상, 오디오 및 프로젝트 파일</li>
+<li>텍스트, 자막, 스티커, 효과, 필터, 배경 제거 결과, 내보내기 결과물 등 사용자가 생성한 콘텐츠</li>
+<li>음성 녹음 기능 사용 시 마이크로 입력되는 오디오</li>
+<li>고객지원 문의 시 제공하는 이메일 주소, 문의 내용, 첨부 파일, 기기 및 앱 상태 설명</li>
+<li>구독 또는 구매 복원 과정에서 처리되는 구매 상태, 상품 ID, entitlement 정보</li>
+</ul>
+<h4>2.2 앱 사용 중 자동으로 처리되는 정보</h4>
+<ul>
+<li>앱 실행, 화면 이동, 기능 사용, 내보내기 설정, 광고 시청 여부 등 사용성 분석 정보</li>
+<li>크래시, 오류, 성능 문제, 로그, 앱 버전, OS 버전, 기기 모델, 네트워크 상태 등 진단 정보</li>
+<li>광고 식별자, 광고 노출/클릭/보상 이벤트, IP 주소, 기기 및 네트워크 정보</li>
+<li>프로젝트 썸네일, 캐시, 프록시, 다운스케일 파일, 임시 렌더링 파일</li>
+<li>자동 자막, 번역, 배경 제거, 세그멘테이션, 모션 추적 등 ML 기능을 위해 생성되는 분석 결과와 임시 파일</li>
+</ul>
+<h4>2.3 위치 정보</h4>
+<p>Vidiback은 현재 위치 기반 기능을 제공하지 않으며, 위치 권한을 요청하지 않고 위치 정보를 의도적으로 수집하지 않습니다. 향후 위치 기반 기능을 제공하는 경우 별도 고지와 권한 동의를 통해 처리합니다.</p>
+<h3>3. 미디어, 얼굴, 음성 및 ML 처리</h3>
+<p>Vidiback은 영상 편집 앱이므로 사용자가 선택한 사진, 영상, 오디오를 처리합니다. 배경 제거, 세그멘테이션, 자동 자막, 번역, 모션 추적, 필터 또는 효과 기능은 미디어의 시각/음성 정보를 분석할 수 있습니다.</p>
+<p>Vidiback은 이러한 정보를 사용자를 식별하기 위한 목적으로 사용하지 않습니다. 기능에 따라 처리는 기기 내에서 수행되거나, Google ML Kit, Firebase, RevenueCat, AdMob 등 제3자 SDK 또는 서비스와 연동될 수 있습니다. 외부 API 또는 클라우드 처리가 필요한 기능을 출시하는 경우, 해당 제공자와 전송되는 데이터 범위를 본 방침 또는 별도 고지에 반영합니다.</p>
+<h3>4. 정보 이용 목적</h3>
+<p>Vidiback은 정보를 다음 목적으로 이용합니다.</p>
+<ul>
+<li>미디어 가져오기, 편집, 저장, 복원, 내보내기 기능 제공</li>
+<li>자동 자막, 번역, 배경 제거, 모션 추적, 필터, 효과, 전환, 오디오 편집 기능 제공</li>
+<li>프로젝트 목록, 썸네일, 캐시, 프록시, 다운스케일 파일 관리</li>
+<li>앱 안정성, 크래시 분석, 오류 수정, 성능 개선</li>
+<li>사용성 분석, 기능 개선, 품질 관리</li>
+<li>광고 표시, 보상형 광고 처리, 광고 성과 측정 및 부정 이용 방지</li>
+<li>구독 상태 확인, 프리미엄 기능 제공, 구매 복원</li>
+<li>고객지원, 문의 대응, 공지 또는 서비스 관련 안내</li>
+<li>보안, 사기 방지, 권리 보호, 분쟁 해결</li>
+<li>법령, 스토어 정책, 규제 의무 준수</li>
+</ul>
+<h3>5. 기기 권한</h3>
+<p>Vidiback은 다음 권한을 요청할 수 있습니다.</p>
+<ul>
+<li>사진 및 동영상 접근 권한: 사용자가 선택한 미디어를 가져오고 편집하기 위해 사용합니다.</li>
+<li>오디오 접근 권한: 오디오 파일을 가져오고 편집하기 위해 사용합니다.</li>
+<li>마이크 권한: 사용자가 녹음 기능을 사용할 때만 사용합니다.</li>
+<li>저장소 권한: 구형 Android 버전에서 미디어 파일을 읽거나 저장하기 위해 사용합니다.</li>
+<li>네트워크 권한: 광고, 분석, 크래시 보고, 구독 확인, 번역 또는 외부 서비스 연동에 사용합니다.</li>
+<li>포그라운드 서비스 권한: 내보내기 또는 장시간 미디어 처리 작업을 안정적으로 수행하기 위해 사용합니다.</li>
+<li>진동 또는 알림 관련 기능: 작업 상태 안내 또는 사용자 피드백에 사용될 수 있습니다.</li>
+</ul>
+<h3>6. 제3자 서비스</h3>
+<p>Vidiback은 앱 제공을 위해 다음 제3자 SDK 또는 서비스를 사용할 수 있습니다.</p>
+<ul>
+<li>Google Firebase Analytics: 앱 사용 분석</li>
+<li>Google Firebase Crashlytics: 크래시 및 오류 진단</li>
+<li>Google AdMob: 광고 표시 및 광고 성과 측정</li>
+<li>RevenueCat: 구독 확인, 구매 처리, entitlement 관리</li>
+<li>Google ML Kit 및 Google Play Services ML Kit: 번역, 세그멘테이션 또는 기타 ML 기능</li>
+<li>ONNX Runtime, Sherpa ONNX, LiteRT, OpenCV: 기기 내 ML 또는 미디어 처리 기능</li>
+<li>Google Play, Google Play Billing, Google Play Services 및 Android 시스템 구성요소</li>
+</ul>
+<p>제3자 서비스는 각자의 개인정보처리방침에 따라 정보를 처리할 수 있습니다. 광고, 분석, 크래시, 구독, 번역 또는 ML 기능을 사용할 때 일부 정보가 해당 제공자에게 전송될 수 있습니다.</p>
+<h3>7. 정보 공유 및 공개</h3>
+<p>Vidiback은 다음 경우 정보를 공유하거나 공개할 수 있습니다.</p>
+<ul>
+<li>앱 기능 제공에 필요한 제3자 SDK 또는 서비스 제공자에게 제공하는 경우</li>
+<li>광고 네트워크, 분석 제공자, 결제/구독 관리 제공자와 필요한 정보를 공유하는 경우</li>
+<li>법령, 법원 명령, 정부 요청에 따라 필요한 경우</li>
+<li>보안, 사기 방지, 기술 문제 해결, 권리 보호를 위해 필요한 경우</li>
+<li>회사 구조 변경, 합병, 양도, 사업 이전 등과 관련하여 필요한 경우</li>
+<li>사용자가 공유 기능을 명시적으로 사용하는 경우</li>
+</ul>
+<p>Vidiback은 사용자의 동의 없이 사용자가 만든 미디어 콘텐츠 자체를 판매하지 않습니다.</p>
+<h3>8. 사용자 선택권</h3>
+<p>사용자는 다음 방법으로 정보 처리에 대해 선택할 수 있습니다.</p>
+<ul>
+<li>기기 설정에서 사진, 동영상, 오디오, 마이크 등 앱 권한 변경</li>
+<li>Android 광고 설정에서 개인 맞춤 광고 또는 광고 ID 사용 제한</li>
+<li>앱 또는 기기에서 프로젝트, 캐시, 내보내기 파일 삭제</li>
+<li>앱 삭제를 통한 기기 내 앱 데이터 삭제</li>
+<li>고객지원 이메일을 통한 열람, 정정, 삭제 또는 문의 요청</li>
+</ul>
+<p>광고 개인화 제한을 선택해도 일반 광고는 계속 표시될 수 있습니다. 서비스 운영상 필요한 공지, 결제, 보안, 고객지원 관련 메시지는 수신 거부가 제한될 수 있습니다.</p>
+<h3>9. 보관 기간</h3>
+<p>프로젝트 파일, 캐시, 썸네일, 프록시, 내보내기 파일은 사용자가 삭제하거나 앱을 제거할 때까지 기기 내에 보관될 수 있습니다. 고객지원 문의 기록은 문의 처리와 분쟁 대응에 필요한 기간 동안 보관될 수 있습니다. 분석, 광고, 크래시, 구독 관련 정보는 각 제3자 서비스의 보관 정책에 따라 보관될 수 있습니다.</p>
+<p>법령 준수, 분쟁 해결, 보안 조사, 결제 정산, 권리 보호를 위해 필요한 경우 관련 정보는 해당 목적이 달성될 때까지 보관될 수 있습니다.</p>
+<h3>10. 아동 개인정보</h3>
+<p>Vidiback은 만 13세 미만 아동을 대상으로 하지 않습니다. 사용자의 국가 또는 지역에서 더 높은 연령 기준이 적용되는 경우 해당 기준을 따릅니다. 아동의 개인정보가 보호자 동의 없이 수집되었다고 판단되는 경우 vidiback.app@gmail.com으로 연락해 주십시오.</p>
+<h3>11. 국외 이전</h3>
+<p>Firebase, AdMob, RevenueCat 등 제3자 서비스는 정보를 사용자의 국가 외 지역에서 저장하거나 처리할 수 있습니다. 사용자는 앱을 사용함으로써 정보가 대한민국, 미국 또는 기타 국가에서 처리될 수 있음을 이해합니다.</p>
+<h3>12. 보안</h3>
+<p>Vidiback은 합리적인 기술적, 관리적 보호 조치를 통해 정보를 보호하려고 노력합니다. 다만 인터넷 전송, 모바일 환경, 전자 저장 방식은 완전한 보안을 보장할 수 없습니다. 사용자는 자신의 기기, 계정, 원본 파일 및 내보내기 파일을 안전하게 관리해야 합니다.</p>
+<h3>13. 외부 링크</h3>
+<p>앱 또는 웹사이트에는 제3자 웹사이트, 스토어, 광고, 결제 또는 고객지원 링크가 포함될 수 있습니다. 해당 제3자의 개인정보 처리에는 그들의 정책이 적용되며, Vidiback은 제3자 서비스의 처리 방식을 통제하지 않습니다.</p>
+<h3>14. 개인정보처리방침 변경</h3>
+<p>본 방침은 변경될 수 있습니다. 중요한 변경이 있는 경우 앱 또는 웹사이트를 통해 고지할 수 있습니다. 변경 후 앱을 계속 사용하는 경우 변경된 방침에 동의한 것으로 볼 수 있습니다.</p>
+<h3>15. 문의</h3>
+<p>개인정보 관련 문의는 다음 연락처로 보내주십시오.</p>
+<p>모그레빅스(Mogrevix)</p>
+<p>vidiback.app@gmail.com</p>
+</section> <section class="legal-content" data-lang-section="ja" lang="ja">
+<h2>日本語</h2>
+<h3>1. 適用範囲</h3>
+<p>本プライバシーポリシーは、Mogrevixが提供するVidibackモバイルアプリ、Webサイト、カスタマーサポートおよび関連サービスに適用されます。Vidibackを使用することにより、本ポリシーに記載された方法で情報が収集、利用、保存、移転、開示または処理される場合があります。本ポリシーに同意しない場合は、アプリの使用を中止してください。</p>
+<p>本ポリシーはVidiback利用規約の一部です。特定の機能で別途通知または権限許可画面が提供される場合、その通知も適用されます。</p>
+<h3>2. 収集または処理する情報</h3>
+<p>Vidibackは、ユーザーが直接提供する情報およびアプリ使用中に自動的に生成される情報を処理する場合があります。</p>
+<h4>2.1 ユーザーが提供または選択する情報</h4>
+<ul>
+<li>ユーザーが取り込みまたは編集する写真、動画、音声、プロジェクトファイル</li>
+<li>テキスト、字幕、ステッカー、エフェクト、フィルター、背景削除結果、書き出しファイルなどのユーザー作成コンテンツ</li>
+<li>録音機能使用時にマイクから入力される音声</li>
+<li>カスタマーサポートのために提供されるメールアドレス、問い合わせ内容、添付ファイル、端末およびアプリ状態の説明</li>
+<li>サブスクリプションまたは購入復元のために処理される購入状態、商品ID、権利情報</li>
+</ul>
+<h4>2.2 自動的に処理される情報</h4>
+<ul>
+<li>アプリ起動、画面表示、機能利用、書き出し設定、リワード広告イベントなどの利用分析情報</li>
+<li>クラッシュ、エラー、パフォーマンス情報、ログ、アプリバージョン、OSバージョン、端末モデル、ネットワーク状態</li>
+<li>広告ID、広告表示/クリック/報酬イベント、IPアドレス、端末またはネットワーク情報</li>
+<li>プロジェクトサムネイル、キャッシュ、プロキシ、ダウンスケールファイル、一時レンダリングファイル</li>
+<li>字幕、翻訳、背景削除、セグメンテーション、モーショントラッキングなどML機能のために生成される解析結果および一時ファイル</li>
+</ul>
+<h4>2.3 位置情報</h4>
+<p>Vidibackは現在、位置情報に基づく機能を提供しておらず、位置情報権限を要求せず、位置情報を意図的に収集しません。今後位置情報機能を導入する場合は、必要に応じて通知し許可を求めます。</p>
+<h3>3. メディア、顔、音声およびML処理</h3>
+<p>Vidibackは動画編集アプリであり、ユーザーが選択した写真、動画、音声を処理します。背景削除、セグメンテーション、字幕、翻訳、モーショントラッキング、フィルターまたはエフェクト機能は、メディア内の視覚情報または音声情報を分析する場合があります。</p>
+<p>Vidibackは、これらの情報を特定の個人を識別する目的で使用しません。機能によって、処理は端末内で行われる場合、またはGoogle ML Kit、Firebase、RevenueCat、AdMobなどの第三者SDKまたはサービスを通じて行われる場合があります。外部APIまたはクラウド処理が必要な機能を提供する場合、関連する提供者およびデータカテゴリを本ポリシーまたは別途通知に反映します。</p>
+<h3>4. 利用目的</h3>
+<p>Vidibackは情報を以下の目的で利用します。</p>
+<ul>
+<li>メディアの取り込み、編集、保存、復元、書き出し</li>
+<li>字幕、翻訳、背景削除、モーショントラッキング、フィルター、エフェクト、トランジション、音声編集機能の提供</li>
+<li>プロジェクト一覧、サムネイル、キャッシュ、プロキシ、ダウンスケールファイルの管理</li>
+<li>クラッシュ解析、エラー修正、安定性およびパフォーマンス改善</li>
+<li>利用状況の理解、機能改善、品質管理</li>
+<li>広告表示、リワード広告処理、広告効果測定、不正利用防止</li>
+<li>サブスクリプション確認、プレミアム機能提供、購入復元</li>
+<li>カスタマーサポート、問い合わせ対応、サービス関連通知</li>
+<li>セキュリティ保護、不正防止、権利保護、紛争解決</li>
+<li>法令、ストアポリシー、規制上の義務の遵守</li>
+</ul>
+<h3>5. 端末権限</h3>
+<p>Vidibackは以下の権限を要求する場合があります。</p>
+<ul>
+<li>写真および動画: ユーザーが選択したメディアの取り込みおよび編集</li>
+<li>音声ファイル: 音声の取り込みおよび編集</li>
+<li>マイク: 録音機能を使用する場合のみ</li>
+<li>ストレージ: 古いAndroidバージョンでメディアファイルを読み書きするため</li>
+<li>ネットワーク: 広告、分析、クラッシュ報告、サブスクリプション確認、翻訳、外部サービス連携</li>
+<li>フォアグラウンドサービス: 書き出しまたは長時間のメディア処理を安定して実行するため</li>
+<li>バイブレーションまたは通知関連機能: 作業状態案内またはユーザーフィードバック</li>
+</ul>
+<h3>6. 第三者サービス</h3>
+<p>Vidibackは以下の第三者SDKまたはサービスを使用する場合があります。</p>
+<ul>
+<li>Google Firebase Analytics: 利用分析</li>
+<li>Google Firebase Crashlytics: クラッシュおよびエラー診断</li>
+<li>Google AdMob: 広告表示および広告測定</li>
+<li>RevenueCat: サブスクリプション確認、購入処理、権利管理</li>
+<li>Google ML KitおよびGoogle Play Services ML Kit: 翻訳、セグメンテーション、その他ML機能</li>
+<li>ONNX Runtime、Sherpa ONNX、LiteRT、OpenCV: 端末内MLまたはメディア処理</li>
+<li>Google Play、Google Play Billing、Google Play Services、Androidシステムコンポーネント</li>
+</ul>
+<p>これらの第三者は、それぞれのプライバシーポリシーに基づき情報を処理する場合があります。広告、分析、クラッシュ報告、サブスクリプション、翻訳、ML機能を使用する際、一部情報が当該提供者へ送信される場合があります。</p>
+<h3>7. 共有および開示</h3>
+<p>Vidibackは以下の場合に情報を共有または開示することがあります。</p>
+<ul>
+<li>アプリ機能の提供に必要な第三者SDKまたはサービス提供者と共有する場合</li>
+<li>広告ネットワーク、分析提供者、決済/サブスクリプション管理提供者と必要な情報を共有する場合</li>
+<li>法令、裁判所命令、政府機関の要求により必要な場合</li>
+<li>セキュリティ、不正、技術的問題、権利保護に対応する場合</li>
+<li>合併、譲渡、組織再編、事業取引に関連する場合</li>
+<li>ユーザーが共有機能を明示的に使用した場合</li>
+</ul>
+<p>Vidibackは、ユーザーの同意なしにユーザーが作成したメディアコンテンツを販売しません。</p>
+<h3>8. ユーザーの選択</h3>
+<p>ユーザーは以下の方法で一部の処理を管理できます。</p>
+<ul>
+<li>端末設定で写真、動画、音声、マイクなどのアプリ権限を変更</li>
+<li>Android設定でパーソナライズ広告または広告IDの使用を制限</li>
+<li>アプリ内または端末上でプロジェクト、キャッシュ、書き出しファイルを削除</li>
+<li>アプリのアンインストールにより端末内のアプリデータを削除</li>
+<li>カスタマーサポートへ連絡し、開示、訂正、削除またはサポートを依頼</li>
+</ul>
+<p>パーソナライズ広告を制限しても、一般広告は引き続き表示される場合があります。サービス、決済、セキュリティ、サポート関連の連絡は必要に応じて送信される場合があります。</p>
+<h3>9. 保管期間</h3>
+<p>プロジェクトファイル、キャッシュ、サムネイル、プロキシ、書き出しファイルは、ユーザーが削除するかアプリをアンインストールするまで端末内に保持される場合があります。サポート記録は問い合わせ対応および紛争対応に必要な期間保持される場合があります。分析、広告、クラッシュ、サブスクリプション関連情報は、関連する第三者提供者のポリシーに従って保持される場合があります。</p>
+<p>法令遵守、紛争解決、セキュリティ調査、決済精算、権利保護のために必要な場合、関連情報は当該目的が達成されるまで保持される場合があります。</p>
+<h3>10. 子どものプライバシー</h3>
+<p>Vidibackは13歳未満の子どもを対象としていません。ユーザーの国または地域でより高い年齢基準が適用される場合、その基準に従います。保護者の同意なく子どもの個人情報が収集されたと思われる場合は、vidiback.app@gmail.comまでご連絡ください。</p>
+<h3>11. 国外移転</h3>
+<p>Firebase、AdMob、RevenueCatなどの第三者サービスは、ユーザーの国以外で情報を保存または処理する場合があります。ユーザーは、アプリを使用することにより、情報が大韓民国、米国、その他の国で処理される可能性を理解するものとします。</p>
+<h3>12. セキュリティ</h3>
+<p>Vidibackは、合理的な技術的および組織的措置により情報を保護するよう努めます。ただし、インターネット送信、モバイル環境、電子保存の方法は完全な安全性を保証するものではありません。ユーザーは、自身の端末、アカウント、元ファイル、書き出しファイルを安全に管理する責任があります。</p>
+<h3>13. 外部リンク</h3>
+<p>アプリまたはWebサイトには、第三者Webサイト、ストア、広告、決済サービス、サポートサービスへのリンクが含まれる場合があります。これら第三者の情報処理には各自のポリシーが適用され、Vidibackはその処理方法を管理しません。</p>
+<h3>14. 変更</h3>
+<p>本ポリシーは変更される場合があります。重要な変更がある場合、アプリまたはWebサイトを通じて通知することがあります。変更後もアプリを継続して使用する場合、更新後のポリシーに同意したものとみなされる場合があります。</p>
+<h3>15. お問い合わせ</h3>
+<p>プライバシーに関するお問い合わせは、以下までご連絡ください。</p>
+<p>Mogrevix</p>
+<p>vidiback.app@gmail.com</p>
+</section> <section class="legal-content" data-lang-section="en" lang="en">
+<h2>English</h2>
+<h3>1. Scope</h3>
+<p>This Privacy Policy applies to the Vidiback mobile application, website, customer support, and related services provided by Mogrevix. By using Vidiback, information may be collected, used, stored, transferred, disclosed, or otherwise processed as described in this Policy. If you do not agree with this Policy, you should stop using the app.</p>
+<p>This Policy forms part of the Vidiback Terms of Service. If a feature provides a separate notice or permission prompt, that notice also applies.</p>
+<h3>2. Information We Collect or Process</h3>
+<p>Vidiback may process information you provide directly and information generated automatically while using the app.</p>
+<h4>2.1 Information You Provide or Select</h4>
+<ul>
+<li>Photos, videos, audio files, and project files that you import or edit</li>
+<li>User-created content such as text, captions, stickers, effects, filters, background removal results, and exported files</li>
+<li>Audio recorded through the microphone when you use recording features</li>
+<li>Email address, support messages, attachments, and device/app status details you provide for customer support</li>
+<li>Purchase status, product IDs, and entitlement information processed for subscriptions or purchase restoration</li>
+</ul>
+<h4>2.2 Information Processed Automatically</h4>
+<ul>
+<li>Usage analytics such as app launches, screen views, feature usage, export settings, and rewarded ad events</li>
+<li>Crash reports, errors, performance information, logs, app version, OS version, device model, and network status</li>
+<li>Advertising ID, ad impressions/clicks/reward events, IP address, and device or network information</li>
+<li>Project thumbnails, caches, proxy files, downscaled files, and temporary rendering files</li>
+<li>Analysis results and temporary files generated for captions, translation, background removal, segmentation, motion tracking, and other ML features</li>
+</ul>
+<h4>2.3 Location Information</h4>
+<p>Vidiback currently does not provide location-based features, does not request location permission, and does not intentionally collect location information. If location-based features are introduced in the future, we will provide notice and request permission where required.</p>
+<h3>3. Media, Face, Voice, and ML Processing</h3>
+<p>Vidiback is a video editing app and processes photos, videos, and audio selected by the user. Background removal, segmentation, captions, translation, motion tracking, filters, or effects may analyze visual or voice information in the media.</p>
+<p>Vidiback does not use this information to identify a specific person. Depending on the feature, processing may occur on the device or through third-party SDKs or services such as Google ML Kit, Firebase, RevenueCat, or AdMob. If a feature requires an external API or cloud processing, the relevant provider and data categories will be reflected in this Policy or in a separate notice.</p>
+<h3>4. How We Use Information</h3>
+<p>Vidiback uses information to:</p>
+<ul>
+<li>Import, edit, save, restore, and export media</li>
+<li>Provide captions, translation, background removal, motion tracking, filters, effects, transitions, and audio editing</li>
+<li>Manage project lists, thumbnails, caches, proxy files, and downscaled files</li>
+<li>Analyze crashes, fix errors, and improve stability and performance</li>
+<li>Understand usage, improve features, and manage product quality</li>
+<li>Show ads, process rewarded ads, measure ad performance, and prevent abuse</li>
+<li>Verify subscriptions, provide premium features, and restore purchases</li>
+<li>Provide customer support, respond to inquiries, and send service-related notices</li>
+<li>Protect security, prevent fraud, protect rights, and resolve disputes</li>
+<li>Comply with laws, store policies, and regulatory obligations</li>
+</ul>
+<h3>5. Device Permissions</h3>
+<p>Vidiback may request the following permissions:</p>
+<ul>
+<li>Photos and videos: to import and edit user-selected media</li>
+<li>Audio files: to import and edit audio</li>
+<li>Microphone: only when you use recording features</li>
+<li>Storage: to read or save media files on older Android versions</li>
+<li>Network: for ads, analytics, crash reporting, subscription verification, translation, or external services</li>
+<li>Foreground service: to reliably perform export or long-running media processing</li>
+<li>Vibration or notification-related behavior: to provide status updates or user feedback</li>
+<li>Location: should be removed if no location-based feature is provided. If retained, it must be accurately disclosed in Google Play Data Safety and this Policy.</li>
+</ul>
+<h3>6. Third-Party Services</h3>
+<p>Vidiback may use the following third-party SDKs or services:</p>
+<ul>
+<li>Google Firebase Analytics for usage analytics</li>
+<li>Google Firebase Crashlytics for crash and error diagnostics</li>
+<li>Google AdMob for advertising and ad measurement</li>
+<li>RevenueCat for subscription verification, purchase processing, and entitlement management</li>
+<li>Google ML Kit and Google Play Services ML Kit for translation, segmentation, or other ML features</li>
+<li>ONNX Runtime, Sherpa ONNX, LiteRT, and OpenCV for on-device ML or media processing</li>
+<li>Google Play, Google Play Billing, Google Play Services, and Android system components</li>
+</ul>
+<p>These third parties may process information under their own privacy policies. Information may be transmitted to them when using ads, analytics, crash reporting, subscriptions, translation, or ML features.</p>
+<h3>7. Sharing and Disclosure</h3>
+<p>Vidiback may share or disclose information:</p>
+<ul>
+<li>With third-party SDKs or service providers needed to provide app functionality</li>
+<li>With advertising networks, analytics providers, and subscription or payment management providers where necessary</li>
+<li>When required by law, court order, or government request</li>
+<li>To address security, fraud, technical issues, or rights protection</li>
+<li>In connection with a merger, transfer, reorganization, or business transaction</li>
+<li>When you intentionally use sharing features</li>
+</ul>
+<p>Vidiback does not sell the media content you create without your consent.</p>
+<h3>8. Your Choices</h3>
+<p>You may control certain processing by:</p>
+<ul>
+<li>Changing app permissions for photos, videos, audio, or microphone in device settings</li>
+<li>Limiting personalized ads or advertising ID use in Android settings</li>
+<li>Deleting projects, caches, or exported files in the app or on the device</li>
+<li>Uninstalling the app to remove app data stored on the device</li>
+<li>Contacting customer support to request access, correction, deletion, or assistance</li>
+</ul>
+<p>Limiting personalized advertising does not block all ads. Service, payment, security, or support-related communications may still be sent where necessary.</p>
+<h3>9. Retention</h3>
+<p>Project files, caches, thumbnails, proxy files, and exported files may remain on your device until you delete them or uninstall the app. Support records may be retained as needed to handle inquiries and disputes. Analytics, advertising, crash, and subscription-related information may be retained according to the policies of the relevant third-party providers.</p>
+<p>Information may be retained where necessary for legal compliance, dispute resolution, security investigations, payment settlement, or rights protection.</p>
+<h3>10. Children&#x27;s Privacy</h3>
+<p>Vidiback is not directed to children under 13. Where a higher age threshold applies in your country or region, we follow that threshold. If you believe a child&#x27;s personal information was collected without guardian consent, contact vidiback.app@gmail.com.</p>
+<h3>11. International Transfers</h3>
+<p>Third-party services such as Firebase, AdMob, and RevenueCat may store or process information outside your country. By using the app, you understand that information may be processed in the Republic of Korea, the United States, or other countries.</p>
+<h3>12. Security</h3>
+<p>Vidiback uses reasonable technical and organizational measures to protect information. However, no internet transmission, mobile environment, or electronic storage method is completely secure. You are responsible for keeping your device, accounts, original files, and exported files secure.</p>
+<h3>13. External Links</h3>
+<p>The app or website may contain links to third-party websites, stores, ads, payment services, or support services. Those third parties process information under their own policies, and Vidiback does not control their practices.</p>
+<h3>14. Changes</h3>
+<p>This Policy may change. We may notify you of material changes through the app or website. Continued use of the app after changes may be deemed acceptance of the updated Policy.</p>
+<h3>15. Contact</h3>
+<p>For privacy inquiries, contact:</p>
+<p>Mogrevix</p>
+<p>vidiback.app@gmail.com</p>
+</section>
+    </article>
+
+    <footer class="legal-footer">
+      <div class="footer-links">
+        <a href="index.html?lang=ko">Vidiback</a>
+        <a href="terms.html?lang=ko" data-legal-link="terms">이용약관</a>
+<a href="privacy.html?lang=ko" data-legal-link="privacy">개인정보처리방침</a>
+      </div>
+      <span>© Mogrevix</span>
+    </footer>
+  </main>
+  <script>
+(() => {
+  const translations = {"ko": {"title": "Vidiback 개인정보처리방침", "description": "Vidiback 개인정보처리방침입니다.", "heading": "Vidiback 개인정보처리방침", "meta": "시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "이용약관", "privacy": "개인정보처리방침"}, "ja": {"title": "Vidiback プライバシーポリシー", "description": "Vidibackプライバシーポリシーです。", "heading": "Vidiback プライバシーポリシー", "meta": "施行日: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "利用規約", "privacy": "プライバシーポリシー"}, "en": {"title": "Vidiback Privacy Policy", "description": "Vidiback Privacy Policy.", "heading": "Vidiback Privacy Policy", "meta": "Effective date: 2026-07-07 · Mogrevix · vidiback.app@gmail.com", "terms": "Terms of Use", "privacy": "Privacy Policy"}};
+  const supported = Object.keys(translations);
+  const tabs = Array.from(document.querySelectorAll('[data-lang-tab]'));
+  const sections = Array.from(document.querySelectorAll('[data-lang-section]'));
+  const legalLinks = Array.from(document.querySelectorAll('[data-legal-link]'));
+  const titleNode = document.querySelector('[data-title]');
+  const metaNode = document.querySelector('[data-meta]');
+  const metaDescription = document.querySelector('meta[name="description"]');
+  function normalize(value) {
+    const lang = String(value || '').toLowerCase();
+    if (lang.startsWith('ja') || lang === 'jp') return 'ja';
+    if (lang.startsWith('en')) return 'en';
+    if (lang.startsWith('ko') || lang === 'kr') return 'ko';
+    return '';
+  }
+  function getStored() { try { return localStorage.getItem('vidiback-lang'); } catch (_) { return ''; } }
+  function setStored(value) { try { localStorage.setItem('vidiback-lang', value); } catch (_) {} }
+  function initialLang() {
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = normalize(params.get('lang'));
+    if (supported.includes(fromUrl)) return fromUrl;
+    const fromStorage = normalize(getStored());
+    if (supported.includes(fromStorage)) return fromStorage;
+    const fromBrowser = normalize(navigator.language);
+    return supported.includes(fromBrowser) ? fromBrowser : 'ko';
+  }
+  function updateUrl(lang) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url.href);
+    } catch (_) {}
+  }
+  function applyLang(lang, persist = true) {
+    const next = supported.includes(lang) ? lang : 'ko';
+    const copy = translations[next];
+    document.documentElement.lang = next;
+    document.title = copy.title;
+    if (metaDescription) metaDescription.setAttribute('content', copy.description);
+    if (titleNode) titleNode.textContent = copy.heading;
+    if (metaNode) metaNode.textContent = copy.meta;
+    tabs.forEach((tab) => tab.setAttribute('aria-current', String(tab.dataset.langTab === next)));
+    sections.forEach((section) => section.classList.toggle('is-active', section.dataset.langSection === next));
+    legalLinks.forEach((link) => {
+      const page = link.dataset.legalLink === 'privacy' ? 'privacy.html' : 'terms.html';
+      link.href = `${page}?lang=${next}`;
+      if (link.dataset.legalLink === 'privacy') link.textContent = copy.privacy;
+      if (link.dataset.legalLink === 'terms') link.textContent = copy.terms;
+    });
+    if (persist) { setStored(next); updateUrl(next); }
+  }
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (event) => {
+      event.preventDefault();
+      applyLang(tab.dataset.langTab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  applyLang(initialLang(), false);
+})();
+</script>
+</body>
+</html>
