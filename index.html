@@ -782,17 +782,20 @@
         './assets/videos/cutout_feature.mp4',
         './assets/videos/sticker_feature.mp4',
         './assets/videos/text_feature.mp4',
-        './assets/videos/transition_feature.mp4',
-        './assets/videos/no_ads_no_watermark.mp4'
+        './assets/videos/transition_feature.mp4'
       ];
 
       const videos = [document.getElementById('bgVideoA'), document.getElementById('bgVideoB')];
+      const END_GUARD_INTERVAL_MS = 250;
+      const END_GUARD_REMAINING_SECONDS = 0.18;
       let activeLayer = 0;
       let currentIndex = -1;
       let pendingIndex = 0;
       let switching = false;
       let sourceFailures = 0;
       let loadTimer = 0;
+      let endGuardTimer = 0;
+      let playbackToken = 0;
 
       function cleanVideo(video) {
         video.dataset.cleaning = 'true';
@@ -801,11 +804,35 @@
         video.load();
       }
 
+      function clearEndGuard() {
+        window.clearInterval(endGuardTimer);
+        endGuardTimer = 0;
+      }
+
+      function shouldAdvanceVideo(video) {
+        if (!video) return false;
+        if (video.ended) return true;
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return false;
+        return video.duration - video.currentTime <= END_GUARD_REMAINING_SECONDS;
+      }
+
+      function startEndGuard(video, token) {
+        clearEndGuard();
+        endGuardTimer = window.setInterval(() => {
+          if (token !== playbackToken || video !== videos[activeLayer] || switching) return;
+          if (shouldAdvanceVideo(video)) {
+            clearEndGuard();
+            nextClip();
+          }
+        }, END_GUARD_INTERVAL_MS);
+      }
+
       async function playClip(index) {
         if (!playlist.length || switching) return;
 
         switching = true;
         window.clearTimeout(loadTimer);
+        clearEndGuard();
 
         const nextIndex = ((index % playlist.length) + playlist.length) % playlist.length;
         const nextLayer = currentIndex === -1 ? activeLayer : 1 - activeLayer;
@@ -819,6 +846,7 @@
         nextVideo.classList.remove('is-active');
         nextVideo.muted = true;
         nextVideo.playsInline = true;
+        nextVideo.loop = false;
         nextVideo.preload = 'auto';
         nextVideo.src = playlist[nextIndex];
         nextVideo.currentTime = 0;
@@ -854,6 +882,8 @@
           activeLayer = nextLayer;
           currentIndex = nextIndex;
           switching = false;
+          playbackToken += 1;
+          startEndGuard(nextVideo, playbackToken);
         });
       }
 
@@ -882,6 +912,10 @@
       ['pointerdown', 'touchstart', 'keydown'].forEach((eventName) => {
         document.addEventListener(eventName, () => {
           const activeVideo = videos[activeLayer];
+          if (shouldAdvanceVideo(activeVideo)) {
+            nextClip();
+            return;
+          }
           if (activeVideo && activeVideo.paused) activeVideo.play().catch(() => {});
         }, { once: true, passive: true });
       });
@@ -892,12 +926,19 @@
         if (document.hidden) {
           activeVideo.pause();
         } else {
+          if (shouldAdvanceVideo(activeVideo)) {
+            nextClip();
+            return;
+          }
           activeVideo.play().catch(() => {});
         }
       });
 
       playClip(0);
-      window.addEventListener('beforeunload', () => window.clearTimeout(loadTimer));
+      window.addEventListener('beforeunload', () => {
+        window.clearTimeout(loadTimer);
+        clearEndGuard();
+      });
     })();
   </script>
 </body>

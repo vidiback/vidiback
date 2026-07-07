@@ -1,126 +1,478 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Vidiback 오픈소스 라이선스 고지입니다.">
-  <meta name="theme-color" content="#030405">
+  <meta name="description" content="Vidiback open source license notices.">
+  <meta name="theme-color" content="#000000">
   <link rel="icon" href="./assets/icon/ic_app_logo.png">
-  <title>Vidiback 오픈소스 라이선스</title>
+  <title>OSS Notice | Vidiback</title>
   <style>
-:root { color-scheme: dark; --brand: #96FF00; --ink: #F8FAF5; --muted: rgba(248,250,245,.72); --deep: #030405; --panel: rgba(10,12,13,.78); --line: rgba(255,255,255,.13); }
-* { box-sizing: border-box; }
-html { min-width: 320px; background: var(--deep); text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
-body { margin: 0; min-height: 100svh; background: radial-gradient(circle at 20% 0%, rgba(150,255,0,.11), transparent 26rem), linear-gradient(180deg,#050607 0%,#030405 100%); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Pretendard, Inter, "Segoe UI", sans-serif; letter-spacing: 0; -webkit-font-smoothing: antialiased; }
-a { color: inherit; text-decoration: none; }
-.legal-shell { width: min(100%, 980px); margin: 0 auto; padding: 28px 22px 54px; }
-.legal-topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 62px; }
-.brand-link { display: inline-flex; align-items: center; gap: 11px; color: #fff; font-weight: 760; font-size: 1.08rem; }
-.brand-link img { width: 36px; height: 36px; border-radius: 11px; background: var(--brand); }
-.language-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-.language-tabs a { display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.04); font-size: 13px; font-weight: 680; }
-.language-tabs a[aria-current="true"] { color: #071006; border-color: rgba(150,255,0,.88); background: var(--brand); }
-.eyebrow { margin: 0 0 12px; color: var(--brand); font-size: .85rem; font-weight: 760; text-transform: uppercase; letter-spacing: .12em; }
-h1 { margin: 0; color: #fff; font-size: clamp(2.25rem, 6vw, 4.8rem); line-height: .98; font-weight: 820; letter-spacing: 0; }
-.meta { margin: 18px 0 34px; color: var(--muted); font-size: 1rem; line-height: 1.65; }
-.legal-card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); box-shadow: 0 28px 90px rgba(0,0,0,.34); }
-.legal-content { display: none; padding: clamp(24px,4vw,44px); }
-.legal-content.is-active { display: block; }
-.legal-content h2 { margin: 0 0 26px; color: #fff; font-size: clamp(1.8rem,3.8vw,2.6rem); line-height: 1.08; font-weight: 790; }
-.legal-content h3 { margin: 34px 0 12px; color: #fff; font-size: 1.22rem; line-height: 1.35; font-weight: 760; }
-.legal-content p { margin: 0 0 14px; color: var(--muted); font-size: .98rem; line-height: 1.78; }
-.legal-content ul { margin: 0 0 18px; padding-left: 1.1rem; color: var(--muted); }
-.legal-content li { margin: 8px 0; line-height: 1.7; }
-.legal-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; color: rgba(248,250,245,.52); font-size: 13px; }
-.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
-.footer-links a { color: rgba(248,250,245,.68); }
-@media (max-width: 720px) { .legal-shell { padding: 20px 16px 42px; } .legal-topbar { align-items: flex-start; flex-direction: column; margin-bottom: 44px; } .legal-content { padding: 22px 18px; } }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #fff; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      color: #111;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    a { color: #00e; text-decoration: underline; }
+    .page { width: min(100%, 920px); margin: 0 auto; padding: 0 6px 32px; }
+    .title-bar {
+      margin: 0 0 22px;
+      padding: 18px 16px;
+      color: #fff;
+      background: #000;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .intro {
+      padding: 0 10px 20px;
+      color: #6d7682;
+      border-bottom: 1px solid #cfcfcf;
+    }
+    .intro p { margin: 0 0 12px; }
+    .notice-list { padding: 22px 10px 0; }
+    .notice-item { margin: 0 0 18px; }
+    .notice-item h2 {
+      margin: 0;
+      color: #000;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    .notice-item p {
+      margin: 1px 0 0 20px;
+      color: #6d7682;
+      line-height: 1.22;
+    }
+    .license-toggle {
+      margin-left: 20px;
+      color: #000;
+      line-height: 1.35;
+    }
+    .license-toggle::before { content: "▶ "; }
+    @media (max-width: 640px) {
+      body { font-size: 13px; }
+      .page { padding: 0 0 28px; }
+      .title-bar { margin-bottom: 18px; padding: 16px 14px; }
+      .intro, .notice-list { padding-left: 14px; padding-right: 14px; }
+      .notice-item p, .license-toggle { margin-left: 14px; }
+    }
   </style>
 </head>
 <body>
-  <main class="legal-shell">
-    <header class="legal-topbar">
-      <a class="brand-link" href="index.html?lang=ko" aria-label="Vidiback home">
-        <img src="./assets/icon/ic_app_logo.png" alt="" aria-hidden="true">
-        <span>Vidiback</span>
-      </a>
-      <nav class="language-tabs" aria-label="Language">
-        <a href="?lang=ko" data-lang-tab="ko" lang="ko" aria-current="true">한국어</a>
-        <a href="?lang=ja" data-lang-tab="ja" lang="ja" aria-current="false">日本語</a>
-        <a href="?lang=en" data-lang-tab="en" lang="en" aria-current="false">English</a>
-      </nav>
-    </header>
+  <main class="page">
+    <header class="title-bar">OSS Notice | Vidiback</header>
 
-    <section aria-labelledby="pageTitle">
-      <p class="eyebrow">Vidiback</p>
-      <h1 id="pageTitle" data-title>Vidiback 오픈소스 라이선스</h1>
-      <p class="meta" data-meta>시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com</p>
+    <section class="intro" aria-label="Open source notice introduction">
+      <p>This application is Copyright © Mogrevix. All rights reserved.</p>
+      <p>The following sets forth attribution notices for third party software that may be contained in this application.</p>
+      <p>If you have any questions about these notices, please email us at <a href="mailto:vidiback.app@gmail.com">vidiback.app@gmail.com</a></p>
     </section>
 
-    <article class="legal-card">
-      <section class="legal-content is-active" data-lang-section="ko" lang="ko">
-        <h2>한국어</h2>
-        <p>Vidiback은 오픈소스 소프트웨어 및 제3자 SDK를 사용합니다. 각 구성요소는 해당 라이선스 조건에 따라 제공되며, 저작권은 각 권리자에게 있습니다.</p>
-        <h3>릴리스 전 확인 대상</h3>
-        <ul>
-          <li>AndroidX, Jetpack Compose, Kotlin, Hilt, Room, Coil, Lottie, Firebase, RevenueCat, Media3, OkHttp, Retrofit 등 앱 의존성</li>
-          <li>OpenCV, ONNX Runtime, Sherpa ONNX, LiteRT 또는 TensorFlow Lite 계열 runtime/model asset</li>
-          <li>폰트, 스티커, 효과, BGM, 이미지, 영상, Lottie, 템플릿 등 앱에 포함된 asset</li>
-        </ul>
-        <p>최종 출시 전 release build 기준 dependency license report와 로컬 asset 라이선스를 다시 생성 및 검토해야 합니다.</p>
-      </section>
-      <section class="legal-content" data-lang-section="ja" lang="ja">
-        <h2>日本語</h2>
-        <p>Vidibackはオープンソースソフトウェアおよび第三者SDKを使用しています。各コンポーネントはそれぞれのライセンス条件に従って提供され、著作権は各権利者に帰属します。</p>
-        <h3>リリース前の確認対象</h3>
-        <ul>
-          <li>AndroidX、Jetpack Compose、Kotlin、Hilt、Room、Coil、Lottie、Firebase、RevenueCat、Media3、OkHttp、Retrofitなどの依存関係</li>
-          <li>OpenCV、ONNX Runtime、Sherpa ONNX、LiteRTまたはTensorFlow Lite系のruntime/model asset</li>
-          <li>フォント、ステッカー、エフェクト、BGM、画像、動画、Lottie、テンプレートなどアプリに含まれるasset</li>
-        </ul>
-        <p>最終公開前に、release build基準のdependency license reportとローカルassetのライセンスを再生成し、確認する必要があります。</p>
-      </section>
-      <section class="legal-content" data-lang-section="en" lang="en">
-        <h2>English</h2>
-        <p>Vidiback uses open source software and third-party SDKs. Each component is provided under its own license terms, and copyrights remain with the respective owners.</p>
-        <h3>Items to verify before release</h3>
-        <ul>
-          <li>App dependencies such as AndroidX, Jetpack Compose, Kotlin, Hilt, Room, Coil, Lottie, Firebase, RevenueCat, Media3, OkHttp, and Retrofit</li>
-          <li>OpenCV, ONNX Runtime, Sherpa ONNX, LiteRT or TensorFlow Lite runtime/model assets</li>
-          <li>Bundled assets such as fonts, stickers, effects, BGM, images, videos, Lottie files, and templates</li>
-        </ul>
-        <p>Before final publication, regenerate and review the dependency license report and local asset notices from the final release build.</p>
-      </section>
-    </article>
+    <section class="notice-list" aria-label="Open source license notices">
+      <article class="notice-item">
+        <h2>Android - platform - frameworks - base</h2>
+        <p><a href="https://android.googlesource.com/platform/frameworks/base/" rel="noopener noreferrer">https://android.googlesource.com/platform/frameworks/base/</a></p>
+        <p>Copyright 2010 The Android Open Source Project</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
 
-    <footer class="legal-footer">
-      <span>© Mogrevix</span>
-      <nav class="footer-links" aria-label="Legal links">
-        <a href="terms.html?lang=ko" data-footer-link="terms">이용약관</a>
-        <a href="privacy.html?lang=ko" data-footer-link="privacy">개인정보처리방침</a>
-      </nav>
-    </footer>
+      <article class="notice-item">
+        <h2>AndroidX</h2>
+        <p><a href="https://developer.android.com/jetpack/androidx" rel="noopener noreferrer">https://developer.android.com/jetpack/androidx</a></p>
+        <p>Copyright The Android Open Source Project</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Jetpack Compose</h2>
+        <p><a href="https://developer.android.com/jetpack/compose" rel="noopener noreferrer">https://developer.android.com/jetpack/compose</a></p>
+        <p>Copyright The Android Open Source Project</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Kotlin</h2>
+        <p><a href="https://github.com/JetBrains/kotlin" rel="noopener noreferrer">https://github.com/JetBrains/kotlin</a></p>
+        <p>Copyright JetBrains s.r.o. and Kotlin Programming Language contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Kotlinx Coroutines</h2>
+        <p><a href="https://github.com/Kotlin/kotlinx.coroutines" rel="noopener noreferrer">https://github.com/Kotlin/kotlinx.coroutines</a></p>
+        <p>Copyright Kotlinx Coroutines contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Kotlinx Serialization</h2>
+        <p><a href="https://github.com/Kotlin/kotlinx.serialization" rel="noopener noreferrer">https://github.com/Kotlin/kotlinx.serialization</a></p>
+        <p>Copyright Kotlinx Serialization contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Dagger Hilt</h2>
+        <p><a href="https://github.com/google/dagger" rel="noopener noreferrer">https://github.com/google/dagger</a></p>
+        <p>Copyright Google LLC</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Room</h2>
+        <p><a href="https://developer.android.com/jetpack/androidx/releases/room" rel="noopener noreferrer">https://developer.android.com/jetpack/androidx/releases/room</a></p>
+        <p>Copyright The Android Open Source Project</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Coil</h2>
+        <p><a href="https://github.com/coil-kt/coil" rel="noopener noreferrer">https://github.com/coil-kt/coil</a></p>
+        <p>Copyright Coil Contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Lottie Android</h2>
+        <p><a href="https://github.com/airbnb/lottie-android" rel="noopener noreferrer">https://github.com/airbnb/lottie-android</a></p>
+        <p>Copyright Airbnb, Inc.</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Media3 / ExoPlayer</h2>
+        <p><a href="https://github.com/androidx/media" rel="noopener noreferrer">https://github.com/androidx/media</a></p>
+        <p>Copyright The Android Open Source Project</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>OkHttp</h2>
+        <p><a href="https://github.com/square/okhttp" rel="noopener noreferrer">https://github.com/square/okhttp</a></p>
+        <p>Copyright Square, Inc.</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Retrofit</h2>
+        <p><a href="https://github.com/square/retrofit" rel="noopener noreferrer">https://github.com/square/retrofit</a></p>
+        <p>Copyright Square, Inc.</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Apache Commons IO</h2>
+        <p><a href="https://commons.apache.org/proper/commons-io/" rel="noopener noreferrer">https://commons.apache.org/proper/commons-io/</a></p>
+        <p>Copyright The Apache Software Foundation</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Egloo</h2>
+        <p><a href="https://github.com/natario1/Egloo" rel="noopener noreferrer">https://github.com/natario1/Egloo</a></p>
+        <p>Copyright Egloo contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>OpenCV</h2>
+        <p><a href="https://opencv.org/" rel="noopener noreferrer">https://opencv.org/</a></p>
+        <p>Copyright OpenCV team and contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>ONNX Runtime</h2>
+        <p><a href="https://github.com/microsoft/onnxruntime" rel="noopener noreferrer">https://github.com/microsoft/onnxruntime</a></p>
+        <p>Copyright Microsoft Corporation</p>
+        <div class="license-toggle">MIT License</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>LiteRT</h2>
+        <p><a href="https://ai.google.dev/edge/litert" rel="noopener noreferrer">https://ai.google.dev/edge/litert</a></p>
+        <p>Copyright Google LLC</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Sherpa ONNX</h2>
+        <p><a href="https://github.com/k2-fsa/sherpa-onnx" rel="noopener noreferrer">https://github.com/k2-fsa/sherpa-onnx</a></p>
+        <p>Copyright Sherpa ONNX contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Sonic</h2>
+        <p><a href="https://github.com/waywardgeek/sonic" rel="noopener noreferrer">https://github.com/waywardgeek/sonic</a></p>
+        <p>Copyright Sonic contributors</p>
+        <div class="license-toggle">Apache License 2.0</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Firebase</h2>
+        <p><a href="https://firebase.google.com/" rel="noopener noreferrer">https://firebase.google.com/</a></p>
+        <p>Copyright Google LLC</p>
+        <div class="license-toggle">Google API Terms and SDK notices</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google ML Kit</h2>
+        <p><a href="https://developers.google.com/ml-kit" rel="noopener noreferrer">https://developers.google.com/ml-kit</a></p>
+        <p>Copyright Google LLC</p>
+        <div class="license-toggle">Google API Terms and SDK notices</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Play services</h2>
+        <p><a href="https://developers.google.com/android/guides/overview" rel="noopener noreferrer">https://developers.google.com/android/guides/overview</a></p>
+        <p>Copyright Google LLC</p>
+        <div class="license-toggle">Google Play services Terms and SDK notices</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Abril Fatface</h2>
+        <p><a href="https://fonts.google.com/specimen/Abril+Fatface" rel="noopener noreferrer">https://fonts.google.com/specimen/Abril+Fatface</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Arapey</h2>
+        <p><a href="https://fonts.google.com/specimen/Arapey" rel="noopener noreferrer">https://fonts.google.com/specimen/Arapey</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Arvo</h2>
+        <p><a href="https://fonts.google.com/specimen/Arvo" rel="noopener noreferrer">https://fonts.google.com/specimen/Arvo</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Bagel Fat One</h2>
+        <p><a href="https://fonts.google.com/specimen/Bagel+Fat+One" rel="noopener noreferrer">https://fonts.google.com/specimen/Bagel+Fat+One</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Bebas Neue</h2>
+        <p><a href="https://fonts.google.com/specimen/Bebas+Neue" rel="noopener noreferrer">https://fonts.google.com/specimen/Bebas+Neue</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Berkshire Swash</h2>
+        <p><a href="https://fonts.google.com/specimen/Berkshire+Swash" rel="noopener noreferrer">https://fonts.google.com/specimen/Berkshire+Swash</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Black Han Sans</h2>
+        <p><a href="https://fonts.google.com/specimen/Black+Han+Sans" rel="noopener noreferrer">https://fonts.google.com/specimen/Black+Han+Sans</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Borel</h2>
+        <p><a href="https://fonts.google.com/specimen/Borel" rel="noopener noreferrer">https://fonts.google.com/specimen/Borel</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Cardo</h2>
+        <p><a href="https://fonts.google.com/specimen/Cardo" rel="noopener noreferrer">https://fonts.google.com/specimen/Cardo</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Chivo</h2>
+        <p><a href="https://fonts.google.com/specimen/Chivo" rel="noopener noreferrer">https://fonts.google.com/specimen/Chivo</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Dela Gothic One</h2>
+        <p><a href="https://fonts.google.com/specimen/Dela+Gothic+One" rel="noopener noreferrer">https://fonts.google.com/specimen/Dela+Gothic+One</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Do Hyeon</h2>
+        <p><a href="https://fonts.google.com/specimen/Do+Hyeon" rel="noopener noreferrer">https://fonts.google.com/specimen/Do+Hyeon</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Dongle</h2>
+        <p><a href="https://fonts.google.com/specimen/Dongle" rel="noopener noreferrer">https://fonts.google.com/specimen/Dongle</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Fugaz One</h2>
+        <p><a href="https://fonts.google.com/specimen/Fugaz+One" rel="noopener noreferrer">https://fonts.google.com/specimen/Fugaz+One</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Gamja Flower</h2>
+        <p><a href="https://fonts.google.com/specimen/Gamja+Flower" rel="noopener noreferrer">https://fonts.google.com/specimen/Gamja+Flower</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Gloock</h2>
+        <p><a href="https://fonts.google.com/specimen/Gloock" rel="noopener noreferrer">https://fonts.google.com/specimen/Gloock</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Gowun Dodum</h2>
+        <p><a href="https://fonts.google.com/specimen/Gowun+Dodum" rel="noopener noreferrer">https://fonts.google.com/specimen/Gowun+Dodum</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Hachi Maru Pop</h2>
+        <p><a href="https://fonts.google.com/specimen/Hachi+Maru+Pop" rel="noopener noreferrer">https://fonts.google.com/specimen/Hachi+Maru+Pop</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Hahmlet</h2>
+        <p><a href="https://fonts.google.com/specimen/Hahmlet" rel="noopener noreferrer">https://fonts.google.com/specimen/Hahmlet</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Jua</h2>
+        <p><a href="https://fonts.google.com/specimen/Jua" rel="noopener noreferrer">https://fonts.google.com/specimen/Jua</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Kaisei Tokumin</h2>
+        <p><a href="https://fonts.google.com/specimen/Kaisei+Tokumin" rel="noopener noreferrer">https://fonts.google.com/specimen/Kaisei+Tokumin</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Kiwi Maru</h2>
+        <p><a href="https://fonts.google.com/specimen/Kiwi+Maru" rel="noopener noreferrer">https://fonts.google.com/specimen/Kiwi+Maru</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Noto Sans JP</h2>
+        <p><a href="https://fonts.google.com/noto/specimen/Noto+Sans+JP" rel="noopener noreferrer">https://fonts.google.com/noto/specimen/Noto+Sans+JP</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Outfit</h2>
+        <p><a href="https://fonts.google.com/specimen/Outfit" rel="noopener noreferrer">https://fonts.google.com/specimen/Outfit</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Poor Story</h2>
+        <p><a href="https://fonts.google.com/specimen/Poor+Story" rel="noopener noreferrer">https://fonts.google.com/specimen/Poor+Story</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Potta One</h2>
+        <p><a href="https://fonts.google.com/specimen/Potta+One" rel="noopener noreferrer">https://fonts.google.com/specimen/Potta+One</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - RocknRoll One</h2>
+        <p><a href="https://fonts.google.com/specimen/RocknRoll+One" rel="noopener noreferrer">https://fonts.google.com/specimen/RocknRoll+One</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Rubik Bubbles</h2>
+        <p><a href="https://fonts.google.com/specimen/Rubik+Bubbles" rel="noopener noreferrer">https://fonts.google.com/specimen/Rubik+Bubbles</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Sawarabi Gothic</h2>
+        <p><a href="https://fonts.google.com/specimen/Sawarabi+Gothic" rel="noopener noreferrer">https://fonts.google.com/specimen/Sawarabi+Gothic</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Spicy Rice</h2>
+        <p><a href="https://fonts.google.com/specimen/Spicy+Rice" rel="noopener noreferrer">https://fonts.google.com/specimen/Spicy+Rice</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Yuji Syuku</h2>
+        <p><a href="https://fonts.google.com/specimen/Yuji+Syuku" rel="noopener noreferrer">https://fonts.google.com/specimen/Yuji+Syuku</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Google Fonts - Zen Kaku Gothic New</h2>
+        <p><a href="https://fonts.google.com/specimen/Zen+Kaku+Gothic+New" rel="noopener noreferrer">https://fonts.google.com/specimen/Zen+Kaku+Gothic+New</a></p>
+        <p>Copyright respective font authors</p>
+        <div class="license-toggle">SIL Open Font License 1.1</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>RevenueCat Purchases SDK</h2>
+        <p><a href="https://github.com/RevenueCat/purchases-android" rel="noopener noreferrer">https://github.com/RevenueCat/purchases-android</a></p>
+        <p>Copyright RevenueCat, Inc.</p>
+        <div class="license-toggle">MIT License</div>
+      </article>
+
+      <article class="notice-item">
+        <h2>Chromium Cronet</h2>
+        <p><a href="https://chromium.googlesource.com/chromium/src/+/main/components/cronet/" rel="noopener noreferrer">https://chromium.googlesource.com/chromium/src/+/main/components/cronet/</a></p>
+        <p>Copyright The Chromium Authors</p>
+        <div class="license-toggle">BSD-style license and third party notices</div>
+      </article>
+    </section>
   </main>
-  <script>
-    (() => {
-      const copy = {
-        ko: { title: 'Vidiback 오픈소스 라이선스', meta: '시행일: 2026-07-07 · Mogrevix · vidiback.app@gmail.com', terms: '이용약관', privacy: '개인정보처리방침' },
-        ja: { title: 'Vidiback オープンソースライセンス', meta: '施行日: 2026-07-07 · Mogrevix · vidiback.app@gmail.com', terms: '利用規約', privacy: 'プライバシーポリシー' },
-        en: { title: 'Vidiback Open Source Licenses', meta: 'Effective date: 2026-07-07 · Mogrevix · vidiback.app@gmail.com', terms: 'Terms of Use', privacy: 'Privacy Policy' },
-      };
-      const params = new URLSearchParams(window.location.search);
-      const lang = ['ko', 'ja', 'en'].includes(params.get('lang')) ? params.get('lang') : 'ko';
-      document.documentElement.lang = lang;
-      document.title = copy[lang].title;
-      document.querySelector('[data-title]').textContent = copy[lang].title;
-      document.querySelector('[data-meta]').textContent = copy[lang].meta;
-      document.querySelectorAll('[data-lang-tab]').forEach((tab) => tab.setAttribute('aria-current', String(tab.dataset.langTab === lang)));
-      document.querySelectorAll('[data-lang-section]').forEach((section) => section.classList.toggle('is-active', section.dataset.langSection === lang));
-      document.querySelector('[data-footer-link="terms"]').textContent = copy[lang].terms;
-      document.querySelector('[data-footer-link="terms"]').href = `terms.html?lang=${lang}`;
-      document.querySelector('[data-footer-link="privacy"]').textContent = copy[lang].privacy;
-      document.querySelector('[data-footer-link="privacy"]').href = `privacy.html?lang=${lang}`;
-    })();
-  </script>
 </body>
 </html>
