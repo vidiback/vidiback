@@ -29,12 +29,14 @@
       background: var(--deep);
       text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       min-height: 100svh;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       background: var(--deep);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Pretendard, Inter, "Segoe UI", sans-serif;
@@ -59,9 +61,10 @@
     .screen {
       position: relative;
       isolation: isolate;
-      display: grid;
+      display: flex;
+      flex-direction: column;
       min-height: 100svh;
-      overflow: hidden;
+      overflow: visible;
       background: #050607;
     }
 
@@ -375,21 +378,68 @@
         0 0 0 8px rgba(var(--brand-rgb),0.13);
     }
 
+    .scroll-indicator {
+      position: absolute;
+      bottom: max(20px, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 50%;
+      background: rgba(7, 8, 9, 0.42);
+      color: rgba(248, 250, 245, 0.72);
+      backdrop-filter: blur(14px) saturate(1.1);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: color 200ms var(--ease), border-color 200ms var(--ease), background 200ms var(--ease), transform 200ms var(--ease);
+      animation: bounce 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .scroll-indicator:hover,
+    .scroll-indicator:focus-visible {
+      color: var(--brand);
+      border-color: rgba(var(--brand-rgb), 0.55);
+      background: rgba(15, 18, 20, 0.65);
+      transform: translateX(-50%) translateY(3px);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(8px); }
+      60% { transform: translateX(-50%) translateY(4px); }
+    }
+
     .site-footer {
-      position: fixed;
+      position: relative;
       z-index: 18;
-      inset: auto 0 0;
-      display: grid;
-      justify-items: center;
-      gap: 10px;
-      padding: 0 max(22px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      padding: 36px max(22px, env(safe-area-inset-right)) max(42px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
       color: rgba(248, 250, 245, 0.62);
       font-size: 13px;
       font-weight: 560;
-      line-height: 1.2;
+      line-height: 1.4;
       text-align: center;
-      pointer-events: none;
-      text-shadow: 0 8px 28px rgba(0,0,0,0.54);
+      pointer-events: auto;
+      text-shadow: 0 8px 28px rgba(0, 0, 0, 0.54);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+    }
+
+    .site-footer.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .footer-links {
@@ -397,8 +447,7 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 9px 14px;
-      pointer-events: auto;
+      gap: 9px 16px;
     }
 
     .footer-links a {
@@ -411,9 +460,38 @@
       color: #fff;
     }
 
+    .business-info {
+      margin-top: 2px;
+      max-width: 860px;
+      color: rgba(248, 250, 245, 0.46);
+      font-size: 11px;
+      font-weight: 480;
+      line-height: 1.65;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .business-info a {
+      color: rgba(248, 250, 245, 0.62);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 160ms var(--ease);
+    }
+
+    .business-info a:hover {
+      color: #fff;
+    }
+
+    .business-info .sep {
+      display: inline-block;
+      margin: 0 7px;
+      opacity: 0.32;
+    }
+
     .copyright {
       margin: 0;
-      color: rgba(248, 250, 245, 0.46);
+      color: rgba(248, 250, 245, 0.42);
+      font-size: 12px;
     }
 
 
@@ -589,13 +667,20 @@
           <a class="google-play-button" href="#" aria-label="Google Play에서 Vidiback 받기" data-i18n-aria="playAria">Google Play</a>
         </div>
       </div>
+
+      <a class="scroll-indicator" href="#siteFooter" aria-label="아래로 스크롤" data-i18n-aria="scrollAria">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </a>
     </section>
 
-    <footer class="site-footer" aria-label="Vidiback legal links">
+    <footer class="site-footer" id="siteFooter" aria-label="Vidiback legal links">
       <nav class="footer-links" aria-label="Legal links">
         <a href="terms.html?lang=ko" data-legal-link="terms" data-i18n="termsLink">이용약관</a>
         <a href="privacy.html?lang=ko" data-legal-link="privacy" data-i18n="privacyLink">개인정보처리방침</a>
       </nav>
+      <div class="business-info" data-i18n-html="businessInfo"></div>
       <p class="copyright">© Mogrevix</p>
     </footer>
   </main>
@@ -616,6 +701,8 @@
           playAria: 'Google Play에서 Vidiback 받기',
           termsLink: '이용약관',
           privacyLink: '개인정보처리방침',
+          scrollAria: '아래로 스크롤',
+          businessInfo: '<span>상호: 모그레빅스 (Mogrevix)</span><span class="sep">|</span><span>대표자: 이상준</span><span class="sep">|</span><span>사업자등록번호: 427-33-01973</span><br><span>주소: 대구광역시 서구 국채보상로81길 59-9</span><span class="sep">|</span><span>이메일: <a href="mailto:vidiback.app@gmail.com">vidiback.app@gmail.com</a></span>'
         },
         ja: {
           htmlLang: 'ja',
@@ -630,6 +717,8 @@
           playAria: 'Google PlayでVidibackを入手',
           termsLink: '利用規約',
           privacyLink: 'プライバシーポリシー',
+          scrollAria: '下へスクロール',
+          businessInfo: '<span>屋号: Mogrevix（モグレビックス）</span><span class="sep">|</span><span>代表者: 李相俊 (Lee Sangjun)</span><span class="sep">|</span><span>事業者登録番号: 427-33-01973</span><br><span>住所: 大邱広域市 西区 国彩報償路81ギル 59-9</span><span class="sep">|</span><span>Eメール: <a href="mailto:vidiback.app@gmail.com">vidiback.app@gmail.com</a></span>'
         },
         en: {
           htmlLang: 'en',
@@ -644,6 +733,8 @@
           playAria: 'Get Vidiback on Google Play',
           termsLink: 'Terms of Use',
           privacyLink: 'Privacy Policy',
+          scrollAria: 'Scroll down',
+          businessInfo: '<span>Company: Mogrevix</span><span class="sep">|</span><span>Representative: Sangjun Lee</span><span class="sep">|</span><span>Business Registration No.: 427-33-01973</span><br><span>Address: 59-9, Gukchaebosang-ro 81-gil, Seo-gu, Daegu, Republic of Korea</span><span class="sep">|</span><span>Email: <a href="mailto:vidiback.app@gmail.com">vidiback.app@gmail.com</a></span>'
         }
       };
 
@@ -654,6 +745,7 @@
       const languageOptions = Array.from(document.querySelectorAll('[data-lang]'));
       const metaDescription = document.querySelector('meta[name="description"]');
       const textNodes = Array.from(document.querySelectorAll('[data-i18n]'));
+      const htmlNodes = Array.from(document.querySelectorAll('[data-i18n-html]'));
       const ariaNodes = Array.from(document.querySelectorAll('[data-i18n-aria]'));
       const legalLinks = Array.from(document.querySelectorAll('[data-legal-link]'));
 
@@ -714,6 +806,11 @@
           if (key && copy[key]) node.textContent = copy[key];
         });
 
+        htmlNodes.forEach((node) => {
+          const key = node.dataset.i18nHtml;
+          if (key && copy[key]) node.innerHTML = copy[key];
+        });
+
         ariaNodes.forEach((node) => {
           const key = node.dataset.i18nAria;
           if (key && copy[key]) node.setAttribute('aria-label', copy[key]);
@@ -756,6 +853,33 @@
       });
 
       applyLanguage(getInitialLanguage(), false);
+
+      // Smooth scroll anchor link handler
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              e.preventDefault();
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Scroll reveal for footer
+      const footerElement = document.getElementById('siteFooter');
+      if (footerElement) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              footerElement.classList.add('is-visible');
+            }
+          });
+        }, { threshold: 0.05 });
+        observer.observe(footerElement);
+      }
     })();
 
     (() => {
