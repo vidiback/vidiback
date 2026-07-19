@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="편집을 더 쉽게, Vidiback. 자동 자막, 필터, 효과, 모션 트래킹까지 손쉽게 편집하세요.">
+  <meta name="description" content="편집을 더 쉽게, Vidiback. AI 자동 자막, 크로마키, 모션 트래킹까지 지원하는 완벽한 비디오 에디터입니다.">
   <meta name="theme-color" content="#030405">
-  <title>Vidiback - 편집을 더 쉽게</title>
+  <title>Vidiback - 비디오 에디터</title>
   <link rel="icon" href="./assets/icon/ic_app_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,8 @@
       color-scheme: dark;
       --brand: #96FF00;
       --brand-rgb: 150, 255, 0;
+      --neon-blue: #00F0FF; 
+      --neon-purple: #9D00FF;
       --ink: #F8FAF5;
       --muted: rgba(248, 250, 245, 0.72);
       --soft: rgba(248, 250, 245, 0.52);
@@ -60,54 +62,62 @@
     :focus-visible { outline: 2px solid rgba(var(--brand-rgb), 0.96); outline-offset: 5px; }
 
     /* =========================================
-       BACKGROUND LAYER (Fixed with Parallax)
+       BACKGROUND LAYER (Fixed, High Quality)
        ========================================= */
+    .bg-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none; overflow: hidden; perspective: 1000px;
+    }
     .bg-grid {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      z-index: 0; pointer-events: none;
+      position: absolute; bottom: -30%; left: 50%; width: 200%; height: 100%;
+      transform: translateX(-50%) rotateX(60deg); transform-origin: center bottom;
       background-image: 
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 60px 60px; background-position: center top;
-      mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
+        linear-gradient(rgba(150, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150, 255, 0, 0.1) 1px, transparent 1px);
+      background-size: 80px 80px; background-position: center top;
+      mask-image: radial-gradient(ellipse at center 50%, black 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center 50%, black 10%, transparent 70%);
+      opacity: 0.6;
     }
-    
-    /* 9:16 Vertical Glow (Subtle Shorts Metaphor) */
-    .hero-glow {
-      position: fixed; top: 50%; left: 50%;
-      width: clamp(250px, 30vw, 400px); aspect-ratio: 9/16;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, rgba(150, 255, 0, 0.25), rgba(0, 255, 255, 0.15));
-      filter: blur(120px); border-radius: 200px;
-      animation: pulseGlow 6s ease-in-out infinite alternate;
-      z-index: 0; pointer-events: none; will-change: transform, opacity;
+    .glow-system { position: absolute; width: 100%; height: 100%; }
+    .glow-blob {
+      position: absolute; border-radius: 50%; filter: blur(120px);
+      mix-blend-mode: screen; opacity: 0.4; will-change: transform, opacity;
     }
-    @keyframes pulseGlow {
-      0% { opacity: 0.6; transform: translate(-50%, -48%) scale(0.95); }
-      100% { opacity: 1; transform: translate(-50%, -52%) scale(1.05); }
+    .glow-blob-1 {
+      top: 20%; left: 10%; width: 50vw; aspect-ratio: 1; background: var(--brand);
+      animation: glowFluid 20s infinite ease-in-out alternate;
     }
-
+    .glow-blob-2 {
+      bottom: 10%; right: 10%; width: 60vw; aspect-ratio: 1; background: var(--neon-blue);
+      animation: glowFluid 25s infinite ease-in-out alternate-reverse; animation-delay: -5s;
+    }
+    @keyframes glowFluid {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      30% { transform: translate(10vw, 5vh) scale(1.1); opacity: 0.5; }
+    }
     .noise-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      opacity: 0.05; z-index: 1; pointer-events: none;
+      position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.04; z-index: 1; will-change: transform;
     }
-
-    .dust-particles {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0; pointer-events: none;
+    .particles-system {
+      position: absolute; width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(150, 255, 0, 0.15) 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(0, 240, 255, 0.1) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 40% 80%, rgba(150, 255, 0, 0.1) 1px, transparent 1px);
+      background-size: 200px 200px; animation: particlesRise 60s linear infinite;
     }
-
-    /* Interactive cursor glow */
+    @keyframes particlesRise { from { transform: translateY(0); } to { transform: translateY(-200px); } }
     .cursor-glow {
-      position: fixed; top: 0; left: 0; width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(150, 255, 0, 0.15) 0%, transparent 70%);
+      position: fixed; top: 0; left: 0; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(150, 255, 0, 0.08) 0%, rgba(0, 240, 255, 0.02) 40%, transparent 70%);
       border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
-      z-index: 9999; mix-blend-mode: screen; transition: width 0.3s, height 0.3s, background 0.3s;
+      z-index: 9999; mix-blend-mode: screen; transition: width 0.3s, height 0.3s; backface-visibility: hidden;
     }
 
-    .main-content { position: relative; z-index: 10; padding-bottom: 60px; /* For timeline */ }
+    .main-content { position: relative; z-index: 10; padding-bottom: 60px; }
 
     /* =========================================
        HERO SECTION
@@ -116,277 +126,204 @@
       height: 100vh; display: flex; flex-direction: column; align-items: center;
       justify-content: center; text-align: center; position: relative; perspective: 1000px;
     }
-    .hero-content {
-      will-change: transform, opacity; transform-style: preserve-3d; padding: 0 2rem;
-    }
+    .hero-content { will-change: transform, opacity; transform-style: preserve-3d; padding: 0 2rem; }
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 8rem); font-weight: 900; line-height: 1.1;
-      letter-spacing: -0.04em; margin-bottom: 1rem;
-      background: linear-gradient(135deg, #FFF 0%, rgba(255,255,255,0.7) 100%);
+      font-size: clamp(3rem, 7.5vw, 7.5rem); font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.04em; margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #FFF 20%, rgba(255,255,255,0.65) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 20px 40px rgba(150, 255, 0, 0.1);
+      text-shadow: 0 0 80px rgba(150, 255, 0, 0.15);
     }
     .hero h1 span.brand {
       color: var(--brand); -webkit-background-clip: unset; -webkit-text-fill-color: var(--brand);
-      position: relative; display: inline-block;
-    }
-    .hero h1 span.brand::after {
-      content: ''; position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-      filter: blur(40px); background: var(--brand); opacity: 0.3; z-index: -1;
+      position: relative; display: inline-block; text-shadow: 0 0 30px rgba(150, 255, 0, 0.5);
     }
     .hero p {
-      font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--muted);
-      max-width: 600px; margin: 0 auto 3rem auto; font-weight: 400; line-height: 1.5;
+      font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--muted);
+      max-width: 700px; margin: 0 auto 3.5rem auto; font-weight: 400; line-height: 1.6; word-break: keep-all;
     }
     
-    .cta-btn {
-      display: inline-block; background: var(--brand); color: #000;
-      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.1rem;
-      padding: 1rem 3rem; border-radius: 100px; transition: all 0.4s var(--ease-out);
-      position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(150, 255, 0, 0.3);
+    .play-badge {
+      display: inline-block; transition: transform 0.3s var(--ease-out), filter 0.3s var(--ease-out);
     }
-    .cta-btn::before {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.5s ease;
+    .play-badge img {
+      height: 54px; width: auto; display: block; object-fit: contain;
     }
-    .cta-btn:hover {
-      transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(150, 255, 0, 0.5);
-    }
-    .cta-btn:hover::before { left: 100%; }
-
-    .scroll-indicator {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 1rem;
-      opacity: 0.6; animation: bounce 2s infinite; cursor: pointer;
-    }
-    .scroll-indicator .line {
-      width: 2px; height: 40px; background: linear-gradient(to bottom, var(--brand), transparent);
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-      40% { transform: translateY(-15px) translateX(-50%); }
-      60% { transform: translateY(-7px) translateX(-50%); }
+    .play-badge:hover {
+      transform: translateY(-4px) scale(1.02); filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
     }
 
     /* =========================================
-       STICKY MOCKUP SECTION (Scroll-Jacking)
+       MARQUEE (PLATFORMS)
+       ========================================= */
+    .marquee-container {
+      position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; white-space: nowrap;
+      padding: 1.2rem 0; background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex; align-items: center; z-index: 10; backdrop-filter: blur(10px);
+    }
+    .marquee-content {
+      display: inline-flex; animation: marqueeScroll 25s linear infinite; gap: 4rem; align-items: center;
+    }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* =========================================
+       STICKY MOCKUP SECTION
        ========================================= */
     .features-mockup-section {
-      position: relative; z-index: 10; width: 100%;
-      height: 800vh; /* 8 videos -> 8 viewport heights of scrolling */
-      background: #000;
+      position: relative; z-index: 10; width: 100%; height: 800vh;
+      background: linear-gradient(to bottom, transparent, #000, #000);
     }
-
     .mockup-sticky-wrapper {
       position: sticky; top: 0; left: 0; width: 100%; height: 100vh;
-      display: flex; justify-content: center; align-items: center;
-      overflow: hidden;
+      display: flex; justify-content: center; align-items: center; overflow: hidden;
     }
-
     .phone-mockup {
       position: relative; width: 100%; height: 85vh; max-height: 844px;
-      z-index: 10; background: #000; overflow: hidden; /* JS will handle the translation */
-      border-radius: 40px; border: 12px solid rgba(255,255,255,0.1);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.9), inset 0 0 0 2px rgba(255,255,255,0.05);
+      z-index: 10; background: #000; overflow: hidden;
+      border-radius: 44px; border: 14px solid rgba(255,255,255,0.06);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 0 20px rgba(150,255,0,0.05);
       background-clip: padding-box;
     }
-
     @media (min-width: 768px) { .phone-mockup { width: 390px; } }
     @media (max-width: 500px) {
       .phone-mockup { width: 100vw; height: 100vh; max-height: none; border-radius: 0; border: none; }
     }
-
     .mockup-track {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 800%; /* 8 videos */
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-      will-change: transform;
+      position: absolute; top: 0; left: 0; width: 100%; height: 800%; 
+      transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1); will-change: transform;
     }
-
     .snap-section {
-      width: 100%; height: 12.5%; /* 100% / 8 = 12.5% */
-      position: relative;
-      display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
-      background: #000;
+      width: 100%; height: 12.5%; position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; background: #000;
     }
-
-    .snap-video {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; z-index: 1;
-    }
-
+    .snap-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
     .video-overlay {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 40%, transparent 100%);
       z-index: 2; pointer-events: none;
     }
-
     .snap-content {
-      position: relative; z-index: 5; padding: 0 20px 40px 20px; width: 100%;
-      opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+      position: relative; z-index: 5; padding: 0 24px 48px 24px; width: 100%;
+      opacity: 0; transform: translateY(30px); transition: opacity 0.6s var(--ease-out) 0.3s, transform 0.6s var(--ease-out) 0.3s;
     }
-    .snap-section.is-active .snap-content {
-      opacity: 1; transform: translateY(0);
-    }
-    
+    .snap-section.is-active .snap-content { opacity: 1; transform: translateY(0); }
     .snap-content h2 {
-      font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px;
-      text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+      font-size: 2rem; font-weight: 800; line-height: 1.25; margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9); letter-spacing: -0.02em;
     }
     .snap-content h2 span { color: var(--brand); }
     .snap-content p {
-      font-size: 1rem; color: rgba(255,255,255,0.95); line-height: 1.5;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8); font-weight: 400;
+      font-size: 1.05rem; color: rgba(255,255,255,0.9); line-height: 1.6;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8); font-weight: 400; word-break: keep-all;
     }
-
     .progress-bar-container {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
-      background: rgba(255,255,255,0.15); z-index: 100;
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 100;
     }
-    .progress-bar-fill {
-      height: 100%; width: 0%; background: #fff; border-radius: 0 2px 2px 0;
-      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    .progress-bar-fill { height: 100%; width: 0%; background: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.8); transition: width 0.1s linear; }
+
+    /* =========================================
+       FEATURE GRID (ALL-IN-ONE)
+       ========================================= */
+    .grid-section { position: relative; padding: 15vh 2rem 5vh; z-index: 10; background: #000; }
+    .grid-header { text-align: center; margin-bottom: 4rem; }
+    .grid-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.03em; }
+    .grid-header h2 span { color: var(--brand); }
+    .grid-header p { font-size: 1.1rem; color: var(--muted); }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
     }
+    .grid-card {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px; padding: 2rem; transition: transform 0.3s, background 0.3s;
+    }
+    .grid-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.06); border-color: rgba(150, 255, 0, 0.3); }
+    .grid-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+    .grid-card p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.5; word-break: keep-all; }
 
     /* =========================================
        CTA SECTION
        ========================================= */
     .cta-section {
-      position: relative; padding: 25vh 2rem;
-      text-align: center; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; z-index: 10;
+      position: relative; padding: 15vh 2rem 20vh; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; background: #000;
     }
     .cta-glow {
-      position: absolute; top: 50%; left: 50%;
-      width: clamp(250px, 40vw, 600px); aspect-ratio: 1;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(150, 255, 0, 0.12) 0%, transparent 70%);
-      filter: blur(60px); z-index: -1; pointer-events: none;
+      position: absolute; top: 50%; left: 50%; width: 50vw; aspect-ratio: 1; transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(150, 255, 0, 0.1) 0%, rgba(0, 240, 255, 0.05) 30%, transparent 70%);
+      filter: blur(80px); z-index: -1; pointer-events: none;
     }
     .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 3rem;
-      line-height: 1.4; color: var(--ink); font-weight: 800;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 2rem;
+      line-height: 1.3; color: var(--ink); font-weight: 800; letter-spacing: -0.03em;
     }
-    .cta-btn-large {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: rgba(255, 255, 255, 0.03); color: var(--ink);
-      padding: 1.2rem 3rem; border-radius: 100px; font-size: 1.2rem;
-      font-weight: 600; text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 40px rgba(150, 255, 0, 0.1), inset 0 0 20px rgba(150, 255, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    }
-    .cta-btn-large:hover {
-      background: rgba(150, 255, 0, 0.1); border-color: rgba(150, 255, 0, 0.4);
-      box-shadow: 0 0 60px rgba(150, 255, 0, 0.3), inset 0 0 30px rgba(150, 255, 0, 0.1);
-      transform: translateY(-4px) scale(1.02);
-    }
-    .cta-btn-large svg { width: 24px; height: 24px; fill: var(--brand); }
+    .download-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* =========================================
        LANGUAGE SWITCHER
        ========================================= */
     .topbar {
-      position: fixed; z-index: 20; inset: 0 0 auto; display: flex; justify-content: flex-end;
+      position: fixed; z-index: 200; inset: 0 0 auto; display: flex; justify-content: flex-end;
       padding: max(22px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right)) 0 max(28px, env(safe-area-inset-left));
       pointer-events: none;
     }
     .language-switcher {
-      position: relative; pointer-events: auto; color: rgba(248, 250, 245, 0.92);
-      font-size: 14px; font-weight: 650; line-height: 1; text-shadow: 0 2px 18px rgba(0,0,0,0.44);
+      position: relative; pointer-events: auto; color: rgba(248, 250, 245, 0.85);
+      font-size: 14px; font-weight: 600; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
-    .language-trigger { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; user-select: none; cursor: pointer; }
+    .language-trigger { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; user-select: none; cursor: pointer; transition: color 0.2s; }
+    .language-trigger:hover { color: #fff; }
     .language-trigger::-webkit-details-marker { display: none; }
     .language-trigger::after {
       content: ""; width: 6px; height: 6px; margin-top: -3px;
       border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg); opacity: 0.82; transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
+      transform: rotate(45deg); transition: transform 200ms var(--ease-out), margin-top 200ms var(--ease-out);
     }
-    .language-switcher[open] .language-trigger::after { margin-top: 3px; transform: rotate(225deg); opacity: 1; }
-    
+    .language-switcher[open] .language-trigger::after { margin-top: 3px; transform: rotate(225deg); }
     .language-menu {
-      position: absolute; top: calc(100% + 8px); right: 0; display: grid; min-width: 122px; padding: 8px;
-      border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; background: rgba(6, 7, 8, 0.54);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.34); backdrop-filter: blur(22px) saturate(1.15); -webkit-backdrop-filter: blur(22px) saturate(1.15);
-      transform-origin: 100% 0; animation: menuIn 180ms var(--ease-out) both;
+      position: absolute; top: calc(100% + 8px); right: 0; display: grid; min-width: 130px; padding: 8px;
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; background: rgba(10, 11, 12, 0.8);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      transform-origin: 100% 0; animation: menuIn 200ms var(--ease-out) both;
     }
-    @keyframes menuIn {
-      from { opacity: 0; transform: translateY(-5px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    @keyframes menuIn { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
     .language-option {
-      display: flex; align-items: center; padding: 10px; border-radius: 10px;
-      color: rgba(248, 250, 245, 0.74); transition: background 160ms var(--ease-out), color 160ms var(--ease-out);
+      display: flex; align-items: center; padding: 11px 12px; border-radius: 10px;
+      color: rgba(248, 250, 245, 0.7); transition: background 0.2s, color 0.2s;
     }
-    .language-option:hover, .language-option:focus-visible { color: #fff; background: rgba(255,255,255,0.09); }
-    .language-option[aria-current="true"] { color: var(--brand); background: rgba(var(--brand-rgb), 0.10); }
-
-    /* =========================================
-       GLITCH EFFECT & FOOTER
-       ========================================= */
-    @keyframes glitch-text {
-      0% { text-shadow: 2px 0 #FF3366, -2px 0 #00FFFF; }
-      20% { text-shadow: -2px 0 #FF3366, 2px 0 #00FFFF; }
-      40% { text-shadow: 2px 0 #FF3366, -2px 0 #00FFFF; }
-      60% { text-shadow: -2px 0 #FF3366, 2px 0 #00FFFF; }
-      80% { text-shadow: 2px 0 #FF3366, -2px 0 #00FFFF; }
-      100% { text-shadow: 0 0 transparent, 0 0 transparent; }
-    }
-    
-    h1:hover, h2:hover, p:hover, a:hover, span:hover, .language-trigger:hover, .language-option:hover, .company-info:hover {
-      animation: glitch-text 0.15s infinite; cursor: crosshair;
-    }
+    .language-option:hover, .language-option:focus-visible { color: #fff; background: rgba(255,255,255,0.06); }
+    .language-option[aria-current="true"] { color: var(--brand); background: rgba(var(--brand-rgb), 0.08); font-weight: 600; }
 
     /* =========================================
        FOOTER
        ========================================= */
     .footer {
-      padding: 5rem 2rem 1rem; background: transparent; position: relative; z-index: 10;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 6rem 2rem 2rem; background: #000; position: relative; z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
     }
-    .footer-container { max-width: 1000px; margin: 0 auto; }
-    .footer-top {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      gap: 3rem; margin-bottom: 4rem;
-    }
-    .footer-brand h2 { font-size: 2rem; color: var(--ink); margin: 0; font-weight: 900; letter-spacing: -1px; }
+    .footer-container { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3rem; margin-bottom: 5rem; }
+    .footer-brand h2 { font-size: 2.2rem; color: var(--ink); margin: 0; font-weight: 900; letter-spacing: -1px; }
     .footer-links-grid { display: flex; flex-wrap: wrap; gap: 4rem; }
-    .footer-col { min-width: 140px; }
-    .footer-col h3 { font-size: 1rem; color: var(--ink); margin-bottom: 1.5rem; font-weight: 700; }
+    .footer-col { min-width: 150px; }
+    .footer-col h3 { font-size: 1rem; color: #fff; margin-bottom: 1.8rem; font-weight: 700; letter-spacing: 0.02em; }
     .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col li { margin-bottom: 1rem; }
-    .footer-col a {
-      color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;
-    }
-    .footer-col a:hover { color: var(--ink); }
-    .store-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1.2rem; border-radius: 8px; color: var(--ink); text-decoration: none;
-      transition: background 0.2s;
-    }
-    .store-badge:hover { background: rgba(255, 255, 255, 0.1); }
-    .store-badge svg { fill: var(--ink); width: 24px; height: 24px; }
-    .store-text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
-    .store-text span { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; }
-    .store-text strong { font-size: 1rem; font-weight: 600; }
-    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; }
-    .company-info {
-      font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); line-height: 1.8;
-      word-break: keep-all; text-align: left;
-    }
+    .footer-col li { margin-bottom: 1.1rem; }
+    .footer-col a { color: rgba(255, 255, 255, 0.55); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 2.5rem; }
+    .company-info { font-size: 0.88rem; color: rgba(255, 255, 255, 0.45); line-height: 1.9; word-break: keep-all; text-align: left; font-weight: 300; }
 
     @media (max-width: 768px) {
-      .footer-top { flex-direction: column; }
-      .footer-links-grid { gap: 2.5rem; flex-direction: column; }
+      .footer-top { flex-direction: column; gap: 4rem; }
+      .footer-links-grid { gap: 3rem; flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; scroll-behavior: auto !important; }
+      .glow-blob, .particles-system, .noise-overlay, .marquee-content { animation: none !important; }
     }
   </style>
 </head>
@@ -403,10 +340,16 @@
     </details>
   </header>
 
-  <!-- 3D Parallax Background -->
-  <div class="noise-overlay"></div>
-  <div class="bg-grid"></div>
-  <div class="hero-glow"></div>
+  <div class="bg-container">
+    <div class="noise-overlay" id="noiseOverlay"></div>
+    <div class="glow-system">
+      <div class="glow-blob glow-blob-1"></div>
+      <div class="glow-blob glow-blob-2"></div>
+    </div>
+    <div class="particles-system"></div>
+    <div class="bg-grid"></div>
+  </div>
+  
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <main class="main-content">
@@ -414,23 +357,28 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-content" id="heroContent">
-        <h1 class="font-display" data-i18n="heroTitle1">편집을 <br><span class="brand">더 쉽게</span></h1>
-        <p data-i18n="heroDesc">자동 자막, 필터, 효과, 모션 트래킹까지.<br>당신의 영상을 가장 빠르고 완벽하게 완성하세요.</p>
-        <a href="#featuresSection" class="cta-btn" data-i18n="heroBtn">Google Play</a>
+        <h1 class="font-display" data-i18n="heroTitle1">프로급 편집을 <br><span class="brand">간편하고 직관적으로</span></h1>
+        <p data-i18n="heroDesc">자막, 필터, 효과, 모션 트래킹까지 한 번에.<br>릴스, 틱톡, 쇼츠 제작을 위한 비디오 에디터.</p>
+        <a href="#featuresSection" class="play-badge">
+          <img src="./assets/images/google_play_badge.png" alt="Get it on Google Play">
+        </a>
       </div>
-      <a href="#featuresSection" class="scroll-indicator">
-        <span style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;" data-i18n="scrollHint">Scroll to explore</span>
-        <div class="line"></div>
-      </a>
+      
+      <!-- Platform Marquee -->
+      <div class="marquee-container">
+        <div class="marquee-content" id="marqueeText">
+          <!-- JS will populate this to avoid duplication in markup -->
+        </div>
+      </div>
     </section>
 
-    <!-- Sticky Mockup Section (Scroll-Jacking) -->
+    <!-- Sticky Mockup Section -->
     <section class="features-mockup-section" id="featuresSection">
       <div class="mockup-sticky-wrapper">
         <div class="phone-mockup" id="scrollContainer">
           
           <div class="mockup-track" id="mockupTrack">
-            <!-- Section 1: Auto Captions -->
+            <!-- Section 1 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/auto_caption_feature.mp4" preload="auto" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -439,8 +387,7 @@
                 <p data-i18n="f1Desc">영상 속 음성을 인식해 자막을 바로 달아줍니다.<br>귀찮은 타이핑 시간을 아껴보세요.</p>
               </div>
             </section>
-
-            <!-- Section 2: Effect -->
+            <!-- Section 2 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/effect_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -449,8 +396,7 @@
                 <p data-i18n="f2Desc">다양한 화면 효과로 영상에 몰입감을 더해줍니다.<br>원하는 느낌을 직관적으로 입혀보세요.</p>
               </div>
             </section>
-
-            <!-- Section 3: Filter -->
+            <!-- Section 3 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/filter_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -459,8 +405,7 @@
                 <p data-i18n="f3Desc">단순한 터치 한 번으로<br>영상의 전체적인 톤 앤 매너를 바꿀 수 있습니다.</p>
               </div>
             </section>
-
-            <!-- Section 4: Motion Tracking -->
+            <!-- Section 4 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/motion_tracking_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -469,8 +414,7 @@
                 <p data-i18n="f4Desc">움직이는 대상을 부드럽게 따라갑니다.<br>원하는 위치에 요소를 자연스럽게 고정해 보세요.</p>
               </div>
             </section>
-
-            <!-- Section 5: Cutout -->
+            <!-- Section 5 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/cutout_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -479,8 +423,7 @@
                 <p data-i18n="f5Desc">복잡한 조작 없이 피사체만 분리할 수 있습니다.<br>피사체를 더 돋보이게 만들어 보세요.</p>
               </div>
             </section>
-
-            <!-- Section 6: Sticker -->
+            <!-- Section 6 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/sticker_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -489,8 +432,7 @@
                 <p data-i18n="f6Desc">위트 있는 스티커로 영상에 재미를 더해줍니다.<br>원하는 곳에 자유롭게 붙여보세요.</p>
               </div>
             </section>
-
-            <!-- Section 7: Text -->
+            <!-- Section 7 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/text_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -499,8 +441,7 @@
                 <p data-i18n="f7Desc">영상의 메시지를 가장 잘 전달할 수 있는<br>텍스트 디자인과 애니메이션을 제공합니다.</p>
               </div>
             </section>
-
-            <!-- Section 8: Transition -->
+            <!-- Section 8 -->
             <section class="snap-section">
               <video class="snap-video" src="./assets/videos/transition_feature.mp4" preload="metadata" loop muted playsinline data-video></video>
               <div class="video-overlay"></div>
@@ -519,16 +460,45 @@
       </div>
     </section>
 
+    <!-- All-in-one Features Grid -->
+    <section class="grid-section">
+      <div class="grid-header">
+        <h2 class="font-display" data-i18n="gridTitle">핵심 편집 기능을 <span>무료로</span></h2>
+        <p data-i18n="gridDesc">창작에 필요한 기본 도구들을 제약 없이 제공합니다.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="grid-card">
+          <h3 data-i18n="grid1">정밀한 자르기</h3>
+          <p data-i18n="grid1Desc">원하는 구간을 완벽하게 선택하고 분할, 병합하여 컷 편집을 빠르게 완성합니다.</p>
+        </div>
+        <div class="grid-card">
+          <h3 data-i18n="grid2">최대 10배속 속도 조절</h3>
+          <p data-i18n="grid2Desc">슬로우 모션부터 최대 10배속 고속 재생까지 역동적인 타임랩스 효과를 구현합니다.</p>
+        </div>
+        <div class="grid-card">
+          <h3 data-i18n="grid3">직관적인 오디오 녹음</h3>
+          <p data-i18n="grid3Desc">영상 위에 생생한 나레이션이나 목소리를 즉시 녹음하여 몰입감을 더합니다.</p>
+        </div>
+        <div class="grid-card">
+          <h3 data-i18n="grid4">자유로운 비율 조절</h3>
+          <p data-i18n="grid4Desc">유튜브, 릴스, 틱톡 등 각 플랫폼 규격에 최적화된 화면 비율로 바로 전환합니다.</p>
+        </div>
+        <div class="grid-card">
+          <h3 data-i18n="grid5">강력한 PIP 지원</h3>
+          <p data-i18n="grid5Desc">메인 영상 위에 또 다른 비디오나 이미지를 레이어로 얹어 다채로운 연출이 가능합니다.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section" id="ctaSection">
       <div class="cta-glow"></div>
-      <h2 class="font-display" data-i18n="ctaTitle">단 1분이면 충분합니다.<br>지금 바로 시작해보세요.</h2>
-      <a href="#" class="cta-btn-large">
-        <svg viewBox="0 0 24 24">
-          <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-        </svg>
-        <span data-i18n="ctaBtn">Google Play</span>
-      </a>
+      <h2 class="font-display" data-i18n="ctaTitle">컷 편집부터 화려한 효과까지 한 번에.<br>Vidiback</h2>
+      <div class="download-badges">
+        <a href="#" class="play-badge">
+          <img src="./assets/images/google_play_badge.png" alt="Get it on Google Play">
+        </a>
+      </div>
     </section>
 
     <footer id="siteFooter" class="footer">
@@ -553,17 +523,6 @@
                 <li><a href="mailto:vidiback.app@gmail.com">vidiback.app@gmail.com</a></li>
               </ul>
             </div>
-            
-            <div class="footer-col">
-              <h3 data-i18n="footerDownload">다운로드</h3>
-              <a href="#" class="store-badge">
-                <svg viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" /></svg>
-                <div class="store-text">
-                  <span>GET IT ON</span>
-                  <strong>Google Play</strong>
-                </div>
-              </a>
-            </div>
           </div>
         </div>
         
@@ -580,20 +539,14 @@
 
   </main>
 
-
-
-
-  <!-- =========================================
-       SCRIPTS
-       ========================================= -->
   <script>
     // 1. Language Translation Logic
     const translations = {
       ko: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: '편집을 <br><span class="brand">더 쉽게</span>',
-        heroDesc: '자동 자막, 필터, 효과, 모션 트래킹까지.<br>당신의 영상을 가장 빠르고 완벽하게 완성하세요.',
-        heroBtn: 'Google Play', scrollHint: 'Scroll to explore',
+        heroTitle1: '프로급 편집을 <br><span class="brand">간편하고 직관적으로</span>',
+        heroDesc: '자막, 필터, 효과, 모션 트래킹까지 한 번에.<br>릴스, 틱톡, 쇼츠 제작을 위한 비디오 에디터.',
+        marqueeText: "틱톡 완벽 지원 • 유튜브 쇼츠 • 인스타그램 릴스 • 쉬운 사용 • PIP 지원 • 속도 조절 • 음성 녹음 • ",
         f1Title: '똑똑한 <span>자동 자막</span>', f1Desc: '영상 속 음성을 인식해 자막을 바로 달아줍니다.<br>귀찮은 타이핑 시간을 아껴보세요.',
         f2Title: '시선을 끄는 <span>효과</span>', f2Desc: '다양한 화면 효과로 영상에 몰입감을 더해줍니다.<br>원하는 느낌을 직관적으로 입혀보세요.',
         f3Title: '분위기를 바꾸는 <span>필터</span>', f3Desc: '단순한 터치 한 번으로<br>영상의 전체적인 톤 앤 매너를 바꿀 수 있습니다.',
@@ -602,16 +555,22 @@
         f6Title: '포인트를 더하는 <span>스티커</span>', f6Desc: '위트 있는 스티커로 영상에 재미를 더해줍니다.<br>원하는 곳에 자유롭게 붙여보세요.',
         f7Title: '감각적인 <span>텍스트</span>', f7Desc: '영상의 메시지를 가장 잘 전달할 수 있는<br>텍스트 디자인과 애니메이션을 제공합니다.',
         f8Title: '자연스러운 <span>화면 전환</span>', f8Desc: '컷과 컷 사이를 부드럽게 이어주어<br>뚝뚝 끊기지 않는 영상을 완성할 수 있습니다.',
-        ctaTitle: '단 1분이면 충분합니다.<br>지금 바로 시작해보세요.', ctaBtn: 'Google Play',
+        gridTitle: '핵심 편집 기능을 <span>무료로</span>', gridDesc: '창작에 필요한 기본 도구들을 제약 없이 제공합니다.',
+        grid1: '정밀한 자르기', grid1Desc: '원하는 구간을 완벽하게 선택하고 분할, 병합하여 컷 편집을 빠르게 완성합니다.',
+        grid2: '최대 10배속 속도 조절', grid2Desc: '슬로우 모션부터 최대 10배속 고속 재생까지 역동적인 타임랩스 효과를 구현합니다.',
+        grid3: '직관적인 오디오 녹음', grid3Desc: '영상 위에 생생한 나레이션이나 목소리를 즉시 녹음하여 몰입감을 더합니다.',
+        grid4: '자유로운 비율 조절', grid4Desc: '유튜브, 릴스, 틱톡 등 각 플랫폼 규격에 최적화된 화면 비율로 바로 전환합니다.',
+        grid5: '강력한 PIP 지원', grid5Desc: '메인 영상 위에 또 다른 비디오나 이미지를 레이어로 얹어 다채로운 연출이 가능합니다.',
+        ctaTitle: '컷 편집부터 화려한 효과까지 한 번에.<br>Vidiback',
         companyInfo: '상호명: 모그레빅스 (Mogrevix)<br>대표자: 이상준<br>사업자번호: 427-33-01973<br>주소: 대구광역시 서구 국채보상로81길 59-9',
         footerPolicy: '정책', footerTerms: '이용약관', footerPrivacy: '개인정보처리방침',
-        footerContact: '문의하기', footerDownload: '다운로드'
+        footerContact: '문의하기'
       },
       en: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: 'Editing made <br><span class="brand">easier</span>',
-        heroDesc: 'Auto captions, filters, effects, and motion tracking.<br>Create your videos perfectly and faster than ever.',
-        heroBtn: 'Google Play', scrollHint: 'Scroll to explore',
+        heroTitle1: 'Pro editing made <br><span class="brand">simple and intuitive</span>',
+        heroDesc: 'Captions, filters, effects, and motion tracking all at once.<br>The ultimate video editor built for Reels, TikTok, and Shorts.',
+        marqueeText: "PERFECT FOR TIKTOK • YOUTUBE SHORTS • INSTAGRAM REELS • EASY TO USE • PIP SUPPORT • SPEED CONTROL • VOICE RECORDING • ",
         f1Title: 'Smart <span>Auto Captions</span>', f1Desc: 'Recognize speech and add subtitles instantly.<br>Save time on manual typing.',
         f2Title: 'Eye-catching <span>Effects</span>', f2Desc: 'Add depth to your videos with visual effects.<br>Apply the exact mood you want intuitively.',
         f3Title: 'Mood-changing <span>Filters</span>', f3Desc: 'Change the overall tone and manner<br>of your video with a simple touch.',
@@ -620,34 +579,47 @@
         f6Title: 'Playful <span>Stickers</span>', f6Desc: 'Add a touch of fun to your videos<br>with well-placed stickers.',
         f7Title: 'Expressive <span>Text</span>', f7Desc: 'Deliver your message effectively with<br>clean text designs and subtle animations.',
         f8Title: 'Natural <span>Transitions</span>', f8Desc: 'Connect scenes smoothly to create<br>a seamless viewing experience.',
-        ctaTitle: 'One minute is all it takes.<br>Start editing right now.', ctaBtn: 'Google Play',
+        gridTitle: 'Core Features for <span>Free</span>', gridDesc: 'Essential creation tools offered completely free without limitations.',
+        grid1: 'Precise Cutting', grid1Desc: 'Select exact intervals, split, and merge to speed up your rough cuts.',
+        grid2: 'Up to 10x Speed Control', grid2Desc: 'Control video pace freely from cinematic slow-mo to ultra-fast 10x timelapses.',
+        grid3: 'Intuitive Audio Recording', grid3Desc: 'Record voiceovers and commentary over your project instantly to boost engagement.',
+        grid4: 'Seamless Ratio Adjustment', grid4Desc: 'Switch layout structures seamlessly optimized for YouTube, Reels, or TikTok.',
+        grid5: 'Powerful PIP Support', grid5Desc: 'Overlay multiple videos or image assets on top of main tracks for layered visual narratives.',
+        ctaTitle: 'Cut editing to stunning effects all at once.<br>Vidiback',
         companyInfo: 'Company: Mogrevix<br>CEO: Sangjun Lee<br>Business Number: 427-33-01973<br>Address: 59-9, Gukchaebosang-ro 81-gil, Seo-gu, Daegu',
         footerPolicy: 'Policies', footerTerms: 'Terms of Service', footerPrivacy: 'Privacy Policy',
-        footerContact: 'Contact Us', footerDownload: 'Download'
+        footerContact: 'Contact Us'
       },
       ja: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: '編集を<br><span class="brand">もっと簡単に</span>',
-        heroDesc: '自動字幕、フィルター、エフェクト、モーショントラッキングまで。<br>あなたの動画を最速かつ完璧に仕上げます。',
-        heroBtn: 'Google Play', scrollHint: 'Scroll to explore',
-        f1Title: 'スマートな<span>自動字幕</span>', f1Desc: '音声を認識してすぐに字幕を追加します。<br>面倒な入力作業の時間を節約できます。',
-        f2Title: '目を引く<span>エフェクト</span>', f2Desc: '多彩な視覚効果で動画に没入感を加えます。<br>直感的に思い通りの雰囲気を適用できます。',
-        f3Title: '雰囲気を変える<span>フィルター</span>', f3Desc: 'シンプルなワンタッチで、<br>動画全体のトーンや雰囲気を変えることができます。',
-        f4Title: '滑らかな<span>モーショントラッキング</span>', f4Desc: '動く被写体をスムーズに追従します。<br>好きな場所に要素を自然に固定してみましょう。',
-        f5Title: 'すっきりとした<span>背景透過</span>', f5Desc: '複雑な操作なしに被写体を分離できます。<br>被写体をより引き立たせてみましょう。',
-        f6Title: 'アクセントになる<span>ステッカー</span>', f6Desc: 'ステッカーを使って動画に面白さをプラスします。<br>ポイントに合わせて活用してみてください。',
-        f7Title: '魅力的な<span>テキスト</span>', f7Desc: 'メッセージを効果的に伝える、<br>クリーンなテキストデザインとアニメーションを提供します。',
-        f8Title: '自然な<span>場面転換</span>', f8Desc: 'カットとカットを滑らかに繋ぎ、<br>途切れない映像を完成させます。',
-        ctaTitle: 'たった1分で十分です。<br>今すぐ始めてみましょう。', ctaBtn: 'Google Play',
+        heroTitle1: 'プロ級の編集を<br><span class="brand">シンプルかつ直感的に</span>',
+        heroDesc: '字幕、フィルター、エフェクト、モーショントラッキングまで一度に。<br>Reels、TikTok、Shorts制作に最適な動画編集アプリ。',
+        marqueeText: "TikTokに最適 • YouTube Shorts • Instagram Reels • 簡単な操作 • PIP対応 • 速度調整 • 音声録音 • ",
+        f1Title: 'スマートな<span>自動字幕</span>', f1Desc: '音声を認識してすぐに字幕を追加します。<br>面倒な入力作業의 시간을 절약できます。',
+        f2Title: '目を引く<span>エフェクト</span>', f2Desc: '多彩な視覚効果で動画에몰입감을 더해줍니다.<br>직관적으로 원하는 느낌을 입혀보세요.',
+        f3Title: '雰囲기를 변える<span>フィルター</span>', f3Desc: 'シンプルなワンタッチで、<br>動画全体のトーンや雰囲気を変えることができます。',
+        f4Title: '滑らかな<span>モーショントラッキング</span>', f4Desc: '動く被写체를 부드럽게 따라갑니다.<br>원하는 위치에 요소를 자연스럽게 고정해 보세요.',
+        f5Title: 'すっきりとした<span>背景透過</span>', f5Desc: '복잡한 조작 없이 피사체만 분리할 수 있습니다.<br>피사체를 더 돋보이게 만들어 보세요.',
+        f6Title: 'アクセントになる<span>ステッカー</span>', f6Desc: '스티커를 사용하여 동영상에 재미를 더해보세요.<br>포인트에 맞게 활용하실 수 있습니다.',
+        f7Title: '魅力的な<span>テキスト</span>', f7Desc: '메시지를 효과적으로 전달할 수 있는<br>텍스트 디자인과 애니메이션을 제공합니다.',
+        f8Title: '自然な<span>場面転換</span>', f8Desc: '컷과 컷 사이를 부드럽게 이어주어<br>뚝뚝 끊기지 않는 영상을 완성할 수 있습니다.',
+        gridTitle: '主要編集機能を<span>無料で</span>', gridDesc: '創作に必要な基本ツールを制限なしで提供します。',
+        grid1: '精密なトリミング', grid1Desc: 'お好みの区間を完全に選択し、分割・結合してカット編集を素早く完了します。',
+        grid2: '最大10倍速の速度調整', grid2Desc: 'スローモーションから最大10倍速の高速再生まで、ダイナミックなタイムラプス効果を実現します。',
+        grid3: '直感的な音声録音', grid3Desc: '動画の上に鮮明なナレーションや声を即座に録音し、没入感を高めます。',
+        grid4: '自由な比率調整', grid4Desc: 'YouTube、Reels、TikTokなど、各プラットフォームの規格に最適化された画面比率に即座に切り替えます。',
+        grid5: '強力なPIP対応', grid5Desc: 'メイン動画の上に別のビデオや画像をレイヤーとして重ね、多彩な演出が可能です。',
+        ctaTitle: 'カット編集から華やかなエフェクトまで一度に。<br>Vidiback',
         companyInfo: '商号: Mogrevix<br>代表者: イ・サンジュン<br>事業者登録番号: 427-33-01973<br>住所: 大邱広域市西区国債報償路81キル59-9',
         footerPolicy: 'ポリシー', footerTerms: '利用規約', footerPrivacy: 'プライバシーポリシー',
-        footerContact: 'お問い合わせ', footerDownload: 'ダウンロード'
+        footerContact: 'お問い合わせ'
       }
     };
 
     const langSwitcher = document.getElementById('languageSwitcher');
     const langOptions = document.querySelectorAll('.language-option');
     const currentLanguageBtn = document.getElementById('currentLanguage');
+    const marqueeContainer = document.getElementById('marqueeText');
 
     function applyLang(lang) {
       langOptions.forEach(opt => opt.setAttribute('aria-current', 'false'));
@@ -665,6 +637,12 @@
         const key = el.getAttribute('data-i18n-html');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
+      
+      // Update Marquee Text dynamically to repeat smoothly
+      if (marqueeContainer && translations[lang]['marqueeText']) {
+        const baseText = translations[lang]['marqueeText'];
+        marqueeContainer.innerHTML = `<span>${baseText}</span><span>${baseText}</span>`;
+      }
       
       try { localStorage.setItem('vidiback-lang', lang); } catch(e){}
     }
@@ -691,16 +669,16 @@
     // 2. Cursor Glow & Parallax Effects
     const cursorGlow = document.getElementById('cursorGlow');
     const heroContent = document.getElementById('heroContent');
-    const heroGlow = document.querySelector('.hero-glow');
+    const noiseOverlay = document.getElementById('noiseOverlay');
 
     window.addEventListener('mousemove', (e) => {
       cursorGlow.style.left = e.clientX + 'px';
       cursorGlow.style.top = e.clientY + 'px';
 
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
       if(window.scrollY < window.innerHeight) {
-        heroContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        heroContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateZ(20px)`;
       }
     });
 
@@ -708,18 +686,17 @@
     if(phoneMockup) {
       phoneMockup.addEventListener('mouseenter', () => {
         cursorGlow.style.width = '600px'; cursorGlow.style.height = '600px';
-        cursorGlow.style.background = 'radial-gradient(circle, rgba(150, 255, 0, 0.25) 0%, transparent 70%)';
+        cursorGlow.style.background = 'radial-gradient(circle, rgba(150, 255, 0, 0.12) 0%, rgba(0, 240, 255, 0.04) 40%, transparent 70%)';
       });
       phoneMockup.addEventListener('mouseleave', () => {
-        cursorGlow.style.width = '400px'; cursorGlow.style.height = '400px';
-        cursorGlow.style.background = 'radial-gradient(circle, rgba(150, 255, 0, 0.15) 0%, transparent 70%)';
+        cursorGlow.style.width = '500px'; cursorGlow.style.height = '500px';
+        cursorGlow.style.background = 'radial-gradient(circle, rgba(150, 255, 0, 0.08) 0%, rgba(0, 240, 255, 0.02) 40%, transparent 70%)';
       });
     }
 
 
-    // 3. Scroll RAF Loop (Hero Parallax & Mockup Scroll-jacking)
+    // 3. Scroll RAF Loop
     const progressFill = document.getElementById('progressFill');
-    
     const mockupSection = document.getElementById('featuresSection');
     const mockupTrack = document.getElementById('mockupTrack');
     const snapSections = document.querySelectorAll('.snap-section');
@@ -728,25 +705,18 @@
     let currentSnapIndex = -1;
 
     function rafLoop() {
-      // --- 1. DOM Reads ---
       const scrollY = window.scrollY;
       const winHeight = window.innerHeight;
-      const rect = mockupSection ? mockupSection.getBoundingClientRect() : null;
       
-      let videoProgressPercent = 0;
-      if (activeVideoForProgress && Number.isFinite(activeVideoForProgress.duration) && activeVideoForProgress.duration > 0) {
-        videoProgressPercent = (activeVideoForProgress.currentTime / activeVideoForProgress.duration) * 100;
-      }
-
-      // --- 2. DOM Writes ---
-      
-      // Hero Parallax
       if (scrollY < winHeight) {
-        heroContent.style.opacity = 1 - (scrollY / 700);
-        if(heroGlow) heroGlow.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
+        const fadeRatio = 1 - (scrollY / (winHeight * 0.8));
+        heroContent.style.opacity = Math.max(0, fadeRatio);
+        if(noiseOverlay) {
+          noiseOverlay.style.transform = `translate(${Math.sin(scrollY/10)*2}px, ${Math.cos(scrollY/10)*2}px)`;
+        }
       }
 
-      // Sticky Scroll-Jacking for Mockup
+      const rect = mockupSection ? mockupSection.getBoundingClientRect() : null;
       if (rect && mockupTrack) {
         const scrollableDistance = rect.height - winHeight;
         let progress = -rect.top / scrollableDistance;
@@ -765,20 +735,15 @@
                 sec.classList.add('is-active');
                 if (video) {
                   video.currentTime = 0;
-                  if (video.paused) {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                      // 빠른 스크롤 시 발생하는 AbortError 무시
-                      playPromise.catch(() => {});
-                    }
+                  const playPromise = video.play();
+                  if (playPromise !== undefined) {
+                    playPromise.catch(() => {});
                   }
                   activeVideoForProgress = video;
                 }
               } else {
                 sec.classList.remove('is-active');
-                if (video && !video.paused) {
-                  video.pause();
-                }
+                if (video && !video.paused) { video.pause(); }
               }
             });
           }
@@ -792,8 +757,10 @@
         }
       }
 
-      // Video Progress inside Mockup
-      progressFill.style.width = videoProgressPercent + '%';
+      if (activeVideoForProgress && Number.isFinite(activeVideoForProgress.duration) && activeVideoForProgress.duration > 0) {
+        const videoProgressPercent = (activeVideoForProgress.currentTime / activeVideoForProgress.duration) * 100;
+        progressFill.style.width = videoProgressPercent + '%';
+      }
 
       requestAnimationFrame(rafLoop);
     }
@@ -810,7 +777,6 @@
         }
       });
     });
-
   </script>
 </body>
 </html>
