@@ -768,11 +768,8 @@
                   if (video.paused) {
                     const playPromise = video.play();
                     if (playPromise !== undefined) {
-                      playPromise.catch(e => {
-                        console.log("Play failed, attempting load:", e);
-                        video.load();
-                        video.play().catch(()=>{});
-                      });
+                      // 빠른 스크롤 시 발생하는 AbortError 무시
+                      playPromise.catch(() => {});
                     }
                   }
                   activeVideoForProgress = video;
