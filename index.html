@@ -104,19 +104,10 @@
 
     /* ═══════════════════════════════════════════════
        BG 1 · AUTO CAPTION
-       오디오 파형 + 흐르는 타이포그래피
     ═══════════════════════════════════════════════ */
     .bg-caption{background:#01080f}
-
-    /* Scrolling text rails */
-    .bg-caption .rail{
-      position:absolute;width:100%;overflow:hidden;white-space:nowrap;line-height:1;
-    }
-    .bg-caption .rail-inner{
-      display:inline-flex;gap:5vw;
-      font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;
-      user-select:none;
-    }
+    .bg-caption .rail{position:absolute;width:100%;overflow:hidden;white-space:nowrap;line-height:1;}
+    .bg-caption .rail-inner{display:inline-flex;gap:5vw;font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.04em;user-select:none;}
     .bg-caption .r1{top:3%}
     .bg-caption .r1 .rail-inner{font-size:clamp(50px,8vw,120px);color:transparent;-webkit-text-stroke:1px rgba(150,255,0,.12);animation:railL 20s linear infinite}
     .bg-caption .r2{top:22%}
@@ -131,164 +122,68 @@
     @keyframes railL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @keyframes railR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 
-    /* Waveform stage – bars built via JS */
-    .waveform-stage{
-      position:absolute;bottom:0;left:0;width:100%;height:100%;
-      display:flex;align-items:center;justify-content:center;
-      gap:clamp(1px,0.3vw,4px);padding:0 2vw;
-      pointer-events:none;
-    }
-    .wv{
-      flex:1;max-width:14px;min-width:2px;border-radius:100px;
-      background:linear-gradient(180deg,rgba(150,255,0,1) 0%,rgba(0,240,255,.6) 60%,rgba(0,240,255,.1) 100%);
-      box-shadow:0 0 8px rgba(150,255,0,.5),0 0 24px rgba(150,255,0,.2);
-      transform-origin:center;
-      animation:wvBounce var(--dur,1s) ease-in-out infinite alternate;
-      animation-delay:var(--dly,0s);
-    }
-    @keyframes wvBounce{
-      0%  {transform:scaleY(.04);opacity:.2}
-      100%{transform:scaleY(1);  opacity:1}
-    }
+    .waveform-stage{position:absolute;bottom:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(1px,0.3vw,4px);padding:0 2vw;pointer-events:none;}
+    .wv{flex:1;max-width:14px;min-width:2px;border-radius:100px;background:linear-gradient(180deg,rgba(150,255,0,1) 0%,rgba(0,240,255,.6) 60%,rgba(0,240,255,.1) 100%);box-shadow:0 0 8px rgba(150,255,0,.5),0 0 24px rgba(150,255,0,.2);transform-origin:center;animation:wvBounce var(--dur,1s) ease-in-out infinite alternate;animation-delay:var(--dly,0s);}
+    @keyframes wvBounce{0%{transform:scaleY(.04);opacity:.2}100%{transform:scaleY(1);opacity:1}}
 
-    /* Green glow bloom behind waveform */
-    .bg-caption .bloom{
-      position:absolute;width:80%;height:40%;
-      background:radial-gradient(ellipse at center,rgba(150,255,0,.18) 0%,transparent 70%);
-      filter:blur(60px);pointer-events:none;animation:bloomPulse 3s ease-in-out infinite alternate;
-    }
+    .bg-caption .bloom{position:absolute;width:80%;height:40%;background:radial-gradient(ellipse at center,rgba(150,255,0,.18) 0%,transparent 70%);filter:blur(60px);pointer-events:none;animation:bloomPulse 3s ease-in-out infinite alternate;}
     @keyframes bloomPulse{0%{opacity:.5;transform:scaleX(1)}100%{opacity:1;transform:scaleX(1.15)}}
 
     /* ═══════════════════════════════════════════════
        BG 2 · EFFECT
-       네온 오브 + 지지직 글리치 + RGB 분리
     ═══════════════════════════════════════════════ */
     .bg-effect{background:#030008}
+    .bg-effect .orb{position:absolute;border-radius:50%;mix-blend-mode:screen;filter:blur(var(--blur,80px));animation:orbDrift var(--dur,7s) ease-in-out infinite alternate;animation-delay:var(--dly,0s);}
+    .bg-effect .o1{width:70vw;height:70vw;max-width:800px;max-height:800px;background:var(--cyan);top:-20%;left:-15%;opacity:.5;--blur:100px;--dur:8s}
+    .bg-effect .o2{width:60vw;height:60vw;max-width:700px;max-height:700px;background:var(--purple);bottom:-20%;right:-10%;opacity:.55;--blur:120px;--dur:9s;--dly:-3s}
+    .bg-effect .o3{width:40vw;height:40vw;max-width:500px;max-height:500px;background:var(--pink);top:35%;left:45%;opacity:.4;--blur:80px;--dur:6s;--dly:-1.5s}
+    .bg-effect .o4{width:25vw;height:25vw;max-width:300px;max-height:300px;background:var(--brand);top:15%;right:15%;opacity:.35;--blur:60px;--dur:11s;--dly:-5s}
+    .bg-effect .o5{width:20vw;height:20vw;max-width:250px;max-height:250px;background:var(--yellow);bottom:10%;left:20%;opacity:.3;--blur:70px;--dur:7s;--dly:-4s}
 
-    /* Large chromatic orbs */
-    .bg-effect .orb{
-      position:absolute;border-radius:50%;mix-blend-mode:screen;
-      filter:blur(var(--blur,80px));
-      animation:orbDrift var(--dur,7s) ease-in-out infinite alternate;
-      animation-delay:var(--dly,0s);
-    }
-    .bg-effect .o1{width:70vw;height:70vw;max-width:800px;max-height:800px;background:var(--cyan);   top:-20%;left:-15%;opacity:.5;--blur:100px;--dur:8s}
-    .bg-effect .o2{width:60vw;height:60vw;max-width:700px;max-height:700px;background:var(--purple); bottom:-20%;right:-10%;opacity:.55;--blur:120px;--dur:9s;--dly:-3s}
-    .bg-effect .o3{width:40vw;height:40vw;max-width:500px;max-height:500px;background:var(--pink);   top:35%;left:45%;opacity:.4;--blur:80px;--dur:6s;--dly:-1.5s}
-    .bg-effect .o4{width:25vw;height:25vw;max-width:300px;max-height:300px;background:var(--brand);  top:15%;right:15%;opacity:.35;--blur:60px;--dur:11s;--dly:-5s}
-    .bg-effect .o5{width:20vw;height:20vw;max-width:250px;max-height:250px;background:var(--yellow); bottom:10%;left:20%;opacity:.3;--blur:70px;--dur:7s;--dly:-4s}
+    @keyframes orbDrift{0%{transform:translate(0,0) scale(.85);filter:blur(var(--blur,80px)) brightness(.8)}40%{transform:translate(4vw,-3vh) scale(1.1);filter:blur(calc(var(--blur,80px)*.7)) brightness(1.2)}100%{transform:translate(-3vw,2vh) scale(.95);filter:blur(calc(var(--blur,80px)*1.2)) brightness(.9)}}
 
-    @keyframes orbDrift{
-      0%  {transform:translate(0,0)        scale(.85);filter:blur(var(--blur,80px)) brightness(.8)}
-      40% {transform:translate(4vw,-3vh)   scale(1.1); filter:blur(calc(var(--blur,80px)*.7)) brightness(1.2)}
-      100%{transform:translate(-3vw,2vh)   scale(.95); filter:blur(calc(var(--blur,80px)*1.2)) brightness(.9)}
-    }
+    .bg-effect .rgb-text{position:absolute;font-size:clamp(80px,14vw,200px);font-weight:900;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:-.05em;pointer-events:none;user-select:none;animation:rgbGlitch 4s steps(1) infinite;}
+    .bg-effect .rgb-text .r{position:absolute;color:rgba(255,0,80,.4);mix-blend-mode:screen;animation:rgbShiftR 4s steps(1) infinite}
+    .bg-effect .rgb-text .g{position:absolute;color:rgba(0,255,120,.35);mix-blend-mode:screen;animation:rgbShiftG 4s steps(1) infinite}
+    .bg-effect .rgb-text .b{position:absolute;color:rgba(0,160,255,.4);mix-blend-mode:screen;animation:rgbShiftB 4s steps(1) infinite}
 
-    /* RGB split text ghost */
-    .bg-effect .rgb-text{
-      position:absolute;font-size:clamp(80px,14vw,200px);font-weight:900;
-      font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:-.05em;
-      pointer-events:none;user-select:none;
-      animation:rgbGlitch 4s steps(1) infinite;
-    }
-    .bg-effect .rgb-text .r{position:absolute;color:rgba(255,0,80,.4);  mix-blend-mode:screen;animation:rgbShiftR 4s steps(1) infinite}
-    .bg-effect .rgb-text .g{position:absolute;color:rgba(0,255,120,.35); mix-blend-mode:screen;animation:rgbShiftG 4s steps(1) infinite}
-    .bg-effect .rgb-text .b{position:absolute;color:rgba(0,160,255,.4);  mix-blend-mode:screen;animation:rgbShiftB 4s steps(1) infinite}
+    @keyframes rgbGlitch{0%,95%{opacity:0} 10%,12%{opacity:1} 30%,32%{opacity:1} 60%,62%{opacity:1} 100%{opacity:0}}
+    @keyframes rgbShiftR{0%{transform:translate(8px,-4px)}50%{transform:translate(-6px,3px)}100%{transform:translate(4px,-2px)}}
+    @keyframes rgbShiftG{0%{transform:translate(-5px,3px)}50%{transform:translate(7px,-5px)}100%{transform:translate(-3px,2px)}}
+    @keyframes rgbShiftB{0%{transform:translate(3px,6px)}50%{transform:translate(-4px,-4px)}100%{transform:translate(5px,3px)}}
 
-    @keyframes rgbGlitch{
-      0%,95%{opacity:0} 10%,12%{opacity:1} 30%,32%{opacity:1} 60%,62%{opacity:1} 100%{opacity:0}
-    }
-    @keyframes rgbShiftR{0%{transform:translate( 8px,-4px)}50%{transform:translate(-6px, 3px)}100%{transform:translate( 4px,-2px)}}
-    @keyframes rgbShiftG{0%{transform:translate(-5px, 3px)}50%{transform:translate( 7px,-5px)}100%{transform:translate(-3px, 2px)}}
-    @keyframes rgbShiftB{0%{transform:translate( 3px, 6px)}50%{transform:translate(-4px,-4px)}100%{transform:translate( 5px, 3px)}}
-
-    /* Horizontal glitch scan lines */
-    .bg-effect .gline{
-      position:absolute;left:0;width:100%;opacity:0;
-      animation:glineScan var(--dur,2.5s) linear infinite;
-      animation-delay:var(--dly,0s);
-    }
-    .bg-effect .gl1{height:2px; background:linear-gradient(90deg,transparent,rgba(0,240,255,.8),rgba(255,255,255,.5),transparent);--dur:1.9s;--dly:0s}
-    .bg-effect .gl2{height:8px; background:linear-gradient(90deg,transparent,rgba(157,0,255,.7),rgba(255,45,120,.5),transparent);--dur:3.1s;--dly:-.8s}
-    .bg-effect .gl3{height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);--dur:1.5s;--dly:-1.4s}
+    .bg-effect .gline{position:absolute;left:0;width:100%;opacity:0;animation:glineScan var(--dur,2.5s) linear infinite;animation-delay:var(--dly,0s);}
+    .bg-effect .gl1{height:2px;background:linear-gradient(90deg,transparent,rgba(0,240,255,.8),rgba(255,255,255,.5),transparent);--dur:1.9s;--dly:0s}
+    .bg-effect .gl2{height:8px;background:linear-gradient(90deg,transparent,rgba(157,0,255,.7),rgba(255,45,120,.5),transparent);--dur:3.1s;--dly:-.8s}
+    .bg-effect .gl3{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);--dur:1.5s;--dly:-1.4s}
     .bg-effect .gl4{height:15px;background:linear-gradient(90deg,transparent,rgba(150,255,0,.4),rgba(0,240,255,.3),transparent);--dur:4.2s;--dly:-2.2s}
-    .bg-effect .gl5{height:3px; background:linear-gradient(90deg,transparent,rgba(255,230,0,.5),transparent);--dur:2.8s;--dly:-0.5s}
-    .bg-effect .gl6{height:4px; background:linear-gradient(90deg,transparent,rgba(255,45,120,.6),transparent);--dur:1.7s;--dly:-3.1s}
+    .bg-effect .gl5{height:3px;background:linear-gradient(90deg,transparent,rgba(255,230,0,.5),transparent);--dur:2.8s;--dly:-0.5s}
+    .bg-effect .gl6{height:4px;background:linear-gradient(90deg,transparent,rgba(255,45,120,.6),transparent);--dur:1.7s;--dly:-3.1s}
 
-    @keyframes glineScan{
-      0%  {transform:translateY(-5vh);opacity:0}
-      2%  {opacity:1}
-      96% {opacity:.8}
-      100%{transform:translateY(105vh);opacity:0}
-    }
+    @keyframes glineScan{0%{transform:translateY(-5vh);opacity:0}2%{opacity:1}96%{opacity:.8}100%{transform:translateY(105vh);opacity:0}}
 
-    /* Pixel static blocks */
-    .bg-effect .static-block{
-      position:absolute;background:rgba(255,255,255,.06);
-      animation:staticFlash var(--dur,3s) steps(1) infinite;
-      animation-delay:var(--dly,0s);
-    }
-    .bg-effect .sb1{width:200px;height:4px; top:30%;left:5%; --dur:2.3s;--dly:0s}
-    .bg-effect .sb2{width:80px; height:2px; top:55%;right:10%;--dur:1.8s;--dly:-.6s}
-    .bg-effect .sb3{width:160px;height:6px; top:70%;left:25%;--dur:3.1s;--dly:-1.2s}
+    .bg-effect .static-block{position:absolute;background:rgba(255,255,255,.06);animation:staticFlash var(--dur,3s) steps(1) infinite;animation-delay:var(--dly,0s);}
+    .bg-effect .sb1{width:200px;height:4px;top:30%;left:5%;--dur:2.3s;--dly:0s}
+    .bg-effect .sb2{width:80px;height:2px;top:55%;right:10%;--dur:1.8s;--dly:-.6s}
+    .bg-effect .sb3{width:160px;height:6px;top:70%;left:25%;--dur:3.1s;--dly:-1.2s}
 
-    @keyframes staticFlash{
-      0%,90%{opacity:0}
-      92%{opacity:1;transform:translateX(4px)}
-      94%{opacity:.5;transform:translateX(-6px)}
-      96%{opacity:1;transform:translateX(2px)}
-      98%{opacity:0}
-    }
+    @keyframes staticFlash{0%,90%{opacity:0}92%{opacity:1;transform:translateX(4px)}94%{opacity:.5;transform:translateX(-6px)}96%{opacity:1;transform:translateX(2px)}98%{opacity:0}}
 
     /* ═══════════════════════════════════════════════
        BG 3 · FILTER
-       영화적 색상 그라데이션 변화
     ═══════════════════════════════════════════════ */
     .bg-filter{background:#080008;overflow:hidden}
+    .bg-filter .grad-layer{position:absolute;inset:0;animation:filterCycle var(--dur,14s) ease-in-out infinite;animation-delay:var(--dly,0s);}
+    .bg-filter .gl-a{background:linear-gradient(120deg,#0d0a20 0%,#1a0a3e 25%,#6b0f8c 50%,#c21858 75%,#ff6b35 100%);background-size:300% 300%;animation:filterCycle 14s ease-in-out infinite;}
+    .bg-filter .gl-b{background:linear-gradient(240deg,#001a3e 0%,#003d5c 30%,#006666 55%,#00a878 80%,#89ff87 100%);background-size:300% 300%;animation:filterCycle 18s ease-in-out infinite reverse;animation-delay:-7s;mix-blend-mode:color;opacity:.6;}
+    .bg-filter .gl-c{background:radial-gradient(ellipse at 30% 60%,rgba(255,107,107,.5) 0%,transparent 55%);animation:colorOrb 8s ease-in-out infinite alternate;}
+    .bg-filter .gl-d{background:radial-gradient(ellipse at 70% 30%,rgba(107,107,255,.45) 0%,transparent 50%);animation:colorOrb 11s ease-in-out infinite alternate-reverse;animation-delay:-4s;}
+    .bg-filter .gl-e{background:radial-gradient(ellipse at 50% 80%,rgba(0,200,130,.35) 0%,transparent 45%);animation:colorOrb 9s ease-in-out infinite alternate;animation-delay:-2s;}
 
-    /* Deep gradient that shifts through cinematic palettes */
-    .bg-filter .grad-layer{
-      position:absolute;inset:0;
-      animation:filterCycle var(--dur,14s) ease-in-out infinite;
-      animation-delay:var(--dly,0s);
-    }
-    .bg-filter .gl-a{
-      background:linear-gradient(120deg,#0d0a20 0%,#1a0a3e 25%,#6b0f8c 50%,#c21858 75%,#ff6b35 100%);
-      background-size:300% 300%;
-      animation:filterCycle 14s ease-in-out infinite;
-    }
-    .bg-filter .gl-b{
-      background:linear-gradient(240deg,#001a3e 0%,#003d5c 30%,#006666 55%,#00a878 80%,#89ff87 100%);
-      background-size:300% 300%;
-      animation:filterCycle 18s ease-in-out infinite reverse;
-      animation-delay:-7s;
-      mix-blend-mode:color;opacity:.6;
-    }
-    .bg-filter .gl-c{
-      background:radial-gradient(ellipse at 30% 60%,rgba(255,107,107,.5) 0%,transparent 55%);
-      animation:colorOrb 8s ease-in-out infinite alternate;
-    }
-    .bg-filter .gl-d{
-      background:radial-gradient(ellipse at 70% 30%,rgba(107,107,255,.45) 0%,transparent 50%);
-      animation:colorOrb 11s ease-in-out infinite alternate-reverse;
-      animation-delay:-4s;
-    }
-    .bg-filter .gl-e{
-      background:radial-gradient(ellipse at 50% 80%,rgba(0,200,130,.35) 0%,transparent 45%);
-      animation:colorOrb 9s ease-in-out infinite alternate;
-      animation-delay:-2s;
-    }
-
-    /* Vignette & film grain */
     .bg-filter .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 25%,rgba(0,0,0,.75) 100%)}
     .bg-filter .grain{position:absolute;inset:-50%;width:200%;height:200%;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grainDrift .08s steps(1) infinite}
 
-    /* Colour streak lines */
-    .bg-filter .cstreak{
-      position:absolute;left:0;width:100%;opacity:0;
-      animation:cstreakFade var(--dur,6s) ease-in-out infinite;
-      animation-delay:var(--dly,0s);
-    }
+    .bg-filter .cstreak{position:absolute;left:0;width:100%;opacity:0;animation:cstreakFade var(--dur,6s) ease-in-out infinite;animation-delay:var(--dly,0s);}
     .bg-filter .cs1{height:1px;top:35%;background:linear-gradient(90deg,transparent,rgba(255,200,100,.4),transparent);--dur:5s}
     .bg-filter .cs2{height:2px;top:55%;background:linear-gradient(90deg,transparent,rgba(150,255,150,.3),transparent);--dur:7s;--dly:-2s}
     .bg-filter .cs3{height:1px;top:20%;background:linear-gradient(90deg,transparent,rgba(200,150,255,.35),transparent);--dur:6s;--dly:-4s}
@@ -300,261 +195,100 @@
 
     /* ═══════════════════════════════════════════════
        BG 4 · MOTION TRACKING
-       3D 그리드 + 레이더 + HUD
     ═══════════════════════════════════════════════ */
     .bg-motion{background:#0a0a0a}
-    .bg-motion .tracking-grid {
-      position:absolute;inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-      background-size:10vw 10vw;
-    }
-    .bg-motion .tracking-orb {
-      position:absolute;width:15vw;height:15vw;border-radius:50%;
-      background:radial-gradient(circle, var(--brand) 0%, rgba(150,255,0,0) 70%);
-      filter:blur(20px);
-      animation:orbMove 6s ease-in-out infinite alternate;
-    }
-    .bg-motion .tracking-box {
-      position:absolute;width:12vw;height:12vw;
-      animation:orbMove 6s ease-in-out infinite alternate;
-    }
-    .bg-motion .t-corner {
-      position:absolute;width:25%;height:25%;border-color:var(--brand);border-style:solid;
-    }
-    .bg-motion .tc-tl { top:0;left:0;border-width:2px 0 0 2px; }
-    .bg-motion .tc-tr { top:0;right:0;border-width:2px 2px 0 0; }
-    .bg-motion .tc-bl { bottom:0;left:0;border-width:0 0 2px 2px; }
-    .bg-motion .tc-br { bottom:0;right:0;border-width:0 2px 2px 0; }
-    .bg-motion .t-cross {
-      position:absolute;inset:0;
-    }
-    .bg-motion .t-cross::before, .bg-motion .t-cross::after {
-      content:'';position:absolute;background:rgba(150,255,0,.3);
-    }
-    .bg-motion .t-cross::before { top:50%;left:-20%;width:140%;height:1px; }
-    .bg-motion .t-cross::after { left:50%;top:-20%;width:1px;height:140%; }
+    .bg-motion .tracking-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:10vw 10vw;}
+    .bg-motion .tracking-orb{position:absolute;width:15vw;height:15vw;border-radius:50%;background:radial-gradient(circle, var(--brand) 0%, rgba(150,255,0,0) 70%);filter:blur(20px);animation:orbMove 6s ease-in-out infinite alternate;}
+    .bg-motion .tracking-box{position:absolute;width:12vw;height:12vw;animation:orbMove 6s ease-in-out infinite alternate;}
+    .bg-motion .t-corner{position:absolute;width:25%;height:25%;border-color:var(--brand);border-style:solid;}
+    .bg-motion .tc-tl{top:0;left:0;border-width:2px 0 0 2px;}
+    .bg-motion .tc-tr{top:0;right:0;border-width:2px 2px 0 0;}
+    .bg-motion .tc-bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+    .bg-motion .tc-br{bottom:0;right:0;border-width:0 2px 2px 0;}
+    .bg-motion .t-cross{position:absolute;inset:0;}
+    .bg-motion .t-cross::before, .bg-motion .t-cross::after{content:'';position:absolute;background:rgba(150,255,0,.3);}
+    .bg-motion .t-cross::before{top:50%;left:-20%;width:140%;height:1px;}
+    .bg-motion .t-cross::after{left:50%;top:-20%;width:1px;height:140%;}
     
-    @keyframes orbMove {
-      0% { top: 20%; left: 20%; transform: scale(1); }
-      33% { top: 60%; left: 70%; transform: scale(1.2); }
-      66% { top: 70%; left: 30%; transform: scale(0.8); }
-      100% { top: 30%; left: 60%; transform: scale(1.1); }
-    }
+    @keyframes orbMove{0%{top:20%;left:20%;transform:scale(1);}33%{top:60%;left:70%;transform:scale(1.2);}66%{top:70%;left:30%;transform:scale(0.8);}100%{top:30%;left:60%;transform:scale(1.1);}}
 
     /* ═══════════════════════════════════════════════
        BG 5 · BACKGROUND REMOVAL
-       체크보드 + 브랜드 팝 + 실루엣
     ═══════════════════════════════════════════════ */
     .bg-removal{background:#111; overflow:hidden;}
-    .bg-removal .rem-bg-wrapper {
-      position:absolute;inset:0;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(0,240,255,0.4) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255,45,120,0.4) 0%, transparent 50%);
-      animation: scanClip 4s ease-in-out infinite alternate;
-    }
-    .bg-removal .rem-scanner {
-      position:absolute;top:0;height:100%;width:4px;
-      background:var(--brand);
-      box-shadow: 0 0 20px 5px rgba(150,255,0,.8);
-      animation: scanLine 4s ease-in-out infinite alternate;
-      z-index: 10;
-    }
-    .bg-removal .rem-subject {
-      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      width: clamp(120px, 18vw, 280px); height: clamp(200px, 32vw, 480px);
-      background:var(--brand);
-      border-radius: 100px 100px 20px 20px;
-      box-shadow: 0 20px 50px rgba(150,255,0,.2);
-      z-index: 5;
-    }
-    @keyframes scanClip {
-      0%, 10% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-      90%, 100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
-    }
-    @keyframes scanLine {
-      0%, 10% { left: 0%; opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      90%, 100% { left: 100%; opacity: 0; }
-    }
+    .bg-removal .rem-bg-wrapper{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(0,240,255,0.4) 0%, transparent 50%),radial-gradient(circle at 80% 70%, rgba(255,45,120,0.4) 0%, transparent 50%);animation:scanClip 4s ease-in-out infinite alternate;}
+    .bg-removal .rem-scanner{position:absolute;top:0;height:100%;width:4px;background:var(--brand);box-shadow:0 0 20px 5px rgba(150,255,0,.8);animation:scanLine 4s ease-in-out infinite alternate;z-index:10;}
+    .bg-removal .rem-subject{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(120px, 18vw, 280px);height:clamp(200px, 32vw, 480px);background:var(--brand);border-radius:100px 100px 20px 20px;box-shadow:0 20px 50px rgba(150,255,0,.2);z-index:5;}
+    @keyframes scanClip{0%,10%{clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%);}90%,100%{clip-path:polygon(100% 0, 100% 0, 100% 100%, 100% 100%);}}
+    @keyframes scanLine{0%,10%{left:0%;opacity:0;}15%{opacity:1;}85%{opacity:1;}90%,100%{left:100%;opacity:0;}}
 
     /* ═══════════════════════════════════════════════
        BG 6 · STICKER
-       Lottie 파일 무중력 떠다니기 (JS 랜덤 주입)
     ═══════════════════════════════════════════════ */
     .bg-sticker{background:#0e0c16}
+    .bg-sticker::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 40%,rgba(157,0,255,.12) 0%,transparent 50%),radial-gradient(ellipse at 80% 60%,rgba(255,45,120,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 10%,rgba(150,255,0,.08) 0%,transparent 40%);pointer-events:none;}
+    .bg-sticker .memphis-shape{position:absolute;pointer-events:none;animation:floatZero var(--dur, 7s) ease-in-out infinite;animation-delay:var(--dly, 0s);}
+    .bg-sticker .ms-circle{width:clamp(60px, 8vw, 130px);height:clamp(60px, 8vw, 130px);border-radius:50%;border:clamp(6px, 1vw, 14px) solid var(--purple);}
+    .bg-sticker .ms-circle-2{width:clamp(40px, 5vw, 80px);height:clamp(40px, 5vw, 80px);border-radius:50%;background:rgba(255,230,0,0.7);}
+    .bg-sticker .ms-square{width:clamp(40px, 5vw, 80px);height:clamp(40px, 5vw, 80px);background:var(--pink);opacity:0.6;}
+    .bg-sticker .ms-diamond{width:clamp(40px, 5vw, 70px);height:clamp(40px, 5vw, 70px);background:var(--cyan);opacity:0.55;transform:rotate(45deg);}
+    .bg-sticker .ms-triangle{width:0;height:0;border-left:clamp(30px, 4vw, 60px) solid transparent;border-right:clamp(30px, 4vw, 60px) solid transparent;border-bottom:clamp(50px, 7vw, 100px) solid var(--brand);opacity:0.55;}
+    .bg-sticker .ms-donut{width:clamp(50px, 6vw, 90px);height:clamp(50px, 6vw, 90px);border-radius:50%;border:clamp(8px, 1.2vw, 18px) solid var(--pink);opacity:0.65;}
+    .bg-sticker .ms-squiggle{width:clamp(80px, 10vw, 140px);height:clamp(12px, 2vw, 24px);background:repeating-linear-gradient(90deg, var(--brand) 0px, var(--brand) 8px,transparent 8px, transparent 16px);border-radius:4px;opacity:0.5;}
+    .bg-sticker .ms-plus{position:relative;width:clamp(30px, 4vw, 60px);height:clamp(30px, 4vw, 60px);}
+    .bg-sticker .ms-plus::before,.bg-sticker .ms-plus::after{content:'';position:absolute;background:var(--yellow);opacity:0.8;border-radius:3px;}
+    .bg-sticker .ms-plus::before{top:0;left:35%;width:30%;height:100%;}
+    .bg-sticker .ms-plus::after{top:35%;left:0;width:100%;height:30%;}
 
-    /* Soft gradient atmosphere */
-    .bg-sticker::before{
-      content:'';position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse at 20% 40%,rgba(157,0,255,.12) 0%,transparent 50%),
-        radial-gradient(ellipse at 80% 60%,rgba(255,45,120,.1) 0%,transparent 50%),
-        radial-gradient(ellipse at 50% 10%,rgba(150,255,0,.08) 0%,transparent 40%);
-      pointer-events:none;
-    }
+    .bg-sticker .m1{top:5%;left:5%;--dur:8s;--dly:0s;}
+    .bg-sticker .m2{top:8%;right:8%;--dur:6s;--dly:-2s;}
+    .bg-sticker .m3{top:70%;left:6%;--dur:9s;--dly:-1s;}
+    .bg-sticker .m4{top:75%;right:10%;--dur:7s;--dly:-3s;}
+    .bg-sticker .m5{top:40%;left:3%;--dur:10s;--dly:-4s;}
+    .bg-sticker .m6{top:35%;right:5%;--dur:6s;--dly:-0.5s;}
+    .bg-sticker .m7{top:85%;left:40%;--dur:8s;--dly:-2.5s;}
+    .bg-sticker .m8{top:2%;left:45%;--dur:7s;--dly:-1.5s;}
 
-    /* Memphis geometric shapes */
-    .bg-sticker .memphis-shape {
-      position: absolute; pointer-events: none;
-      animation: floatZero var(--dur, 7s) ease-in-out infinite;
-      animation-delay: var(--dly, 0s);
-    }
-    .bg-sticker .ms-circle {
-      width: clamp(60px, 8vw, 130px); height: clamp(60px, 8vw, 130px);
-      border-radius: 50%;
-      border: clamp(6px, 1vw, 14px) solid var(--purple);
-    }
-    .bg-sticker .ms-circle-2 {
-      width: clamp(40px, 5vw, 80px); height: clamp(40px, 5vw, 80px);
-      border-radius: 50%;
-      background: rgba(255,230,0,0.7);
-    }
-    .bg-sticker .ms-square {
-      width: clamp(40px, 5vw, 80px); height: clamp(40px, 5vw, 80px);
-      background: var(--pink); opacity: 0.6;
-    }
-    .bg-sticker .ms-diamond {
-      width: clamp(40px, 5vw, 70px); height: clamp(40px, 5vw, 70px);
-      background: var(--cyan); opacity: 0.55;
-      transform: rotate(45deg);
-    }
-    .bg-sticker .ms-triangle {
-      width: 0; height: 0;
-      border-left: clamp(30px, 4vw, 60px) solid transparent;
-      border-right: clamp(30px, 4vw, 60px) solid transparent;
-      border-bottom: clamp(50px, 7vw, 100px) solid var(--brand);
-      opacity: 0.55;
-    }
-    .bg-sticker .ms-donut {
-      width: clamp(50px, 6vw, 90px); height: clamp(50px, 6vw, 90px);
-      border-radius: 50%;
-      border: clamp(8px, 1.2vw, 18px) solid var(--pink);
-      opacity: 0.65;
-    }
-    .bg-sticker .ms-squiggle {
-      width: clamp(80px, 10vw, 140px); height: clamp(12px, 2vw, 24px);
-      background: repeating-linear-gradient(
-        90deg, var(--brand) 0px, var(--brand) 8px,
-        transparent 8px, transparent 16px
-      );
-      border-radius: 4px; opacity: 0.5;
-    }
-    .bg-sticker .ms-plus {
-      position: relative;
-      width: clamp(30px, 4vw, 60px); height: clamp(30px, 4vw, 60px);
-    }
-    .bg-sticker .ms-plus::before,
-    .bg-sticker .ms-plus::after {
-      content: ''; position: absolute; background: var(--yellow); opacity: 0.8; border-radius: 3px;
-    }
-    .bg-sticker .ms-plus::before { top: 0; left: 35%; width: 30%; height: 100%; }
-    .bg-sticker .ms-plus::after  { top: 35%; left: 0; width: 100%; height: 30%; }
-
-    /* Positions */
-    .bg-sticker .m1  { top:  5%; left:  5%; --dur: 8s; --dly: 0s; }
-    .bg-sticker .m2  { top:  8%; right: 8%; --dur: 6s; --dly: -2s; }
-    .bg-sticker .m3  { top: 70%; left:  6%; --dur: 9s; --dly: -1s; }
-    .bg-sticker .m4  { top: 75%; right: 10%; --dur: 7s; --dly: -3s; }
-    .bg-sticker .m5  { top: 40%; left:  3%; --dur:10s; --dly: -4s; }
-    .bg-sticker .m6  { top: 35%; right: 5%; --dur: 6s; --dly: -0.5s; }
-    .bg-sticker .m7  { top: 85%; left: 40%; --dur: 8s; --dly: -2.5s; }
-    .bg-sticker .m8  { top:  2%; left: 45%; --dur: 7s; --dly: -1.5s; }
-
-    @keyframes floatZero {
-      0%   { transform: translateY(0px)   rotate(0deg)   scale(1); }
-      25%  { transform: translateY(-22px) rotate(8deg)  scale(1.05); }
-      50%  { transform: translateY(-12px) rotate(-5deg) scale(0.97); }
-      75%  { transform: translateY(-28px) rotate(6deg)  scale(1.03); }
-      100% { transform: translateY(0px)   rotate(0deg)   scale(1); }
-    }
+    @keyframes floatZero{0%{transform:translateY(0px) rotate(0deg) scale(1);}25%{transform:translateY(-22px) rotate(8deg) scale(1.05);}50%{transform:translateY(-12px) rotate(-5deg) scale(0.97);}75%{transform:translateY(-28px) rotate(6deg) scale(1.03);}100%{transform:translateY(0px) rotate(0deg) scale(1);}}
 
     /* ═══════════════════════════════════════════════
        BG 7 · TEXT
-       양방향 텍스트 교차 + 대형 키네틱
     ═══════════════════════════════════════════════ */
-    .bg-text{
-      background:#020205;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:center;
-      gap: 12vh;
-    }
-
-    .text-band{position:relative;overflow:hidden;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding: 2vh 0;background:rgba(255,255,255,.02)}
-    .text-inner{
-      display:inline-flex;gap:8vw;white-space:nowrap;
-      font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;
-      will-change:transform;
-    }
+    .bg-text{background:#020205;flex-direction:column;align-items:stretch;justify-content:center;gap:12vh;}
+    .text-band{position:relative;overflow:hidden;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:2vh 0;background:rgba(255,255,255,.02)}
+    .text-inner{display:inline-flex;gap:8vw;white-space:nowrap;font-family:'Outfit',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;will-change:transform;}
     .text-inner span{padding:0 2vw}
 
-    .tb1 .text-inner{font-size:clamp(50px,8vw,120px); color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.55); animation:mLeft 18s linear infinite}
-    .tb2 .text-inner{font-size:clamp(60px,10vw,150px);color:var(--brand);                                                 animation:mRight 22s linear infinite}
-    .tb3 .text-inner{font-size:clamp(50px,8vw,120px); color:transparent;-webkit-text-stroke:1.5px rgba(0,240,255,.55);   animation:mLeft 16s linear infinite;animation-delay:-5s}
+    .tb1 .text-inner{font-size:clamp(50px,8vw,120px);color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.55);animation:mLeft 18s linear infinite}
+    .tb2 .text-inner{font-size:clamp(60px,10vw,150px);color:var(--brand);animation:mRight 22s linear infinite}
+    .tb3 .text-inner{font-size:clamp(50px,8vw,120px);color:transparent;-webkit-text-stroke:1.5px rgba(0,240,255,.55);animation:mLeft 16s linear infinite;animation-delay:-5s}
 
-    @keyframes mLeft {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes mLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @keyframes mRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 
     /* ═══════════════════════════════════════════════
        BG 8 · TRANSITION
-       날렵한 사선 와이프 + 스트릭 라인
     ═══════════════════════════════════════════════ */
     .bg-transition{background:#030305;overflow:hidden}
+    .bg-transition .wipe{position:absolute;width:350%;height:350%;top:-125%;left:-125%;animation:wipeSlash var(--dur,3.2s) cubic-bezier(.77,0,.175,1) infinite;animation-delay:var(--dly,0s);opacity:0;}
+    .bg-transition .wp1{background:linear-gradient(140deg,transparent 38%,rgba(150,255,0,.65) 43%,rgba(150,255,0,.8) 46%,transparent 51%);--dur:3.2s;--dly:0s}
+    .bg-transition .wp2{background:linear-gradient(140deg,transparent 40%,rgba(0,240,255,.5) 45%,rgba(0,240,255,.65) 48%,transparent 53%);--dur:3.2s;--dly:-.25s}
+    .bg-transition .wp3{background:linear-gradient(140deg,transparent 42%,rgba(157,0,255,.4) 47%,rgba(157,0,255,.55) 50%,transparent 55%);--dur:3.2s;--dly:-.5s}
+    .bg-transition .wp4{background:linear-gradient(140deg,transparent 38%,rgba(255,230,0,.45) 43%,rgba(255,45,120,.5) 46%,transparent 51%);--dur:3.2s;--dly:-1.6s}
 
-    /* Main wipe bands */
-    .bg-transition .wipe{
-      position:absolute;width:350%;height:350%;top:-125%;left:-125%;
-      animation:wipeSlash var(--dur,3.2s) cubic-bezier(.77,0,.175,1) infinite;
-      animation-delay:var(--dly,0s);
-      opacity:0;
-    }
-    .bg-transition .wp1{background:linear-gradient(140deg,transparent 38%,rgba(150,255,0,.65) 43%,rgba(150,255,0,.8) 46%,transparent 51%); --dur:3.2s;--dly:0s}
-    .bg-transition .wp2{background:linear-gradient(140deg,transparent 40%,rgba(0,240,255,.5) 45%,rgba(0,240,255,.65) 48%,transparent 53%);  --dur:3.2s;--dly:-.25s}
-    .bg-transition .wp3{background:linear-gradient(140deg,transparent 42%,rgba(157,0,255,.4) 47%,rgba(157,0,255,.55) 50%,transparent 55%);  --dur:3.2s;--dly:-.5s}
-    /* Second cycle with offset */
-    .bg-transition .wp4{background:linear-gradient(140deg,transparent 38%,rgba(255,230,0,.45) 43%,rgba(255,45,120,.5) 46%,transparent 51%); --dur:3.2s;--dly:-1.6s}
+    @keyframes wipeSlash{0%{transform:translate(-55%,-55%);opacity:0}4%{opacity:1}88%{opacity:1}100%{transform:translate(55%,55%);opacity:0}}
 
-    @keyframes wipeSlash{
-      0%  {transform:translate(-55%,-55%);opacity:0}
-      4%  {opacity:1}
-      88% {opacity:1}
-      100%{transform:translate(55%,55%);opacity:0}
-    }
-
-    /* Speed lines / streaks */
-    .bg-transition .streak{
-      position:absolute;height:1px;opacity:0;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
-      transform:rotate(-40deg);transform-origin:center;
-      animation:streakSlash var(--dur,2s) ease-in infinite;animation-delay:var(--dly,0s);
-    }
-    .bg-transition .sk1{top:18%;width:55%;left:-10%;--dur:2s;  --dly:0s}
+    .bg-transition .streak{position:absolute;height:1px;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:rotate(-40deg);transform-origin:center;animation:streakSlash var(--dur,2s) ease-in infinite;animation-delay:var(--dly,0s);}
+    .bg-transition .sk1{top:18%;width:55%;left:-10%;--dur:2s;--dly:0s}
     .bg-transition .sk2{top:40%;width:75%;left:-20%;--dur:2.6s;--dly:-.6s;height:2px;background:linear-gradient(90deg,transparent,rgba(150,255,0,.5),transparent)}
-    .bg-transition .sk3{top:62%;width:50%;left:-5%; --dur:1.8s;--dly:-1.3s}
+    .bg-transition .sk3{top:62%;width:50%;left:-5%;--dur:1.8s;--dly:-1.3s}
     .bg-transition .sk4{top:28%;width:35%;right:-5%;--dur:2.2s;--dly:-.4s;height:2px}
     .bg-transition .sk5{top:75%;width:60%;left:-15%;--dur:2.4s;--dly:-.9s;background:linear-gradient(90deg,transparent,rgba(0,240,255,.4),transparent)}
 
-    @keyframes streakSlash{
-      0%  {transform:translateX(-120%) rotate(-40deg);opacity:0}
-      8%  {opacity:1}
-      100%{transform:translateX(180%) rotate(-40deg);opacity:0}
-    }
+    @keyframes streakSlash{0%{transform:translateX(-120%) rotate(-40deg);opacity:0}8%{opacity:1}100%{transform:translateX(180%) rotate(-40deg);opacity:0}}
 
-    /* Flash vignette at edges */
-    .bg-transition .flash{
-      position:absolute;inset:0;
-      background:radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(150,255,0,.15) 100%);
-      animation:flashPulse 3.2s ease-out infinite;opacity:0;
-    }
-    @keyframes flashPulse{
-      0%,100%{opacity:0}
-      4%     {opacity:1}
-      15%    {opacity:0}
-    }
+    .bg-transition .flash{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(150,255,0,.15) 100%);animation:flashPulse 3.2s ease-out infinite;opacity:0;}
+    @keyframes flashPulse{0%,100%{opacity:0}4%{opacity:1}15%{opacity:0}}
 
     /* ═══════════════════════════════════════════════
        PHONE MOCKUP
@@ -641,7 +375,8 @@
     <div class="hero-content" id="heroContent">
       <h1 class="font-display" data-i18n="heroTitle1">스치는 순간을 <br><span class="brand">시선을 끄는 숏폼으로</span></h1>
       <p data-i18n="heroDesc">평범한 일상이 트렌디한 콘텐츠가 됩니다.</p>
-      <a href="#featuresSection" class="play-badge">
+      <!-- [수정된 부분: 실제 URL 적용 및 새 창 열기 추가] -->
+      <a href="https://play.google.com/store/apps/details?id=com.hegleb.vidiback" target="_blank" class="play-badge">
         <img src="./assets/images/google_play_badge.png" alt="Get it on Google Play" onerror="this.style.display='none'">
       </a>
     </div>
@@ -704,7 +439,7 @@
           <div class="rem-subject"></div>
         </div>
 
-        <!-- 6 · Sticker – Memphis shapes in zero gravity -->
+        <!-- 6 · Sticker -->
         <div class="feature-bg bg-sticker" id="stickerBg">
           <div class="memphis-shape ms-circle m1"></div>
           <div class="memphis-shape ms-triangle m2"></div>
@@ -730,7 +465,7 @@
           <div class="flash"></div>
         </div>
 
-      </div><!-- /featureBackgrounds -->
+      </div>
 
       <!-- Phone -->
       <div class="phone-mockup" id="scrollContainer">
@@ -802,7 +537,8 @@
     <div class="cta-glow"></div>
     <h2 class="font-display" data-i18n="ctaTitle">컷 편집부터 화려한 효과까지 한 번에.<br>Vidiback</h2>
     <div class="download-badges">
-      <a href="#" class="play-badge"><img src="./assets/images/google_play_badge.png" alt="Get it on Google Play" onerror="this.style.display='none'"></a>
+      <!-- [수정된 부분: 실제 URL 적용 및 새 창 열기 추가] -->
+      <a href="https://play.google.com/store/apps/details?id=com.hegleb.vidiback" target="_blank" class="play-badge"><img src="./assets/images/google_play_badge.png" alt="Get it on Google Play" onerror="this.style.display='none'"></a>
     </div>
   </section>
 
