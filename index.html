@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="편집을 더 쉽게, Vidiback. AI 자동 자막, 크로마키, 모션 트래킹까지 지원하는 완벽한 비디오 에디터입니다.">
-  <meta name="theme-color" content="#030405">
+  <meta name="theme-color" content="#000000">
   <title>Vidiback - 비디오 에디터</title>
   <link rel="icon" href="./assets/icon/ic_app_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
       --ink: #F8FAF5;
       --muted: rgba(248, 250, 245, 0.72);
       --soft: rgba(248, 250, 245, 0.52);
-      --deep: #030405;
+      --deep: #000000;
       --glass: rgba(255, 255, 255, 0.05);
       --line: rgba(255, 255, 255, 0.14);
       --ease: cubic-bezier(.16, 1, .3, 1);
@@ -65,6 +65,7 @@
        BACKGROUND LAYER (Fixed, High Quality)
        ========================================= */
     .bg-container {
+      display: none;
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 0; pointer-events: none; overflow: hidden; perspective: 1000px;
     }
@@ -264,10 +265,16 @@
        LANGUAGE SWITCHER
        ========================================= */
     .topbar {
-      position: fixed; z-index: 200; inset: 0 0 auto; display: flex; justify-content: flex-end;
+      position: fixed; z-index: 200; inset: 0 0 auto; display: flex; justify-content: space-between; align-items: flex-start;
       padding: max(22px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right)) 0 max(28px, env(safe-area-inset-left));
       pointer-events: none;
     }
+    .topbar-brand {
+      pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+    }
+    .topbar-brand:hover { transform: translateY(-1px); opacity: 0.9; }
+    .topbar-logo { width: 32px; height: 32px; border-radius: 8px; object-fit: contain; }
+    .topbar-title { font-size: 1.25rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.5); margin-top: 2px; }
     .language-switcher {
       position: relative; pointer-events: auto; color: rgba(248, 250, 245, 0.85);
       font-size: 14px; font-weight: 600; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
@@ -330,6 +337,10 @@
 <body>
   
   <header class="topbar">
+    <a href="#" class="topbar-brand">
+      <img src="./assets/icon/ic_app_logo.png" alt="Vidiback" class="topbar-logo">
+      <span class="topbar-title font-display">Vidiback</span>
+    </a>
     <details class="language-switcher" id="languageSwitcher">
       <summary class="language-trigger" id="currentLanguage">한국어</summary>
       <nav class="language-menu" aria-label="언어 선택">
@@ -357,19 +368,14 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-content" id="heroContent">
-        <h1 class="font-display" data-i18n="heroTitle1">프로급 편집을 <br><span class="brand">간편하고 직관적으로</span></h1>
-        <p data-i18n="heroDesc">자막, 필터, 효과, 모션 트래킹까지 한 번에.<br>릴스, 틱톡, 쇼츠 제작을 위한 비디오 에디터.</p>
+        <h1 class="font-display" data-i18n="heroTitle1">스치는 순간을 <br><span class="brand">시선을 끄는 숏폼으로</span></h1>
+        <p data-i18n="heroDesc">평범한 일상이 트렌디한 콘텐츠가 됩니다.</p>
         <a href="#featuresSection" class="play-badge">
           <img src="./assets/images/google_play_badge.png" alt="Get it on Google Play">
         </a>
       </div>
       
-      <!-- Platform Marquee -->
-      <div class="marquee-container">
-        <div class="marquee-content" id="marqueeText">
-          <!-- JS will populate this to avoid duplication in markup -->
-        </div>
-      </div>
+
     </section>
 
     <!-- Sticky Mockup Section -->
@@ -544,9 +550,9 @@
     const translations = {
       ko: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: '프로급 편집을 <br><span class="brand">간편하고 직관적으로</span>',
-        heroDesc: '자막, 필터, 효과, 모션 트래킹까지 한 번에.<br>릴스, 틱톡, 쇼츠 제작을 위한 비디오 에디터.',
-        marqueeText: "틱톡 완벽 지원 • 유튜브 쇼츠 • 인스타그램 릴스 • 쉬운 사용 • PIP 지원 • 속도 조절 • 음성 녹음 • ",
+        heroTitle1: '스치는 순간을 <br><span class="brand">시선을 끄는 숏폼으로</span>',
+        heroDesc: '평범한 일상이 트렌디한 콘텐츠가 됩니다.',
+        marqueeText: "PERFECT FOR TIKTOK • YOUTUBE SHORTS • INSTAGRAM REELS • EASY TO USE • PIP SUPPORT • SPEED CONTROL • VOICE RECORDING • ",
         f1Title: '똑똑한 <span>자동 자막</span>', f1Desc: '영상 속 음성을 인식해 자막을 바로 달아줍니다.<br>귀찮은 타이핑 시간을 아껴보세요.',
         f2Title: '시선을 끄는 <span>효과</span>', f2Desc: '다양한 화면 효과로 영상에 몰입감을 더해줍니다.<br>원하는 느낌을 직관적으로 입혀보세요.',
         f3Title: '분위기를 바꾸는 <span>필터</span>', f3Desc: '단순한 터치 한 번으로<br>영상의 전체적인 톤 앤 매너를 바꿀 수 있습니다.',
@@ -568,8 +574,8 @@
       },
       en: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: 'Pro editing made <br><span class="brand">simple and intuitive</span>',
-        heroDesc: 'Captions, filters, effects, and motion tracking all at once.<br>The ultimate video editor built for Reels, TikTok, and Shorts.',
+        heroTitle1: 'Turn fleeting moments <br><span class="brand">into eye-catching shorts</span>',
+        heroDesc: 'Your ordinary daily life becomes trendy content.',
         marqueeText: "PERFECT FOR TIKTOK • YOUTUBE SHORTS • INSTAGRAM REELS • EASY TO USE • PIP SUPPORT • SPEED CONTROL • VOICE RECORDING • ",
         f1Title: 'Smart <span>Auto Captions</span>', f1Desc: 'Recognize speech and add subtitles instantly.<br>Save time on manual typing.',
         f2Title: 'Eye-catching <span>Effects</span>', f2Desc: 'Add depth to your videos with visual effects.<br>Apply the exact mood you want intuitively.',
@@ -592,16 +598,16 @@
       },
       ja: {
         langKo: '한국어', langJa: '日本語', langEn: 'English',
-        heroTitle1: 'プロ級の編集を<br><span class="brand">シンプルかつ直感的に</span>',
-        heroDesc: '字幕、フィルター、エフェクト、モーショントラッキングまで一度に。<br>Reels、TikTok、Shorts制作に最適な動画編集アプリ。',
-        marqueeText: "TikTokに最適 • YouTube Shorts • Instagram Reels • 簡単な操作 • PIP対応 • 速度調整 • 音声録音 • ",
+        heroTitle1: '過ぎ去る瞬間を<br><span class="brand">目を引くショート動画に</span>',
+        heroDesc: 'ありふれた日常がトレンドのコンテンツに変わります。',
+        marqueeText: "PERFECT FOR TIKTOK • YOUTUBE SHORTS • INSTAGRAM REELS • EASY TO USE • PIP SUPPORT • SPEED CONTROL • VOICE RECORDING • ",
         f1Title: 'スマートな<span>自動字幕</span>', f1Desc: '音声を認識してすぐに字幕を追加します。<br>面倒な入力作業의 시간을 절약できます。',
         f2Title: '目を引く<span>エフェクト</span>', f2Desc: '多彩な視覚効果で動画에몰입감을 더해줍니다.<br>직관적으로 원하는 느낌을 입혀보세요.',
         f3Title: '雰囲기를 변える<span>フィルター</span>', f3Desc: 'シンプルなワンタッチで、<br>動画全体のトーンや雰囲気を変えることができます。',
         f4Title: '滑らかな<span>モーショントラッキング</span>', f4Desc: '動く被写체를 부드럽게 따라갑니다.<br>원하는 위치에 요소를 자연스럽게 고정해 보세요.',
         f5Title: 'すっきりとした<span>背景透過</span>', f5Desc: '복잡한 조작 없이 피사체만 분리할 수 있습니다.<br>피사체를 더 돋보이게 만들어 보세요.',
-        f6Title: 'アクセントになる<span>ステッカー</span>', f6Desc: '스티커를 사용하여 동영상에 재미를 더해보세요.<br>포인트에 맞게 활용하실 수 있습니다.',
-        f7Title: '魅力的な<span>テキスト</span>', f7Desc: '메시지를 효과적으로 전달할 수 있는<br>텍스트 디자인과 애니메이션을 제공합니다.',
+        f6Title: 'アクセントになる<span>ステッカー</span>', f6Desc: '스티커を 사용하여 동영상에 재미를 더해보세요.<br>포인트에 맞게 활용하실 수 있습니다.',
+        f7Title: '魅力的な<span>テキスト</span>', f7Desc: '메시지를 효과적으로 전달할 수 있는<br>텍스트デザインとアニメーションを提供します。',
         f8Title: '自然な<span>場面転換</span>', f8Desc: '컷과 컷 사이를 부드럽게 이어주어<br>뚝뚝 끊기지 않는 영상을 완성할 수 있습니다.',
         gridTitle: '主要編集機能を<span>無料で</span>', gridDesc: '創作に必要な基本ツールを制限なしで提供します。',
         grid1: '精密なトリミング', grid1Desc: 'お好みの区間を完全に選択し、分割・結合してカット編集を素早く完了します。',
