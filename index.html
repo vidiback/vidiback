@@ -74,8 +74,10 @@
 
     /* ── HERO ── */
     .main-content{position:relative;z-index:10;padding-bottom:60px}
-    .hero{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;perspective:1000px}
-    .hero-content{will-change:transform,opacity;transform-style:preserve-3d;padding:0 2rem}
+    /* Updated background with slight blur */
+    .hero{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;perspective:1000px;background-color:#000;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-20px;right:-20px;bottom:-20px;left:-20px;background:url('./assets/images/hero_section_background.png') center/cover no-repeat;filter:blur(8px);transform:scale(1.05);z-index:0;pointer-events:none;}
+    .hero-content{position:relative;z-index:1;will-change:transform,opacity;transform-style:preserve-3d;padding:0 2rem}
     .hero h1{
       font-size:clamp(3rem,7.5vw,7.5rem);font-weight:900;line-height:1.1;
       letter-spacing:-.04em;margin-bottom:1.5rem;
@@ -87,6 +89,28 @@
     .play-badge{display:inline-block;transition:transform .3s var(--ease-out),filter .3s}
     .play-badge img{height:54px;width:auto;object-fit:contain}
     .play-badge:hover{transform:translateY(-4px) scale(1.02);filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+
+    /* ── SCROLL INDICATOR (SIMPLIFIED) ── */
+    .scroll-indicator{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+      z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;
+      text-decoration:none;color:rgba(248,250,245,.7);font-size:13px;font-weight:600;
+      letter-spacing:-.01em;transition:color .3s,opacity .3s,transform .3s;
+      cursor:pointer;user-select:none;will-change:transform,opacity;
+    }
+    .scroll-indicator:hover{color:#fff;transform:translateX(-50%) translateY(3px)}
+    .scroll-indicator:hover .scroll-chevron{color:#fff; filter:drop-shadow(0 0 8px rgba(150,255,0,.4))}
+    .scroll-chevron{
+      color:var(--brand);animation:scrollChevron 1.8s ease-in-out infinite;
+      transition:color .3s, filter .3s;
+    }
+    @keyframes scrollChevron{
+      0%,100%{transform:translateY(0);opacity:.6}
+      50%{transform:translateY(4px);opacity:1}
+    }
+    @media(max-width:480px){
+      .scroll-indicator{bottom:18px;gap:4px;font-size:12px}
+    }
 
     /* ── STICKY MOCKUP ── */
     .features-mockup-section{position:relative;z-index:10;width:100%;height:800vh;background:#000}
@@ -380,6 +404,12 @@
         <img src="./assets/images/google_play_badge.png" alt="Get it on Google Play" onerror="this.style.display='none'">
       </a>
     </div>
+    <a href="#featuresSection" class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
+      <span class="scroll-text" data-i18n="scrollText">스크롤하여 더 알아보기</span>
+      <svg class="scroll-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
   </section>
 
   <!-- Sticky Mockup -->
@@ -613,6 +643,7 @@ const translations = {
     langKo:'한국어',langJa:'日本語',langEn:'English',
     heroTitle1:'스치는 순간을 <br><span class="brand">시선을 끄는 숏폼으로</span>',
     heroDesc:'평범한 일상이 트렌디한 콘텐츠가 됩니다.',
+    scrollText:'스크롤하여 더 알아보기',
     f1Title:'똑똑한 <span>자동 자막</span>',f1Desc:'영상 속 음성을 인식해 자막을 바로 달아줍니다.<br>귀찮은 타이핑 시간을 아껴보세요.',
     f2Title:'시선을 끄는 <span>효과</span>',f2Desc:'다양한 화면 효과로 영상에 몰입감을 더해줍니다.<br>원하는 느낌을 직관적으로 입혀보세요.',
     f3Title:'분위기를 바꾸는 <span>필터</span>',f3Desc:'단순한 터치 한 번으로<br>영상의 전체적인 톤 앤 매너를 바꿀 수 있습니다.',
@@ -635,6 +666,7 @@ const translations = {
     langKo:'한국어',langJa:'日本語',langEn:'English',
     heroTitle1:'Turn fleeting moments <br><span class="brand">into eye-catching shorts</span>',
     heroDesc:'Your ordinary daily life becomes trendy content.',
+    scrollText:'Scroll to explore',
     f1Title:'Smart <span>Auto Captions</span>',f1Desc:'Recognize speech and add subtitles instantly.<br>Save time on manual typing.',
     f2Title:'Eye-catching <span>Effects</span>',f2Desc:'Add depth to your videos with visual effects.<br>Apply the exact mood you want intuitively.',
     f3Title:'Mood-changing <span>Filters</span>',f3Desc:'Change the overall tone and manner<br>of your video with a simple touch.',
@@ -657,6 +689,7 @@ const translations = {
     langKo:'한국어',langJa:'日本語',langEn:'English',
     heroTitle1:'過ぎ去る瞬間を<br><span class="brand">目を引くショート動画に</span>',
     heroDesc:'ありふれた日常がトレンドのコンテンツに変わります。',
+    scrollText:'スクロールして詳しく見る',
     f1Title:'スマートな<span>自動字幕</span>',f1Desc:'音声を認識してすぐに字幕を追加します。<br>面倒な入力作業の時間を節約できます。',
     f2Title:'目を引く<span>エフェクト</span>',f2Desc:'多彩な視覚効果で動画に没入感を加えます。<br>直感的に望む雰囲気を適用してみてください。',
     f3Title:'雰囲気を変える<span>フィルター</span>',f3Desc:'シンプルなワンタッチで、<br>動画全体のトーンや雰囲気を変えることができます。',
@@ -724,7 +757,15 @@ let activeVideo = null, currentSnapIndex = -1;
 
 function rafLoop() {
   const scrollY = window.scrollY, winH = window.innerHeight;
-  if(scrollY < winH) heroContent.style.opacity = Math.max(0, 1 - scrollY/(winH*.8));
+  if(scrollY < winH) {
+    heroContent.style.opacity = Math.max(0, 1 - scrollY/(winH*.8));
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    if(scrollIndicator) {
+      const scrollOpacity = Math.max(0, 1 - scrollY/(winH*.35));
+      scrollIndicator.style.opacity = scrollOpacity;
+      scrollIndicator.style.pointerEvents = scrollOpacity <= 0 ? 'none' : 'auto';
+    }
+  }
 
   const rect = mockupSection?.getBoundingClientRect();
   if(rect && mockupTrack) {
